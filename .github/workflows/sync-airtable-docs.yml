@@ -1,80 +1,98 @@
-name: 🗂️ Sync Airtable Docs to Repo
+name: 🗂️ Airtable Docs Sync - DEFINITIVE
 
 on:
   schedule:
-    - cron: '0 8 * * *'  # Daily at 8 AM UTC
-  workflow_dispatch:      # Manual trigger
-
-permissions:
-  contents: write  # ESTO ES CRÍTICO
+    - cron: '0 8 * * *'  # 8 AM UTC daily
+  workflow_dispatch:
 
 jobs:
-  sync-and-commit:
+  update-docs:
     runs-on: ubuntu-latest
     
     steps:
-    # PASO 1: Checkout con permisos de escritura
-    - name: 📥 Checkout repository
+    # 1. Checkout solo para leer, no para escribir
+    - name: 📥 Checkout code
       uses: actions/checkout@v4
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        fetch-depth: 0  # Para poder hacer push
+        fetch-depth: 0
     
-    # PASO 2: Setup Python
+    # 2. Setup Python
     - name: 🐍 Setup Python
       uses: actions/setup-python@v4
       with:
         python-version: '3.10'
     
-    # PASO 3: Install dependencies
-    - name: 📦 Install dependencies
-      run: pip install requests
-    
-    # PASO 4: Run sync script
-    - name: 🔄 Sync Airtable structure
+    # 3. Run the sync script
+    - name: 🔄 Sync Airtable Structure
       env:
         AIRTABLE_TOKEN: ${{ secrets.AIRTABLE_TOKEN }}
         AIRTABLE_BASE_ID: ${{ secrets.AIRTABLE_BASE_ID }}
-      run: |
-        echo "=== SYNCING AIRTABLE ==="
-        python sync_airtable.py
-        
-        # Verify file was created
-        if [ -f "database-structure.md" ]; then
-          echo "✅ File created successfully"
-          echo "Preview:"
-          head -5 database-structure.md
-        else
-          echo "❌ ERROR: File not created"
-          exit 1
-        fi
+      run: python sync_airtable.py
     
-    # PASO 5: Commit and push DIRECTLY
-    - name: 💾 Commit to repository
+    # 4. CREATE/UPDATE FILE VIA GITHUB API (ESTA ES LA CLAVE)
+    - name: 📤 Upload to GitHub via API
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        REPO: ${{ github.repository }}
+        FILE_PATH: "database-structure.md"
       run: |
-        echo "=== COMMITTING CHANGES ==="
+        echo "=== UPLOADING FILE VIA GITHUB API ==="
         
-        # Configure git
-        git config --global user.name "github-actions[bot]"
-        git config --global user.email "github-actions[bot]@users.noreply.github.com"
-        
-        # Check if file exists and has content
-        if [ ! -f "database-structure.md" ]; then
-          echo "❌ ERROR: database-structure.md not found"
+        # Leer el archivo generado
+        if [ ! -f "$FILE_PATH" ]; then
+          echo "❌ ERROR: $FILE_PATH not found"
           exit 1
         fi
         
-        # Check if file changed
-        if git diff --quiet database-structure.md 2>/dev/null; then
-          echo "ℹ️ No changes to commit"
+        CONTENT=$(base64 -w 0 "$FILE_PATH")
+        echo "📏 File size: $(wc -c < "$FILE_PATH") bytes"
+        
+        # Verificar si el archivo ya existe en el repo
+        echo "🔍 Checking if file exists in repository..."
+        RESPONSE=$(curl -s -H "Authorization: token $GH_TOKEN" \
+          -H "Accept: application/vnd.github.v3+json" \
+          "https://api.github.com/repos/$REPO/contents/$FILE_PATH" || echo "NOT_FOUND")
+        
+        SHA=""
+        if echo "$RESPONSE" | grep -q '"sha"'; then
+          SHA=$(echo "$RESPONSE" | grep -o '"sha":"[^"]*"' | cut -d'"' -f4)
+          echo "✅ File exists. SHA: $SHA"
+          MESSAGE="📚 docs: update airtable structure"
         else
-          echo "📝 Changes detected, committing..."
-          
-          # Add and commit
-          git add database-structure.md
-          git commit -m "📚 docs: update airtable structure [auto]"
-          
-          # Push changes
-          git push
-          echo "✅ Changes pushed to repository"
+          echo "🆕 File doesn't exist, creating new"
+          MESSAGE="📚 docs: create airtable structure"
+        fi
+        
+        # Crear JSON para la API
+        TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+        JSON=$(cat <<EOF
+        {
+          "message": "$MESSAGE",
+          "content": "$CONTENT",
+          $( [ -n "$SHA" ] && echo "\"sha\": \"$SHA\"," )
+          "committer": {
+            "name": "GitHub Actions",
+            "email": "actions@github.com"
+          },
+          "branch": "main"
+        }
+EOF
+        )
+        
+        echo "🚀 Uploading to GitHub..."
+        RESPONSE=$(curl -s -X PUT \
+          -H "Authorization: token $GH_TOKEN" \
+          -H "Accept: application/vnd.github.v3+json" \
+          -H "Content-Type: application/json" \
+          -d "$JSON" \
+          "https://api.github.com/repos/$REPO/contents/$FILE_PATH")
+        
+        if echo "$RESPONSE" | grep -q '"content"'; then
+          echo "🎉 SUCCESS: File uploaded to repository!"
+          COMMIT_URL=$(echo "$RESPONSE" | grep -o '"html_url":"[^"]*"' | cut -d'"' -f4)
+          echo "🔗 View commit: $COMMIT_URL"
+        else
+          echo "❌ ERROR uploading file:"
+          echo "$RESPONSE"
+          exit 1
         fi
