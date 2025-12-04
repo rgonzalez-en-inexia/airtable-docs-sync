@@ -51,7 +51,7 @@ jobs:
         echo "📄 Preview:"
         head -10 database-structure.md
     
-    # 5. Upload to GitHub using GitHub API
+    # 5. Upload to GitHub using GitHub API (VERSIÓN CORREGIDA)
     - name: 📤 Upload to GitHub Repository
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -69,28 +69,34 @@ jobs:
         # Encode file content to base64
         CONTENT_BASE64=$(base64 -w 0 "$FILE_PATH")
         
-        # Get file SHA if it exists
+        # Get file SHA if it exists - FORMA MÁS ROBUSTA
         echo "🔍 Checking if file already exists in repository..."
         
         SHA=""
         API_RESPONSE=$(curl -s -H "Authorization: token $GH_TOKEN" \
           -H "Accept: application/vnd.github.v3+json" \
-          "https://api.github.com/repos/$REPO/contents/$FILE_PATH" || echo "{}")
+          "https://api.github.com/repos/$REPO/contents/$FILE_PATH")
         
-        if echo "$API_RESPONSE" | grep -q '"sha"'; then
-          SHA=$(echo "$API_RESPONSE" | grep -o '"sha":"[^"]*"' | cut -d'"' -f4)
+        # Extraer SHA de forma más robusta usando jq si está disponible
+        if command -v jq &> /dev/null; then
+          SHA=$(echo "$API_RESPONSE" | jq -r '.sha // empty')
+        else
+          # Fallback: extraer SHA manualmente
+          SHA=$(echo "$API_RESPONSE" | grep -o '"sha"[[:space:]]*:[[:space:]]*"[^"]*"' | cut -d'"' -f4)
+        fi
+        
+        if [ -n "$SHA" ] && [ "$SHA" != "null" ]; then
           echo "✅ File exists. SHA: ${SHA:0:8}..."
           COMMIT_MESSAGE="📚 docs: update airtable structure [auto]"
+          NEED_SHA=true
         else
-          echo "🆕 File doesn't exist, will create new"
+          echo "🆕 File doesn't exist or SHA not found, will create new"
           COMMIT_MESSAGE="📚 docs: create airtable structure [auto]"
+          NEED_SHA=false
         fi
         
         # Create JSON payload
-        TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
-        
-        # Create JSON payload correctly
-        if [ -n "$SHA" ]; then
+        if [ "$NEED_SHA" = true ] && [ -n "$SHA" ]; then
           JSON_PAYLOAD='{
             "message": "'"$COMMIT_MESSAGE"'",
             "content": "'"$CONTENT_BASE64"'",
@@ -114,32 +120,46 @@ jobs:
         fi
         
         echo "🚀 Uploading file to GitHub..."
+        echo "Payload length: ${#JSON_PAYLOAD} characters"
         
         # Make API call
-        UPLOAD_RESPONSE=$(curl -s -X PUT \
+        UPLOAD_RESPONSE=$(curl -s -w "\nHTTP_STATUS:%{http_code}" -X PUT \
           -H "Authorization: token $GH_TOKEN" \
           -H "Accept: application/vnd.github.v3+json" \
           -H "Content-Type: application/json" \
           -d "$JSON_PAYLOAD" \
           "https://api.github.com/repos/$REPO/contents/$FILE_PATH")
         
+        # Extraer estado HTTP y respuesta
+        HTTP_STATUS=$(echo "$UPLOAD_RESPONSE" | grep "HTTP_STATUS:" | cut -d':' -f2)
+        JSON_RESPONSE=$(echo "$UPLOAD_RESPONSE" | grep -v "HTTP_STATUS:")
+        
+        echo "📊 HTTP Status: $HTTP_STATUS"
+        
         # Check response
-        if echo "$UPLOAD_RESPONSE" | grep -q '"content"'; then
+        if [ "$HTTP_STATUS" = "200" ] || [ "$HTTP_STATUS" = "201" ]; then
           echo "🎉 SUCCESS: File uploaded to repository!"
           
           # Get commit URL
-          COMMIT_URL=$(echo "$UPLOAD_RESPONSE" | grep -o '"html_url":"[^"]*"' | cut -d'"' -f4)
-          echo "🔗 View commit: $COMMIT_URL"
+          if command -v jq &> /dev/null; then
+            COMMIT_URL=$(echo "$JSON_RESPONSE" | jq -r '.commit.html_url // empty')
+          else
+            COMMIT_URL=$(echo "$JSON_RESPONSE" | grep -o '"html_url":"[^"]*"' | cut -d'"' -f4 | head -1)
+          fi
+          
+          if [ -n "$COMMIT_URL" ]; then
+            echo "🔗 View commit: $COMMIT_URL"
+          fi
           
           # Get download URL
           DOWNLOAD_URL="https://raw.githubusercontent.com/$REPO/main/$FILE_PATH"
           echo "⬇️  Download URL: $DOWNLOAD_URL"
         else
-          echo "❌ ERROR: Failed to upload file"
-          echo "Response: $UPLOAD_RESPONSE"
+          echo "❌ ERROR: Failed to upload file (Status: $HTTP_STATUS)"
+          echo "Response: $JSON_RESPONSE"
           exit 1
         fi
-    
+        
     # 6. Create artifact for backup
     - name: 🗃️ Create backup artifact
       if: success()
