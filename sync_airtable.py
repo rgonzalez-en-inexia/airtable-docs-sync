@@ -1,248 +1,143 @@
-# sync_airtable.py - VERSIÓN CORREGIDA PARA GITHUB ACTIONS
-import requests
-import json
-from datetime import datetime
+#!/usr/bin/env python3
+"""
+Sync Airtable structure to Markdown documentation
+"""
+
 import os
 import sys
+import requests
+from datetime import datetime
 
-def log_message(message, level="INFO"):
-    """Mensajes de log formateados"""
-    colors = {
-        "INFO": "\033[94m",    # Azul
-        "SUCCESS": "\033[92m", # Verde
-        "WARNING": "\033[93m", # Amarillo
-        "ERROR": "\033[91m",   # Rojo
-        "RESET": "\033[0m"     # Reset
-    }
-    color = colors.get(level, colors["INFO"])
-    print(f"{color}[{level}] {message}{colors['RESET']}")
+# Configuration from environment
+AIRTABLE_TOKEN = os.getenv('AIRTABLE_TOKEN')
+BASE_ID = os.getenv('AIRTABLE_BASE_ID')
 
-def check_environment():
-    """Verificar que las variables de entorno estén configuradas"""
-    log_message("Verificando variables de entorno...", "INFO")
+def main():
+    print("🚀 Starting Airtable documentation sync...")
     
-    airtable_token = os.getenv('AIRTABLE_TOKEN')
-    airtable_base_id = os.getenv('AIRTABLE_BASE_ID')
+    # Validate environment
+    if not AIRTABLE_TOKEN:
+        print("❌ ERROR: AIRTABLE_TOKEN environment variable not set")
+        sys.exit(1)
     
-    if not airtable_token:
-        log_message("ERROR: AIRTABLE_TOKEN no está configurado", "ERROR")
-        log_message("Solución: Añade AIRTABLE_TOKEN como secreto en GitHub", "ERROR")
-        return False
-        
-    if not airtable_base_id:
-        log_message("ERROR: AIRTABLE_BASE_ID no está configurado", "ERROR")
-        log_message("Solución: Añade AIRTABLE_BASE_ID como secreto en GitHub", "ERROR")
-        return False
+    if not BASE_ID:
+        print("❌ ERROR: AIRTABLE_BASE_ID environment variable not set")
+        sys.exit(1)
     
-    log_message(f"✅ AIRTABLE_TOKEN: {'*' * 10}{airtable_token[-5:]}", "SUCCESS")
-    log_message(f"✅ AIRTABLE_BASE_ID: {airtable_base_id}", "SUCCESS")
-    return True
-
-def fetch_airtable_metadata():
-    """Obtener metadata de Airtable"""
-    airtable_token = os.getenv('AIRTABLE_TOKEN')
-    airtable_base_id = os.getenv('AIRTABLE_BASE_ID')
+    print(f"📋 Base ID: {BASE_ID}")
+    print(f"🔐 Token: {'*' * 10}{AIRTABLE_TOKEN[-5:] if AIRTABLE_TOKEN else 'NONE'}")
     
-    url = f"https://api.airtable.com/v0/meta/bases/{airtable_base_id}/tables"
-    headers = {"Authorization": f"Bearer {airtable_token}"}
-    
-    log_message(f"Conectando a Airtable API...", "INFO")
-    log_message(f"URL: {url}", "INFO")
+    # Fetch Airtable metadata
+    print("\n📡 Fetching Airtable metadata...")
+    url = f"https://api.airtable.com/v0/meta/bases/{BASE_ID}/tables"
+    headers = {"Authorization": f"Bearer {AIRTABLE_TOKEN}"}
     
     try:
         response = requests.get(url, headers=headers, timeout=30)
         
-        if response.status_code == 200:
-            log_message("✅ Metadata obtenida exitosamente", "SUCCESS")
-            return response.json()
-        else:
-            log_message(f"❌ Error {response.status_code} de Airtable", "ERROR")
-            log_message(f"Respuesta: {response.text[:200]}", "ERROR")
-            return None
+        if response.status_code != 200:
+            print(f"❌ API Error {response.status_code}: {response.text[:100]}")
+            sys.exit(1)
+        
+        data = response.json()
+        tables = data.get('tables', [])
+        
+        if not tables:
+            print("⚠️ No tables found in the base")
+            tables = []
             
-    except requests.exceptions.RequestException as e:
-        log_message(f"❌ Error de conexión: {str(e)}", "ERROR")
-        return None
-
-def generate_markdown_docs(metadata):
-    """Generar documentación en Markdown"""
-    if not metadata or 'tables' not in metadata:
-        return "# ❌ Error: No se pudo obtener metadata de Airtable"
+    except Exception as e:
+        print(f"❌ Error fetching data: {e}")
+        sys.exit(1)
     
-    update_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S UTC')
+    # Generate Markdown
+    print(f"\n📝 Generating documentation for {len(tables)} tables...")
     
-    docs = f"""# 🗂️ Estructura de Base de Airtable
+    update_time = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S UTC')
+    
+    markdown = f"""# 🗂️ Airtable Database Structure
 
-> **Última actualización automática**: {update_time}
+> Last automated update: {update_time}
 > 
-> ⚠️ **Este archivo se genera automáticamente. NO EDITAR MANUALMENTE.**
+> ⚠️ **This file is auto-generated. Do not edit manually.**
 
-## 📊 Resumen General
+## 📊 Overview
 
-"""
-    
-    # Resumen de tablas
-    tables = metadata.get('tables', [])
-    total_fields = sum(len(table.get('fields', [])) for table in tables)
-    
-    docs += f"""
-- **Total de tablas**: {len(tables)}
-- **Total de campos**: {total_fields}
-- **Base ID**: `{os.getenv('AIRTABLE_BASE_ID')}`
-- **Actualizado automáticamente**: Diariamente a las 8:00 AM UTC
+- **Total tables**: {len(tables)}
+- **Base ID**: `{BASE_ID}`
+- **Auto-update**: Daily at 8:00 AM UTC
 
 ---
 
-## 📋 Tablas Detalladas
-
 """
     
+    # Process each table
     for table in tables:
-        table_name = table.get('name', 'Sin nombre')
+        table_name = table.get('name', 'Unnamed Table')
         table_id = table.get('id', '')
         fields = table.get('fields', [])
         
-        docs += f"### 🗃️ {table_name}\n"
-        docs += f"*ID: `{table_id}`* | *Campos: {len(fields)}*\n\n"
+        markdown += f"## 📋 {table_name}\n\n"
+        markdown += f"*Table ID: `{table_id}`*\n\n"
         
         if not fields:
-            docs += "*No hay campos en esta tabla*\n\n"
+            markdown += "*No fields in this table*\n\n"
         else:
-            docs += "| Campo | Tipo | Descripción | Opciones |\n"
-            docs += "|-------|------|-------------|----------|\n"
+            markdown += "| Field | Type | Options |\n"
+            markdown += "|-------|------|---------|\n"
             
             for field in fields:
-                field_name = field.get('name', 'Sin nombre')
+                field_name = field.get('name', 'Unnamed Field')
                 field_type = field.get('type', 'unknown')
                 field_id = field.get('id', '')
                 
-                # Descripción simple
-                type_descriptions = {
-                    'singleSelect': 'Selección única',
-                    'multipleSelects': 'Selección múltiple',
-                    'text': 'Texto',
-                    'number': 'Número',
-                    'date': 'Fecha',
-                    'checkbox': 'Verdadero/Falso',
-                    'formula': 'Campo calculado',
-                    'rollup': 'Agregación',
-                    'lookup': 'Referencia',
-                    'url': 'Enlace web',
-                    'email': 'Correo electrónico',
-                    'phoneNumber': 'Teléfono',
-                    'rating': 'Calificación',
-                    'attachment': 'Archivo adjunto',
-                }
-                
-                description = type_descriptions.get(field_type, field_type)
-                
-                # Opciones para campos select
-                options = "-"
+                # Get options for select fields
+                options = ""
                 if field_type in ['singleSelect', 'multipleSelects']:
                     choices = field.get('options', {}).get('choices', [])
                     if choices:
-                        option_names = [f"`{c.get('name')}`" for c in choices[:5]]
-                        options = ", ".join(option_names)
-                        if len(choices) > 5:
-                            options += f" *(+{len(choices)-5} más)*"
+                        option_names = [choice.get('name', '') for choice in choices[:3]]
+                        options = ", ".join([f"`{name}`" for name in option_names if name])
+                        if len(choices) > 3:
+                            options += f" (+{len(choices)-3} more)"
                 
-                docs += f"| **{field_name}**<br>`{field_id}` | `{field_type}` | {description} | {options} |\n"
+                markdown += f"| **{field_name}**<br>`{field_id}` | `{field_type}` | {options} |\n"
         
-        docs += "\n---\n\n"
+        markdown += "\n---\n\n"
     
-    # Pie de documento
-    docs += f"""
-## 🔄 Sobre esta documentación
+    # Add footer
+    markdown += f"""
+## 🔄 About This Documentation
 
-Esta documentación se genera automáticamente mediante:
-1. **GitHub Actions** - Ejecuta diariamente
-2. **Airtable API** - Obtiene la estructura actual
-3. **Script Python** - Genera este archivo Markdown
+This file is automatically generated by GitHub Actions.
+- **Schedule**: Daily at 8:00 AM UTC
+- **Trigger**: Manual runs also available
+- **Source**: Airtable API
 
-### 📅 Historial de actualizaciones
-- {update_time} - Actualización automática
-- La próxima actualización: Mañana a las 8:00 AM UTC
-
-### 🔧 Solución de problemas
-Si esta documentación no se actualiza:
-1. Verifica que los secretos de GitHub estén configurados
-2. Revisa los logs en GitHub Actions
-3. Ejecuta manualmente el workflow
-
----
-*Documentación generada automáticamente - {update_time}*
+*Generated on {update_time}*
 """
     
-    return docs
-
-def save_documentation(content, filename="database-structure.md"):
-    """Guardar documentación en archivo"""
+    # Save to file
+    print("\n💾 Saving to database-structure.md...")
     try:
-        with open(filename, 'w', encoding='utf-8') as f:
-            f.write(content)
+        with open('database-structure.md', 'w', encoding='utf-8') as f:
+            f.write(markdown)
         
-        # Verificar que se escribió correctamente
-        import os
-        file_size = os.path.getsize(filename)
-        line_count = len(content.split('\n'))
+        # Verify
+        with open('database-structure.md', 'r', encoding='utf-8') as f:
+            lines = f.readlines()
         
-        log_message(f"✅ Documentación guardada en: {filename}", "SUCCESS")
-        log_message(f"   📏 Tamaño: {file_size} bytes", "INFO")
-        log_message(f"   📄 Líneas: {line_count}", "INFO")
-        
-        return True
+        print(f"✅ Successfully saved {len(lines)} lines")
+        print(f"📄 First 3 lines:")
+        for i in range(min(3, len(lines))):
+            print(f"   {lines[i].rstrip()}")
         
     except Exception as e:
-        log_message(f"❌ Error al guardar archivo: {str(e)}", "ERROR")
-        return False
-
-def main():
-    """Función principal"""
-    log_message("=" * 60, "INFO")
-    log_message("🚀 INICIANDO SINCRONIZACIÓN AIRTABLE", "INFO")
-    log_message("=" * 60, "INFO")
-    
-    # 1. Verificar entorno
-    if not check_environment():
+        print(f"❌ Error saving file: {e}")
         sys.exit(1)
     
-    # 2. Obtener metadata de Airtable
-    log_message("\n📡 Obteniendo metadata de Airtable...", "INFO")
-    metadata = fetch_airtable_metadata()
-    
-    if not metadata:
-        log_message("❌ No se pudo obtener metadata", "ERROR")
-        sys.exit(1)
-    
-    # 3. Generar documentación
-    log_message("\n📝 Generando documentación Markdown...", "INFO")
-    documentation = generate_markdown_docs(metadata)
-    
-    # 4. Guardar archivo
-    log_message("\n💾 Guardando archivo...", "INFO")
-    if save_documentation(documentation):
-        # 5. Mostrar resumen
-        tables = metadata.get('tables', [])
-        log_message("\n" + "=" * 60, "SUCCESS")
-        log_message("🎉 SINCRONIZACIÓN COMPLETADA EXITOSAMENTE", "SUCCESS")
-        log_message("=" * 60, "SUCCESS")
-        
-        log_message("\n📊 RESUMEN FINAL:", "INFO")
-        log_message(f"   • Tablas procesadas: {len(tables)}", "INFO")
-        
-        for i, table in enumerate(tables, 1):
-            table_name = table.get('name', f'Tabla {i}')
-            field_count = len(table.get('fields', []))
-            log_message(f"   {i}. {table_name}: {field_count} campos", "INFO")
-        
-        log_message(f"\n🕐 Hora de finalización: {datetime.now().strftime('%H:%M:%S')}", "INFO")
-        log_message("✅ Listo para commit en GitHub", "SUCCESS")
-        
-        return True
-    else:
-        log_message("❌ Error en el proceso", "ERROR")
-        return False
+    print("\n🎉 Documentation sync completed successfully!")
+    return 0
 
-if __name__ == "__main__":
-    success = main()
-    sys.exit(0 if success else 1)
+if __name__ == '__main__':
+    sys.exit(main())
