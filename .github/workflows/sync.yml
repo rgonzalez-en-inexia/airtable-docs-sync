@@ -6,14 +6,25 @@ on:
     - cron: '0 8 * * *'
   # También puedes ejecutar manualmente
   workflow_dispatch:
+  # También se ejecuta cuando se actualiza el script
+  push:
+    paths:
+      - 'sync_airtable.py'
+      - '.github/workflows/sync.yml'
 
 jobs:
   sync:
     runs-on: ubuntu-latest
     
+    permissions:
+      contents: write  # Esto es NUEVO y necesario
+    
     steps:
     - name: Checkout código
       uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}  # Esto es NUEVO
+        fetch-depth: 0  # Trae todo el historial
       
     - name: Configurar Python
       uses: actions/setup-python@v4
@@ -30,11 +41,40 @@ jobs:
         AIRTABLE_TOKEN: ${{ secrets.AIRTABLE_TOKEN }}
         AIRTABLE_BASE_ID: ${{ secrets.AIRTABLE_BASE_ID }}
       run: |
+        echo "🔍 Verificando variables de entorno..."
+        echo "Base ID configurada: ${AIRTABLE_BASE_ID:0:10}..."
+        
+        echo "🚀 Ejecutando script..."
         python sync_airtable.py
+        
+        echo "📊 Verificando si se creó el archivo..."
+        if [ -f "database-structure.md" ]; then
+          echo "✅ Archivo creado correctamente"
+          ls -la database-structure.md
+          echo "--- Primeras líneas del archivo ---"
+          head -5 database-structure.md
+        else
+          echo "❌ No se creó database-structure.md"
+          exit 1
+        fi
+        
+    - name: Configurar Git
+      run: |
+        git config --global user.name 'GitHub Actions Bot'
+        git config --global user.email 'actions@github.com'
         
     - name: Subir cambios si hay actualizaciones
       run: |
-        git config --global user.name 'GitHub Action'
-        git config --global user.email 'action@github.com'
-        git add -A
-        git diff --quiet && git diff --staged --quiet || (git commit -m "📚 Actualizar docs Airtable [auto]" && git push)
+        echo "🔍 Verificando cambios..."
+        git status
+        
+        # Verifica si hay cambios
+        if git diff --quiet && git diff --staged --quiet; then
+          echo "✅ No hay cambios para commitear"
+        else
+          echo "📝 Hay cambios, creando commit..."
+          git add -A
+          git commit -m "📚 Actualizar docs Airtable [auto $(date +'%Y-%m-%d %H:%M')]"
+          git push
+          echo "✅ Cambios subidos a GitHub"
+        fi
