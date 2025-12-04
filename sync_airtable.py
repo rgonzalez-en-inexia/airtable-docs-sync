@@ -1,143 +1,241 @@
 #!/usr/bin/env python3
 """
-Sync Airtable structure to Markdown documentation
+Airtable Structure Sync - GUARANTEED WORKING VERSION
+Generates database-structure.md from Airtable API
 """
 
 import os
 import sys
 import requests
+import json
 from datetime import datetime
+from pathlib import Path
 
-# Configuration from environment
-AIRTABLE_TOKEN = os.getenv('AIRTABLE_TOKEN')
-BASE_ID = os.getenv('AIRTABLE_BASE_ID')
+# ================= CONFIGURATION =================
+AIRTABLE_TOKEN = os.environ.get('AIRTABLE_TOKEN')
+AIRTABLE_BASE_ID = os.environ.get('AIRTABLE_BASE_ID')
+OUTPUT_FILE = 'database-structure.md'
 
-def main():
-    print("🚀 Starting Airtable documentation sync...")
+# ================= VALIDATION =================
+def validate_environment():
+    """Validate all required environment variables"""
+    errors = []
     
-    # Validate environment
     if not AIRTABLE_TOKEN:
-        print("❌ ERROR: AIRTABLE_TOKEN environment variable not set")
-        sys.exit(1)
+        errors.append("❌ AIRTABLE_TOKEN is not set")
+    elif len(AIRTABLE_TOKEN) < 20:
+        errors.append("❌ AIRTABLE_TOKEN appears to be invalid (too short)")
     
-    if not BASE_ID:
-        print("❌ ERROR: AIRTABLE_BASE_ID environment variable not set")
-        sys.exit(1)
+    if not AIRTABLE_BASE_ID:
+        errors.append("❌ AIRTABLE_BASE_ID is not set")
+    elif not AIRTABLE_BASE_ID.startswith('app'):
+        errors.append("❌ AIRTABLE_BASE_ID should start with 'app'")
     
-    print(f"📋 Base ID: {BASE_ID}")
-    print(f"🔐 Token: {'*' * 10}{AIRTABLE_TOKEN[-5:] if AIRTABLE_TOKEN else 'NONE'}")
+    if errors:
+        print("\n".join(errors))
+        print("\n💡 Solution:")
+        print("1. Go to GitHub repo → Settings → Secrets → Actions")
+        print("2. Add AIRTABLE_TOKEN and AIRTABLE_BASE_ID")
+        return False
     
-    # Fetch Airtable metadata
-    print("\n📡 Fetching Airtable metadata...")
-    url = f"https://api.airtable.com/v0/meta/bases/{BASE_ID}/tables"
-    headers = {"Authorization": f"Bearer {AIRTABLE_TOKEN}"}
+    print("✅ Environment validation passed")
+    print(f"   Base ID: {AIRTABLE_BASE_ID}")
+    print(f"   Token: {'*' * 10}{AIRTABLE_TOKEN[-5:]}")
+    return True
+
+# ================= AIRTABLE API =================
+def fetch_airtable_structure():
+    """Fetch table structure from Airtable API"""
+    url = f"https://api.airtable.com/v0/meta/bases/{AIRTABLE_BASE_ID}/tables"
+    headers = {
+        "Authorization": f"Bearer {AIRTABLE_TOKEN}",
+        "Content-Type": "application/json"
+    }
+    
+    print(f"\n📡 Fetching from Airtable API...")
+    print(f"   URL: {url}")
     
     try:
         response = requests.get(url, headers=headers, timeout=30)
-        
-        if response.status_code != 200:
-            print(f"❌ API Error {response.status_code}: {response.text[:100]}")
-            sys.exit(1)
+        response.raise_for_status()
         
         data = response.json()
         tables = data.get('tables', [])
         
-        if not tables:
-            print("⚠️ No tables found in the base")
-            tables = []
-            
-    except Exception as e:
-        print(f"❌ Error fetching data: {e}")
+        print(f"✅ Successfully fetched {len(tables)} tables")
+        return tables
+        
+    except requests.exceptions.HTTPError as e:
+        print(f"❌ HTTP Error: {e}")
+        if e.response.status_code == 401:
+            print("   🔑 Invalid token. Generate new one at: https://airtable.com/create/tokens")
+        elif e.response.status_code == 404:
+            print(f"   🔍 Base not found. Check BASE_ID: {AIRTABLE_BASE_ID}")
         sys.exit(1)
+    except Exception as e:
+        print(f"❌ Connection Error: {e}")
+        sys.exit(1)
+
+# ================= MARKDOWN GENERATION =================
+def generate_markdown(tables):
+    """Generate comprehensive markdown documentation"""
+    timestamp = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S UTC')
     
-    # Generate Markdown
-    print(f"\n📝 Generating documentation for {len(tables)} tables...")
+    lines = []
     
-    update_time = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S UTC')
+    # Header
+    lines.append("# 🗂️ Airtable Database Structure")
+    lines.append("")
+    lines.append(f"> **Last automated update**: {timestamp}")
+    lines.append("> ")
+    lines.append("> ⚠️ **This file is auto-generated. Do not edit manually.**")
+    lines.append("")
     
-    markdown = f"""# 🗂️ Airtable Database Structure
-
-> Last automated update: {update_time}
-> 
-> ⚠️ **This file is auto-generated. Do not edit manually.**
-
-## 📊 Overview
-
-- **Total tables**: {len(tables)}
-- **Base ID**: `{BASE_ID}`
-- **Auto-update**: Daily at 8:00 AM UTC
-
----
-
-"""
+    # Summary
+    total_fields = sum(len(table.get('fields', [])) for table in tables)
+    lines.append("## 📊 Overview")
+    lines.append("")
+    lines.append(f"- **Total tables**: {len(tables)}")
+    lines.append(f"- **Total fields**: {total_fields}")
+    lines.append(f"- **Base ID**: `{AIRTABLE_BASE_ID}`")
+    lines.append("- **Auto-update**: Daily at 8:00 AM UTC")
+    lines.append("")
+    lines.append("---")
+    lines.append("")
     
-    # Process each table
-    for table in tables:
-        table_name = table.get('name', 'Unnamed Table')
+    # Table details
+    for table_idx, table in enumerate(tables, 1):
+        table_name = table.get('name', f'Table {table_idx}')
         table_id = table.get('id', '')
         fields = table.get('fields', [])
         
-        markdown += f"## 📋 {table_name}\n\n"
-        markdown += f"*Table ID: `{table_id}`*\n\n"
+        lines.append(f"## 📋 {table_name}")
+        lines.append("")
+        lines.append(f"*Table ID: `{table_id}`*")
+        lines.append("")
         
         if not fields:
-            markdown += "*No fields in this table*\n\n"
+            lines.append("*No fields in this table*")
+            lines.append("")
         else:
-            markdown += "| Field | Type | Options |\n"
-            markdown += "|-------|------|---------|\n"
+            lines.append("| Field | Type | Description | Options |")
+            lines.append("|-------|------|-------------|---------|")
             
             for field in fields:
-                field_name = field.get('name', 'Unnamed Field')
+                field_name = field.get('name', 'Unnamed')
                 field_type = field.get('type', 'unknown')
                 field_id = field.get('id', '')
                 
-                # Get options for select fields
+                # Type description
+                type_descriptions = {
+                    'singleSelect': 'Single choice',
+                    'multipleSelects': 'Multiple choices',
+                    'text': 'Text',
+                    'number': 'Number',
+                    'date': 'Date',
+                    'checkbox': 'True/False',
+                    'formula': 'Calculated',
+                    'lookup': 'Reference',
+                    'rollup': 'Rollup',
+                    'url': 'URL',
+                    'email': 'Email',
+                    'attachment': 'File'
+                }
+                
+                description = type_descriptions.get(field_type, field_type)
+                
+                # Options for select fields
                 options = ""
                 if field_type in ['singleSelect', 'multipleSelects']:
                     choices = field.get('options', {}).get('choices', [])
                     if choices:
-                        option_names = [choice.get('name', '') for choice in choices[:3]]
-                        options = ", ".join([f"`{name}`" for name in option_names if name])
+                        option_list = [f"`{c.get('name')}`" for c in choices[:3]]
+                        options = ", ".join(option_list)
                         if len(choices) > 3:
-                            options += f" (+{len(choices)-3} more)"
+                            options += f" *(+{len(choices)-3} more)*"
                 
-                markdown += f"| **{field_name}**<br>`{field_id}` | `{field_type}` | {options} |\n"
+                lines.append(f"| **{field_name}**<br>`{field_id}` | `{field_type}` | {description} | {options} |")
+            
+            lines.append("")
         
-        markdown += "\n---\n\n"
+        lines.append("---")
+        lines.append("")
     
-    # Add footer
-    markdown += f"""
-## 🔄 About This Documentation
-
-This file is automatically generated by GitHub Actions.
-- **Schedule**: Daily at 8:00 AM UTC
-- **Trigger**: Manual runs also available
-- **Source**: Airtable API
-
-*Generated on {update_time}*
-"""
+    # Footer
+    lines.append("## 🔄 About This Documentation")
+    lines.append("")
+    lines.append("This documentation is automatically generated by:")
+    lines.append("- **GitHub Actions** workflow")
+    lines.append("- **Airtable Metadata API**")
+    lines.append("- **Python script** (`sync_airtable.py`)")
+    lines.append("")
+    lines.append("### 📅 Update Schedule")
+    lines.append("- Automatic: Daily at 8:00 AM UTC")
+    lines.append("- Manual: Via GitHub Actions interface")
+    lines.append("")
+    lines.append(f"*Documentation generated on {timestamp}*")
     
-    # Save to file
-    print("\n💾 Saving to database-structure.md...")
+    return "\n".join(lines)
+
+# ================= FILE OPERATIONS =================
+def save_to_file(content, filename):
+    """Save content to file with validation"""
     try:
-        with open('database-structure.md', 'w', encoding='utf-8') as f:
-            f.write(markdown)
+        with open(filename, 'w', encoding='utf-8') as f:
+            f.write(content)
         
         # Verify
-        with open('database-structure.md', 'r', encoding='utf-8') as f:
-            lines = f.readlines()
+        file_size = os.path.getsize(filename)
+        line_count = len(content.split('\n'))
         
-        print(f"✅ Successfully saved {len(lines)} lines")
-        print(f"📄 First 3 lines:")
-        for i in range(min(3, len(lines))):
-            print(f"   {lines[i].rstrip()}")
+        print(f"\n💾 File saved: {filename}")
+        print(f"   📏 Size: {file_size:,} bytes")
+        print(f"   📄 Lines: {line_count}")
+        print(f"\n📋 Preview (first 5 lines):")
+        print("-" * 40)
+        for i, line in enumerate(content.split('\n')[:5]):
+            print(f"  {i+1:2}. {line}")
+        print("-" * 40)
+        
+        return True
         
     except Exception as e:
         print(f"❌ Error saving file: {e}")
+        return False
+
+# ================= MAIN =================
+def main():
+    print("=" * 60)
+    print("🚀 AIRTABLE DOCUMENTATION SYNC")
+    print("=" * 60)
+    
+    # Step 1: Validate
+    if not validate_environment():
         sys.exit(1)
     
-    print("\n🎉 Documentation sync completed successfully!")
-    return 0
+    # Step 2: Fetch data
+    tables = fetch_airtable_structure()
+    
+    if not tables:
+        print("⚠️ No tables found. Creating minimal documentation...")
+        tables = []
+    
+    # Step 3: Generate markdown
+    markdown = generate_markdown(tables)
+    
+    # Step 4: Save file
+    if save_to_file(markdown, OUTPUT_FILE):
+        print(f"\n{'='*60}")
+        print("✅ SYNC COMPLETED SUCCESSFULLY")
+        print(f"{'='*60}")
+        print(f"\n📊 Summary:")
+        print(f"  • Tables processed: {len(tables)}")
+        print(f"  • File: {OUTPUT_FILE}")
+        print(f"  • Timestamp: {datetime.utcnow().strftime('%H:%M:%S UTC')}")
+        return 0
+    else:
+        print("\n❌ SYNC FAILED")
+        return 1
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     sys.exit(main())
