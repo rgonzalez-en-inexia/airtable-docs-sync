@@ -1,0 +1,40 @@
+name: Sync Airtable Documentation
+
+on:
+  schedule:
+    # Ejecuta todos los días a las 8 AM UTC
+    - cron: '0 8 * * *'
+  # También puedes ejecutar manualmente
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout código
+      uses: actions/checkout@v4
+      
+    - name: Configurar Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+        
+    - name: Instalar dependencias
+      run: |
+        python -m pip install --upgrade pip
+        pip install requests
+        
+    - name: Ejecutar sincronización
+      env:
+        AIRTABLE_TOKEN: ${{ secrets.AIRTABLE_TOKEN }}
+        AIRTABLE_BASE_ID: ${{ secrets.AIRTABLE_BASE_ID }}
+      run: |
+        python sync_airtable.py
+        
+    - name: Subir cambios si hay actualizaciones
+      run: |
+        git config --global user.name 'GitHub Action'
+        git config --global user.email 'action@github.com'
+        git add -A
+        git diff --quiet && git diff --staged --quiet || (git commit -m "📚 Actualizar docs Airtable [auto]" && git push)
