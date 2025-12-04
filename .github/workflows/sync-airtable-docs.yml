@@ -1,0 +1,80 @@
+name: 🗂️ Sync Airtable Docs to Repo
+
+on:
+  schedule:
+    - cron: '0 8 * * *'  # Daily at 8 AM UTC
+  workflow_dispatch:      # Manual trigger
+
+permissions:
+  contents: write  # ESTO ES CRÍTICO
+
+jobs:
+  sync-and-commit:
+    runs-on: ubuntu-latest
+    
+    steps:
+    # PASO 1: Checkout con permisos de escritura
+    - name: 📥 Checkout repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        fetch-depth: 0  # Para poder hacer push
+    
+    # PASO 2: Setup Python
+    - name: 🐍 Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    
+    # PASO 3: Install dependencies
+    - name: 📦 Install dependencies
+      run: pip install requests
+    
+    # PASO 4: Run sync script
+    - name: 🔄 Sync Airtable structure
+      env:
+        AIRTABLE_TOKEN: ${{ secrets.AIRTABLE_TOKEN }}
+        AIRTABLE_BASE_ID: ${{ secrets.AIRTABLE_BASE_ID }}
+      run: |
+        echo "=== SYNCING AIRTABLE ==="
+        python sync_airtable.py
+        
+        # Verify file was created
+        if [ -f "database-structure.md" ]; then
+          echo "✅ File created successfully"
+          echo "Preview:"
+          head -5 database-structure.md
+        else
+          echo "❌ ERROR: File not created"
+          exit 1
+        fi
+    
+    # PASO 5: Commit and push DIRECTLY
+    - name: 💾 Commit to repository
+      run: |
+        echo "=== COMMITTING CHANGES ==="
+        
+        # Configure git
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        
+        # Check if file exists and has content
+        if [ ! -f "database-structure.md" ]; then
+          echo "❌ ERROR: database-structure.md not found"
+          exit 1
+        fi
+        
+        # Check if file changed
+        if git diff --quiet database-structure.md 2>/dev/null; then
+          echo "ℹ️ No changes to commit"
+        else
+          echo "📝 Changes detected, committing..."
+          
+          # Add and commit
+          git add database-structure.md
+          git commit -m "📚 docs: update airtable structure [auto]"
+          
+          # Push changes
+          git push
+          echo "✅ Changes pushed to repository"
+        fi
