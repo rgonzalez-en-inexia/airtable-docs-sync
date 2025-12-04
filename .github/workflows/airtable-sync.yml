@@ -1,0 +1,155 @@
+name: 🗂️ Airtable Documentation Sync
+
+on:
+  schedule:
+    - cron: '0 8 * * *'  # Daily at 8 AM UTC
+  workflow_dispatch:      # Manual trigger
+
+permissions:
+  contents: write
+
+jobs:
+  sync-documentation:
+    runs-on: ubuntu-latest
+    
+    steps:
+    # 1. Checkout repository
+    - name: 📥 Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    
+    # 2. Setup Python
+    - name: 🐍 Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    
+    # 3. Install dependencies
+    - name: 📦 Install dependencies
+      run: pip install requests
+    
+    # 4. Generate documentation
+    - name: 🔄 Generate Airtable documentation
+      env:
+        AIRTABLE_TOKEN: ${{ secrets.AIRTABLE_TOKEN }}
+        AIRTABLE_BASE_ID: ${{ secrets.AIRTABLE_BASE_ID }}
+      run: |
+        echo "=== GENERATING DOCUMENTATION ==="
+        
+        # Run the Python script
+        python sync_airtable.py
+        
+        # Verify the file was created
+        if [ ! -f "database-structure.md" ]; then
+          echo "❌ ERROR: database-structure.md was not created"
+          exit 1
+        fi
+        
+        echo "✅ File created successfully"
+        echo "📏 File size: $(wc -c < database-structure.md) bytes"
+        echo "📄 Preview:"
+        head -10 database-structure.md
+    
+    # 5. Upload to GitHub using GitHub API
+    - name: 📤 Upload to GitHub Repository
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        REPO: ${{ github.repository }}
+      run: |
+        echo "=== UPLOADING TO GITHUB REPOSITORY ==="
+        
+        # Check if file exists
+        FILE_PATH="database-structure.md"
+        if [ ! -f "$FILE_PATH" ]; then
+          echo "❌ ERROR: $FILE_PATH not found"
+          exit 1
+        fi
+        
+        # Encode file content to base64
+        CONTENT_BASE64=$(base64 -w 0 "$FILE_PATH")
+        
+        # Get file SHA if it exists
+        echo "🔍 Checking if file already exists in repository..."
+        
+        SHA=""
+        API_RESPONSE=$(curl -s -H "Authorization: token $GH_TOKEN" \
+          -H "Accept: application/vnd.github.v3+json" \
+          "https://api.github.com/repos/$REPO/contents/$FILE_PATH" || echo "{}")
+        
+        if echo "$API_RESPONSE" | grep -q '"sha"'; then
+          SHA=$(echo "$API_RESPONSE" | grep -o '"sha":"[^"]*"' | cut -d'"' -f4)
+          echo "✅ File exists. SHA: ${SHA:0:8}..."
+          COMMIT_MESSAGE="📚 docs: update airtable structure [auto]"
+        else
+          echo "🆕 File doesn't exist, will create new"
+          COMMIT_MESSAGE="📚 docs: create airtable structure [auto]"
+        fi
+        
+        # Create JSON payload
+        TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+        
+        if [ -n "$SHA" ]; then
+          JSON_PAYLOAD=$(cat <<EOF
+          {
+            "message": "$COMMIT_MESSAGE",
+            "content": "$CONTENT_BASE64",
+            "sha": "$SHA",
+            "committer": {
+              "name": "GitHub Actions",
+              "email": "actions@github.com"
+            },
+            "branch": "main"
+          }
+EOF
+          )
+        else
+          JSON_PAYLOAD=$(cat <<EOF
+          {
+            "message": "$COMMIT_MESSAGE",
+            "content": "$CONTENT_BASE64",
+            "committer": {
+              "name": "GitHub Actions",
+              "email": "actions@github.com"
+            },
+            "branch": "main"
+          }
+EOF
+          )
+        fi
+        
+        echo "🚀 Uploading file to GitHub..."
+        
+        # Make API call
+        UPLOAD_RESPONSE=$(curl -s -X PUT \
+          -H "Authorization: token $GH_TOKEN" \
+          -H "Accept: application/vnd.github.v3+json" \
+          -H "Content-Type: application/json" \
+          -d "$JSON_PAYLOAD" \
+          "https://api.github.com/repos/$REPO/contents/$FILE_PATH")
+        
+        # Check response
+        if echo "$UPLOAD_RESPONSE" | grep -q '"content"'; then
+          echo "🎉 SUCCESS: File uploaded to repository!"
+          
+          # Get commit URL
+          COMMIT_URL=$(echo "$UPLOAD_RESPONSE" | grep -o '"html_url":"[^"]*"' | cut -d'"' -f4)
+          echo "🔗 View commit: $COMMIT_URL"
+          
+          # Get download URL
+          DOWNLOAD_URL="https://raw.githubusercontent.com/$REPO/main/$FILE_PATH"
+          echo "⬇️  Download URL: $DOWNLOAD_URL"
+        else
+          echo "❌ ERROR: Failed to upload file"
+          echo "Response: $UPLOAD_RESPONSE"
+          exit 1
+        fi
+    
+    # 6. Create artifact for backup
+    - name: 🗃️ Create backup artifact
+      if: success()
+      uses: actions/upload-artifact@v4
+      with:
+        name: airtable-documentation
+        path: database-structure.md
+        retention-days: 7
