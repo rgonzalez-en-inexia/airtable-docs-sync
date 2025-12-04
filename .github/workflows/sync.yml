@@ -16,65 +16,98 @@ jobs:
   sync:
     runs-on: ubuntu-latest
     
+    # PERMISOS CRÍTICOS - AÑADIR ESTO
     permissions:
-      contents: write  # Esto es NUEVO y necesario
+      contents: write
+      pages: write
+      id-token: write
     
     steps:
-    - name: Checkout código
+    # PASO 1: Obtener el código
+    - name: Checkout código con token
       uses: actions/checkout@v4
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}  # Esto es NUEVO
-        fetch-depth: 0  # Trae todo el historial
+        token: ${{ secrets.GITHUB_TOKEN }}
       
+    # PASO 2: Configurar Python
     - name: Configurar Python
       uses: actions/setup-python@v4
       with:
         python-version: '3.10'
         
+    # PASO 3: Instalar dependencias
     - name: Instalar dependencias
       run: |
         python -m pip install --upgrade pip
         pip install requests
+        pip install python-dotenv
         
+    # PASO 4: Crear archivo .env temporal para pruebas
+    - name: Crear archivo de configuración temporal
+      run: |
+        echo "AIRTABLE_TOKEN=${{ secrets.AIRTABLE_TOKEN }}" >> .env
+        echo "AIRTABLE_BASE_ID=${{ secrets.AIRTABLE_BASE_ID }}" >> .env
+        echo "Variables de entorno configuradas"
+        
+    # PASO 5: Verificar que todo está configurado
+    - name: Verificar configuración
+      run: |
+        echo "🔍 Verificando secretos..."
+        echo "AIRTABLE_TOKEN (primeros 10 chars): ${AIRTABLE_TOKEN:0:10}..."
+        echo "AIRTABLE_BASE_ID: $AIRTABLE_BASE_ID"
+        echo "GITHUB_TOKEN configurado: ${{ secrets.GITHUB_TOKEN != '' }}"
+        
+    # PASO 6: Ejecutar el script
     - name: Ejecutar sincronización
       env:
         AIRTABLE_TOKEN: ${{ secrets.AIRTABLE_TOKEN }}
         AIRTABLE_BASE_ID: ${{ secrets.AIRTABLE_BASE_ID }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        echo "🔍 Verificando variables de entorno..."
-        echo "Base ID configurada: ${AIRTABLE_BASE_ID:0:10}..."
-        
-        echo "🚀 Ejecutando script..."
+        echo "🚀 Ejecutando script de sincronización..."
         python sync_airtable.py
         
-        echo "📊 Verificando si se creó el archivo..."
+        # Verificar resultados
+        echo "📊 Resultado del script:"
         if [ -f "database-structure.md" ]; then
-          echo "✅ Archivo creado correctamente"
-          ls -la database-structure.md
-          echo "--- Primeras líneas del archivo ---"
-          head -5 database-structure.md
+          echo "✅ Archivo creado exitosamente"
+          echo "📄 Primeras 3 líneas del archivo:"
+          head -3 database-structure.md
         else
-          echo "❌ No se creó database-structure.md"
+          echo "❌ ERROR: No se creó database-structure.md"
           exit 1
         fi
         
+    # PASO 7: Configurar Git para hacer commit
     - name: Configurar Git
       run: |
-        git config --global user.name 'GitHub Actions Bot'
-        git config --global user.email 'actions@github.com'
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git config --global pull.rebase false
         
-    - name: Subir cambios si hay actualizaciones
+    # PASO 8: Hacer commit y push de los cambios
+    - name: Commit y Push de cambios
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        echo "🔍 Verificando cambios..."
+        echo "🔍 Verificando cambios en Git..."
         git status
         
-        # Verifica si hay cambios
-        if git diff --quiet && git diff --staged --quiet; then
-          echo "✅ No hay cambios para commitear"
+        # Agregar todos los cambios
+        git add .
+        
+        # Verificar si hay cambios para commitear
+        if git diff --cached --quiet; then
+          echo "ℹ️ No hay cambios para commitear"
         else
-          echo "📝 Hay cambios, creando commit..."
-          git add -A
-          git commit -m "📚 Actualizar docs Airtable [auto $(date +'%Y-%m-%d %H:%M')]"
-          git push
-          echo "✅ Cambios subidos a GitHub"
+          echo "📝 Creando commit con los cambios..."
+          
+          # Crear commit
+          git commit -m "🤖 docs: actualizar estructura Airtable [auto]"
+          
+          # Hacer push
+          echo "🚀 Subiendo cambios a GitHub..."
+          git push origin main
+          
+          echo "✅ Cambios subidos exitosamente"
         fi
