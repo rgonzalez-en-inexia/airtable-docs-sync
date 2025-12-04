@@ -1,155 +1,181 @@
-name: 🗂️ Airtable Documentation Sync
+#!/usr/bin/env python3
+"""
+Airtable Structure Documentation Generator
+"""
 
-on:
-  schedule:
-    - cron: '0 8 * * *'  # Daily at 8 AM UTC
-  workflow_dispatch:      # Manual trigger
+import os
+import sys
+import requests
+from datetime import datetime
 
-permissions:
-  contents: write
+# Configuration
+AIRTABLE_TOKEN = os.environ.get('AIRTABLE_TOKEN')
+AIRTABLE_BASE_ID = os.environ.get('AIRTABLE_BASE_ID')
+OUTPUT_FILE = 'database-structure.md'
 
-jobs:
-  sync-documentation:
-    runs-on: ubuntu-latest
+def log(message, level="INFO"):
+    """Simple logging function"""
+    colors = {
+        "INFO": "\033[94m",
+        "SUCCESS": "\033[92m", 
+        "ERROR": "\033[91m",
+        "RESET": "\033[0m"
+    }
+    color = colors.get(level, colors["INFO"])
+    print(f"{color}[{level}] {message}{colors['RESET']}")
+
+def validate_config():
+    """Validate configuration"""
+    log("Validating configuration...")
     
-    steps:
-    # 1. Checkout repository
-    - name: 📥 Checkout code
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
+    if not AIRTABLE_TOKEN:
+        log("AIRTABLE_TOKEN is not set", "ERROR")
+        return False
     
-    # 2. Setup Python
-    - name: 🐍 Setup Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.10'
+    if not AIRTABLE_BASE_ID:
+        log("AIRTABLE_BASE_ID is not set", "ERROR")
+        return False
     
-    # 3. Install dependencies
-    - name: 📦 Install dependencies
-      run: pip install requests
+    log(f"Base ID: {AIRTABLE_BASE_ID}", "SUCCESS")
+    return True
+
+def fetch_airtable_data():
+    """Fetch data from Airtable API"""
+    log("Fetching data from Airtable API...")
     
-    # 4. Generate documentation
-    - name: 🔄 Generate Airtable documentation
-      env:
-        AIRTABLE_TOKEN: ${{ secrets.AIRTABLE_TOKEN }}
-        AIRTABLE_BASE_ID: ${{ secrets.AIRTABLE_BASE_ID }}
-      run: |
-        echo "=== GENERATING DOCUMENTATION ==="
-        
-        # Run the Python script
-        python sync_airtable.py
-        
-        # Verify the file was created
-        if [ ! -f "database-structure.md" ]; then
-          echo "❌ ERROR: database-structure.md was not created"
-          exit 1
-        fi
-        
-        echo "✅ File created successfully"
-        echo "📏 File size: $(wc -c < database-structure.md) bytes"
-        echo "📄 Preview:"
-        head -10 database-structure.md
+    url = f"https://api.airtable.com/v0/meta/bases/{AIRTABLE_BASE_ID}/tables"
+    headers = {"Authorization": f"Bearer {AIRTABLE_TOKEN}"}
     
-    # 5. Upload to GitHub using GitHub API
-    - name: 📤 Upload to GitHub Repository
-      env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        REPO: ${{ github.repository }}
-      run: |
-        echo "=== UPLOADING TO GITHUB REPOSITORY ==="
+    try:
+        response = requests.get(url, headers=headers, timeout=30)
         
-        # Check if file exists
-        FILE_PATH="database-structure.md"
-        if [ ! -f "$FILE_PATH" ]; then
-          echo "❌ ERROR: $FILE_PATH not found"
-          exit 1
-        fi
-        
-        # Encode file content to base64
-        CONTENT_BASE64=$(base64 -w 0 "$FILE_PATH")
-        
-        # Get file SHA if it exists
-        echo "🔍 Checking if file already exists in repository..."
-        
-        SHA=""
-        API_RESPONSE=$(curl -s -H "Authorization: token $GH_TOKEN" \
-          -H "Accept: application/vnd.github.v3+json" \
-          "https://api.github.com/repos/$REPO/contents/$FILE_PATH" || echo "{}")
-        
-        if echo "$API_RESPONSE" | grep -q '"sha"'; then
-          SHA=$(echo "$API_RESPONSE" | grep -o '"sha":"[^"]*"' | cut -d'"' -f4)
-          echo "✅ File exists. SHA: ${SHA:0:8}..."
-          COMMIT_MESSAGE="📚 docs: update airtable structure [auto]"
-        else
-          echo "🆕 File doesn't exist, will create new"
-          COMMIT_MESSAGE="📚 docs: create airtable structure [auto]"
-        fi
-        
-        # Create JSON payload
-        TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
-        
-        if [ -n "$SHA" ]; then
-          JSON_PAYLOAD=$(cat <<EOF
-          {
-            "message": "$COMMIT_MESSAGE",
-            "content": "$CONTENT_BASE64",
-            "sha": "$SHA",
-            "committer": {
-              "name": "GitHub Actions",
-              "email": "actions@github.com"
-            },
-            "branch": "main"
-          }
-EOF
-          )
-        else
-          JSON_PAYLOAD=$(cat <<EOF
-          {
-            "message": "$COMMIT_MESSAGE",
-            "content": "$CONTENT_BASE64",
-            "committer": {
-              "name": "GitHub Actions",
-              "email": "actions@github.com"
-            },
-            "branch": "main"
-          }
-EOF
-          )
-        fi
-        
-        echo "🚀 Uploading file to GitHub..."
-        
-        # Make API call
-        UPLOAD_RESPONSE=$(curl -s -X PUT \
-          -H "Authorization: token $GH_TOKEN" \
-          -H "Accept: application/vnd.github.v3+json" \
-          -H "Content-Type: application/json" \
-          -d "$JSON_PAYLOAD" \
-          "https://api.github.com/repos/$REPO/contents/$FILE_PATH")
-        
-        # Check response
-        if echo "$UPLOAD_RESPONSE" | grep -q '"content"'; then
-          echo "🎉 SUCCESS: File uploaded to repository!"
-          
-          # Get commit URL
-          COMMIT_URL=$(echo "$UPLOAD_RESPONSE" | grep -o '"html_url":"[^"]*"' | cut -d'"' -f4)
-          echo "🔗 View commit: $COMMIT_URL"
-          
-          # Get download URL
-          DOWNLOAD_URL="https://raw.githubusercontent.com/$REPO/main/$FILE_PATH"
-          echo "⬇️  Download URL: $DOWNLOAD_URL"
-        else
-          echo "❌ ERROR: Failed to upload file"
-          echo "Response: $UPLOAD_RESPONSE"
-          exit 1
-        fi
+        if response.status_code == 200:
+            data = response.json()
+            tables = data.get('tables', [])
+            log(f"Found {len(tables)} tables", "SUCCESS")
+            return tables
+        else:
+            log(f"API Error {response.status_code}: {response.text[:100]}", "ERROR")
+            return None
+            
+    except Exception as e:
+        log(f"Connection error: {e}", "ERROR")
+        return None
+
+def generate_documentation(tables):
+    """Generate markdown documentation"""
+    log("Generating documentation...")
     
-    # 6. Create artifact for backup
-    - name: 🗃️ Create backup artifact
-      if: success()
-      uses: actions/upload-artifact@v4
-      with:
-        name: airtable-documentation
-        path: database-structure.md
-        retention-days: 7
+    timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    
+    # Start building markdown
+    lines = []
+    
+    # Header
+    lines.append("# 🗂️ Airtable Database Structure")
+    lines.append("")
+    lines.append(f"> **Last update**: {timestamp}")
+    lines.append("> **Auto-generated** - Do not edit manually")
+    lines.append("")
+    
+    # Summary
+    total_fields = sum(len(table.get('fields', [])) for table in tables)
+    lines.append("## 📊 Summary")
+    lines.append("")
+    lines.append(f"- **Tables**: {len(tables)}")
+    lines.append(f"- **Fields**: {total_fields}")
+    lines.append(f"- **Base ID**: `{AIRTABLE_BASE_ID}`")
+    lines.append("")
+    lines.append("---")
+    lines.append("")
+    
+    # Tables
+    for table in tables:
+        table_name = table.get('name', 'Unnamed')
+        table_id = table.get('id', '')
+        fields = table.get('fields', [])
+        
+        lines.append(f"## 🗃️ {table_name}")
+        lines.append("")
+        lines.append(f"*ID: `{table_id}`*")
+        lines.append("")
+        
+        if fields:
+            lines.append("| Field | Type | Options |")
+            lines.append("|-------|------|---------|")
+            
+            for field in fields:
+                field_name = field.get('name', 'Unnamed')
+                field_type = field.get('type', 'unknown')
+                field_id = field.get('id', '')
+                
+                # Get options for select fields
+                options = ""
+                if field_type in ['singleSelect', 'multipleSelects']:
+                    choices = field.get('options', {}).get('choices', [])
+                    if choices:
+                        option_names = [choice.get('name', '') for choice in choices[:3]]
+                        options = ", ".join([f"`{name}`" for name in option_names if name])
+                        if len(choices) > 3:
+                            options += f" (+{len(choices)-3} more)"
+                
+                lines.append(f"| **{field_name}**<br>`{field_id}` | `{field_type}` | {options} |")
+        
+        lines.append("")
+        lines.append("---")
+        lines.append("")
+    
+    # Footer
+    lines.append("## 🔄 About")
+    lines.append("")
+    lines.append("This document is auto-generated by GitHub Actions.")
+    lines.append("Updates daily at 8:00 AM UTC.")
+    lines.append("")
+    lines.append(f"*Generated: {timestamp}*")
+    
+    return "\n".join(lines)
+
+def save_file(content, filename):
+    """Save content to file"""
+    try:
+        with open(filename, 'w', encoding='utf-8') as f:
+            f.write(content)
+        
+        file_size = os.path.getsize(filename)
+        log(f"File saved: {filename} ({file_size} bytes)", "SUCCESS")
+        return True
+        
+    except Exception as e:
+        log(f"Error saving file: {e}", "ERROR")
+        return False
+
+def main():
+    """Main function"""
+    print("\n" + "="*60)
+    print("🚀 AIRTABLE DOCUMENTATION GENERATOR")
+    print("="*60 + "\n")
+    
+    # 1. Validate
+    if not validate_config():
+        sys.exit(1)
+    
+    # 2. Fetch data
+    tables = fetch_airtable_data()
+    if tables is None:
+        sys.exit(1)
+    
+    # 3. Generate
+    documentation = generate_documentation(tables)
+    
+    # 4. Save
+    if save_file(documentation, OUTPUT_FILE):
+        log("\n✅ DOCUMENTATION GENERATED SUCCESSFULLY", "SUCCESS")
+        log(f"📊 Tables: {len(tables)}", "INFO")
+        log(f"📁 File: {OUTPUT_FILE}", "INFO")
+        return 0
+    else:
+        log("\n❌ GENERATION FAILED", "ERROR")
+        return 1
+
+if __name__ == "__main__":
+    sys.exit(main())
