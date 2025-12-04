@@ -1,12 +1,12 @@
 # 🗂️ Airtable Database Structure
 
-> **Last update**: 2025-12-04 16:43:39
+> **Last update**: 2025-12-04 17:06:52
 > **Auto-generated** - Do not edit manually
 
 ## 📊 Summary
 
-- **Tables**: 20
-- **Fields**: 304
+- **Tables**: 15
+- **Fields**: 258
 - **Base ID**: `app9c8iiAYRGxxhtH`
 
 ---
@@ -60,6 +60,25 @@
 | **Mensajes**<br>`fldL6s7K9zybmNuda` | `multipleRecordLinks` |  |
 | **MetricasDiarias**<br>`fldyzZZIXRSOHfm8p` | `multipleRecordLinks` |  |
 | **MetricasDiarias 2**<br>`fldxn7vaqpgCVhpbO` | `singleLineText` |  |
+
+---
+
+## 🗃️ Mensajes
+
+*ID: `tblk3NUMOZhQX42AJ`*
+
+| Field | Type | Options |
+|-------|------|---------|
+| **ID_Mensaje**<br>`fldICiv65DcYl0ZMO` | `autoNumber` |  |
+| **Conversacion**<br>`fld0lhvJqLpoX8lzh` | `multipleRecordLinks` |  |
+| **Rol**<br>`fldrBWwu17uehpmwN` | `singleSelect` | `estudiante`, `asistente`, `sistema` |
+| **Contenido**<br>`fldskyjOSEa80QeoI` | `richText` |  |
+| **TokensUsados**<br>`fld7kXyt2mxu2jff8` | `number` |  |
+| **ModeloIA**<br>`fld0hzK2Pf0nah5Uq` | `singleSelect` | `gpt-4o`, `gpt-4o-mini`, `gpt-4-vision` |
+| **Timestamp**<br>`fldrycW7y7bBFaLUy` | `createdTime` |  |
+| **ContieneImagen**<br>`fld8ohAvc4OTu8d7K` | `checkbox` |  |
+| **MetricasDiarias**<br>`fldPbYZ1ceJdydjrN` | `singleLineText` |  |
+| **CostoMensaje**<br>`fldSYiKZmNSUahvGN` | `formula` |  |
 
 ---
 
@@ -162,7 +181,7 @@
 | **FechaProximoVencimiento**<br>`fldv97mLTiSL3s5yj` | `multipleLookupValues` |  |
 | **Conversaciones**<br>`fldkSWz9udhZOD1pZ` | `multipleRecordLinks` |  |
 | **Brechas**<br>`fldGzudn4tRsgmydF` | `multipleRecordLinks` |  |
-| **Planes**<br>`fldKW0KGyhpogBEM9` | `multipleRecordLinks` |  |
+| **Planes**<br>`fldKW0KGyhpogBEM9` | `singleLineText` |  |
 | **Logros**<br>`fldjGdoFj8YyOa6BK` | `multipleRecordLinks` |  |
 | **Recordatorios**<br>`fldUT4s4hWISFhvN0` | `multipleRecordLinks` |  |
 | **EventosSignificativos**<br>`fldwNGfi1Trbu6gXi` | `multipleRecordLinks` |  |
@@ -287,25 +306,6 @@
 
 ---
 
-## 🗃️ Mensajes
-
-*ID: `tblk3NUMOZhQX42AJ`*
-
-| Field | Type | Options |
-|-------|------|---------|
-| **ID_Mensaje**<br>`fldICiv65DcYl0ZMO` | `autoNumber` |  |
-| **Conversacion**<br>`fld0lhvJqLpoX8lzh` | `multipleRecordLinks` |  |
-| **Rol**<br>`fldrBWwu17uehpmwN` | `singleSelect` | `estudiante`, `asistente`, `sistema` |
-| **Contenido**<br>`fldskyjOSEa80QeoI` | `richText` |  |
-| **TokensUsados**<br>`fld7kXyt2mxu2jff8` | `number` |  |
-| **ModeloIA**<br>`fld0hzK2Pf0nah5Uq` | `singleSelect` | `gpt-4o`, `gpt-4o-mini`, `gpt-4-vision` |
-| **Timestamp**<br>`fldrycW7y7bBFaLUy` | `createdTime` |  |
-| **ContieneImagen**<br>`fld8ohAvc4OTu8d7K` | `checkbox` |  |
-| **MetricasDiarias**<br>`fldPbYZ1ceJdydjrN` | `singleLineText` |  |
-| **CostoMensaje**<br>`fldSYiKZmNSUahvGN` | `formula` |  |
-
----
-
 ## 🗃️ MetricasDiarias
 
 *ID: `tblgF1aCbdkC8PWU7`*
@@ -364,40 +364,6 @@
 
 ---
 
-## 🗃️ Planes
-
-*ID: `tblfCFxMe0G1ItdQ2`*
-
-| Field | Type | Options |
-|-------|------|---------|
-| **ID_Plan**<br>`fldYAOrLYDwGys7JZ` | `autoNumber` |  |
-| **Estudiante**<br>`fld3DygxpbyAybMNg` | `multipleRecordLinks` |  |
-| **Materia**<br>`fldzcBranscPe2jcC` | `singleSelect` | `Matemáticas`, `Lenguaje`, `Ciencias` (+6 more) |
-| **FechaEvaluacion**<br>`fldEtOL42J74X3vPP` | `date` |  |
-| **DiasDisponibles**<br>`fld0WGtrXucecgmIh` | `number` |  |
-| **SesionesTotales**<br>`fldIWZLc4Amc8RQI4` | `number` |  |
-| **SesionesCompletadas**<br>`flduh2HrpZkalz2IM` | `number` |  |
-| **Completado**<br>`fldLyS9bXfZeVdIqD` | `checkbox` |  |
-| **FechaCreacion**<br>`fldpxDsYnW47kLHMY` | `createdTime` |  |
-
----
-
-## 🗃️ PromptsSistema
-
-*ID: `tblwDudte6iWW2mwS`*
-
-| Field | Type | Options |
-|-------|------|---------|
-| **ID**<br>`fldXyTExrcQYaOx3k` | `singleLineText` |  |
-| **Version**<br>`fld2dmzjs1HMWuE4H` | `number` |  |
-| **NEE**<br>`fldUJwpZ02NBDHt7D` | `singleSelect` | `SIN_NEE`, `TDAH`, `TEA` (+2 more) |
-| **PromptLargo**<br>`fldNemHMiPg9ypW9L` | `multilineText` |  |
-| **Activo**<br>`fldcd31TA5rr0BQdv` | `checkbox` |  |
-| **Descripción**<br>`fldgaMOjkpKoNerGI` | `singleLineText` |  |
-| **FechaActualizacion**<br>`fldprEu3bYmHucVMF` | `lastModifiedTime` |  |
-
----
-
 ## 🗃️ Recordatorios
 
 *ID: `tbll95VSiGdzEPEsZ`*
@@ -438,66 +404,9 @@
 
 ---
 
-## 🗃️ Fields in Base (2025-10-16T20:40:05.843Z)
-
-*ID: `tblZ5AX0pfW8QgLaj`*
-
-| Field | Type | Options |
-|-------|------|---------|
-| **Field Id**<br>`fld6ujy0Db0TODMSx` | `singleLineText` |  |
-| **Field Name**<br>`fldDBMwhVq8Jq8fEq` | `singleLineText` |  |
-| **Field Type**<br>`fldHwuXyLEAO84hGm` | `singleSelect` | `singleLineText`, `email`, `url` (+29 more) |
-| **Table Name**<br>`fldhnSGqiubqxldP4` | `singleSelect` | `Estudiantes`, `Conversaciones`, `Mensajes` (+12 more) |
-| **Table Id**<br>`fldqn12I8ZyFt4xUC` | `singleSelect` | `tblR5gbkydy59GOOC`, `tblhw3b9VCVrJtDu1`, `tblk3NUMOZhQX42AJ` (+12 more) |
-| **Is Primary Field?**<br>`fldCQnes5FXONBhOz` | `checkbox` |  |
-| **Field Description**<br>`fldPGgMJ60Z5BnaAn` | `multilineText` |  |
-| **Field Options**<br>`fldkd7a8ycJfPgI3c` | `richText` |  |
-| **Compute Status**<br>`fld84VQzbhH7vejS7` | `singleSelect` | `editable`, `computed`, `invalid` |
-| **Computed Using**<br>`fld3VXTjHtpgR08Wq` | `singleLineText` |  |
-| **Used to Compute**<br>`fldgzzUufQQkBMMFq` | `singleLineText` |  |
-
----
-
-## 🗃️ Fields in Base (2025-11-11T13:29:22.271Z)
-
-*ID: `tblaFGtGMe0jn337k`*
-
-| Field | Type | Options |
-|-------|------|---------|
-| **Field Id**<br>`fldV3wJ9Tpz6p3Jgr` | `singleLineText` |  |
-| **Field Name**<br>`fldrHR2L2ArJTJYYs` | `singleLineText` |  |
-| **Field Type**<br>`fldV6soBzKZxoKfaZ` | `singleSelect` | `singleLineText`, `email`, `url` (+29 more) |
-| **Table Name**<br>`fld1LfEXhF2HcceDr` | `singleSelect` | `Estudiantes`, `Conversaciones`, `Mensajes` (+14 more) |
-| **Table Id**<br>`fldtbnUJAr5aJAWHf` | `singleSelect` | `tblR5gbkydy59GOOC`, `tblhw3b9VCVrJtDu1`, `tblk3NUMOZhQX42AJ` (+14 more) |
-| **Is Primary Field?**<br>`fldc8TtdxhKdOpvAO` | `checkbox` |  |
-| **Field Description**<br>`fldpLudct3PAcURB9` | `multilineText` |  |
-| **Field Options**<br>`fldYdWrIQQW0W0fXO` | `richText` |  |
-| **Compute Status**<br>`fldOK4gMQggWGyqSe` | `singleSelect` | `editable`, `computed`, `invalid` |
-| **Computed Using**<br>`fldzChCiVMmkTqvKk` | `singleLineText` |  |
-| **Used to Compute**<br>`fldg5crqu7YBRWbCz` | `singleLineText` |  |
-
----
-
-## 🗃️ Fields in Base (2025-11-25T14:53:44.228Z)
-
-*ID: `tblLmUCDFPng8rBns`*
-
-| Field | Type | Options |
-|-------|------|---------|
-| **ListNumber**<br>`fldt1azlSQKhgTTV0` | `autoNumber` |  |
-| **Table Name**<br>`fldAzzB7A9mbX42XI` | `singleSelect` | `Brechas`, `Conversaciones`, `Curriculum` (+16 more) |
-| **Table Id**<br>`fldbfMPKtdex73Aw2` | `singleSelect` | `tblAHnHa5fHOPLATq`, `tblhw3b9VCVrJtDu1`, `tbld18R3UfqhagW4u` (+16 more) |
-| **Field Name**<br>`fldnSg5nYc0hbSoAe` | `singleLineText` |  |
-| **Field Type**<br>`fld7YtEd1RRQLek35` | `singleSelect` | `singleLineText`, `email`, `url` (+29 more) |
-| **Is Primary Field?**<br>`fldjKaxDR05UNeG1J` | `checkbox` |  |
-| **Compute Status**<br>`fldZsUfTHAF9A9WAj` | `singleSelect` | `editable`, `computed`, `invalid` |
-| **Field Id**<br>`fldue7NJqoxt8DVQf` | `singleLineText` |  |
-
----
-
 ## 🔄 About
 
 This document is auto-generated by GitHub Actions.
 Updates daily at 8:00 AM UTC.
 
-*Generated: 2025-12-04 16:43:39*
+*Generated: 2025-12-04 17:06:52*
