@@ -1,11 +1,12 @@
-# sync_airtable.py
+# sync_airtable.py (versión actualizada)
 import requests
 import json
 from datetime import datetime
+import os
 
-# CONFIGURA AQUÍ TUS DATOS
-AIRTABLE_API_KEY = "tu_token_aquí"  # El token que copiaste
-BASE_ID = "tu_base_id_aquí"         # El ID de tu base
+# Usar variables de entorno (más seguro)
+AIRTABLE_API_KEY = os.getenv('AIRTABLE_TOKEN', 'tu_token_fallback')
+BASE_ID = os.getenv('AIRTABLE_BASE_ID', 'tu_base_id_fallback')
 
 def get_airtable_structure():
     """Obtiene la estructura de Airtable"""
@@ -117,4 +118,5 @@ def main():
         print("❌ No se pudo obtener la estructura")
 
 if __name__ == "__main__":
+
     main()
