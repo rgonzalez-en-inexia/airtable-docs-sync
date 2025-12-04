@@ -89,33 +89,28 @@ jobs:
         # Create JSON payload
         TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
         
+        # Create JSON payload correctly
         if [ -n "$SHA" ]; then
-          JSON_PAYLOAD=$(cat <<EOF
-          {
-            "message": "$COMMIT_MESSAGE",
-            "content": "$CONTENT_BASE64",
-            "sha": "$SHA",
+          JSON_PAYLOAD='{
+            "message": "'"$COMMIT_MESSAGE"'",
+            "content": "'"$CONTENT_BASE64"'",
+            "sha": "'"$SHA"'",
             "committer": {
               "name": "GitHub Actions",
               "email": "actions@github.com"
             },
             "branch": "main"
-          }
-EOF
-          )
+          }'
         else
-          JSON_PAYLOAD=$(cat <<EOF
-          {
-            "message": "$COMMIT_MESSAGE",
-            "content": "$CONTENT_BASE64",
+          JSON_PAYLOAD='{
+            "message": "'"$COMMIT_MESSAGE"'",
+            "content": "'"$CONTENT_BASE64"'",
             "committer": {
               "name": "GitHub Actions",
               "email": "actions@github.com"
             },
             "branch": "main"
-          }
-EOF
-          )
+          }'
         fi
         
         echo "🚀 Uploading file to GitHub..."
