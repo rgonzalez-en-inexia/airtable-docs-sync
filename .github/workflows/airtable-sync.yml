@@ -32,11 +32,8 @@ jobs:
     # 4. Generate documentation
     - name: 🔄 Generate Airtable documentation
       env:
-        # AIRTABLE_TOKEN: ${{ secrets.AIRTABLE_TOKEN }}
-        # AIRTABLE_BASE_ID: ${{ secrets.AIRTABLE_BASE_ID }}
-
-        AIRTABLE_TOKEN: ${{ secrets.AIRTABLE_TOKEN_AULAS }}
-        AIRTABLE_BASE_ID: ${{ secrets.AIRTABLE_BASE_ID_AULAS }}
+        AIRTABLE_TOKEN: ${{ secrets.AIRTABLE_TOKEN }}
+        AIRTABLE_BASE_ID: ${{ secrets.AIRTABLE_BASE_ID }}
       run: |
         echo "=== GENERATING DOCUMENTATION ==="
         
