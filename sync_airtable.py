@@ -8,12 +8,11 @@ import sys
 import requests
 from datetime import datetime
 
-"""
 # Configuration KORU
-AIRTABLE_TOKEN = os.environ.get('AIRTABLE_TOKEN')
-AIRTABLE_BASE_ID = os.environ.get('AIRTABLE_BASE_ID')
-OUTPUT_FILE = 'database-structure.md'
-"""
+# AIRTABLE_TOKEN = os.environ.get('AIRTABLE_TOKEN')
+# AIRTABLE_BASE_ID = os.environ.get('AIRTABLE_BASE_ID')
+# OUTPUT_FILE = 'database-structure.md'
+
 
 # Configuration AULAS
 AIRTABLE_TOKEN = os.environ.get('AIRTABLE_TOKEN_AULAS')
@@ -186,4 +185,5 @@ def main():
 
 if __name__ == "__main__":
     sys.exit(main())
+
 
