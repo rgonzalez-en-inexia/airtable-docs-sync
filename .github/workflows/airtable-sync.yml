@@ -56,19 +56,41 @@ jobs:
           echo "SECRET_BASE_ID=AIRTABLE_BASE_ID" >> $GITHUB_OUTPUT
         fi
     
-    # 5. Generate documentation
+    # 5. Generate documentation (VERSIÓN CORREGIDA)
     - name: 🔄 Generate Airtable documentation
+      id: generate-docs
       env:
-        AIRTABLE_TOKEN: ${{ secrets[steps.select-base.outputs.SECRET_TOKEN] }}
-        AIRTABLE_BASE_ID: ${{ secrets[steps.select-base.outputs.SECRET_BASE_ID] }}
+        # Pasar TODOS los secretos relevantes al ambiente
+        AIRTABLE_TOKEN_DEFAULT: ${{ secrets.AIRTABLE_TOKEN }}
+        AIRTABLE_BASE_ID_DEFAULT: ${{ secrets.AIRTABLE_BASE_ID }}
+        AIRTABLE_TOKEN_AULAS: ${{ secrets.AIRTABLE_TOKEN_AULAS }}
+        AIRTABLE_BASE_ID_AULAS: ${{ secrets.AIRTABLE_BASE_ID_AULAS }}
         OUTPUT_FILE: ${{ steps.select-base.outputs.OUTPUT_FILE }}
       run: |
         echo "=== GENERATING DOCUMENTATION ==="
         echo "📁 Output file: $OUTPUT_FILE"
-        echo "🔑 Token variable: ${{ steps.select-base.outputs.SECRET_TOKEN }}"
-        echo "🔑 Base ID variable: ${{ steps.select-base.outputs.SECRET_BASE_ID }}"
+        echo "🔑 Base selection: ${{ github.event.inputs.base }}"
         
-        # Run the Python script with parameters
+        # Determinar qué variables usar basado en la selección
+        if [[ "${{ github.event.inputs.base }}" == "aulas" ]]; then
+          echo "🔄 Using Aulas credentials"
+          export AIRTABLE_TOKEN="$AIRTABLE_TOKEN_AULAS"
+          export AIRTABLE_BASE_ID="$AIRTABLE_BASE_ID_AULAS"
+          echo "✅ Token variable: AIRTABLE_TOKEN_AULAS"
+          echo "✅ Base ID variable: AIRTABLE_BASE_ID_AULAS"
+        else
+          echo "🔄 Using Default credentials"
+          export AIRTABLE_TOKEN="$AIRTABLE_TOKEN_DEFAULT"
+          export AIRTABLE_BASE_ID="$AIRTABLE_BASE_ID_DEFAULT"
+          echo "✅ Token variable: AIRTABLE_TOKEN"
+          echo "✅ Base ID variable: AIRTABLE_BASE_ID"
+        fi
+        
+        # Debug: mostrar que las variables están configuradas
+        echo "🔍 Debug - Token length: ${#AIRTABLE_TOKEN}"
+        echo "🔍 Debug - Base ID: $AIRTABLE_BASE_ID"
+        
+        # Run the Python script
         python sync_airtable.py --output "$OUTPUT_FILE" --base "${{ github.event.inputs.base }}"
         
         # Verify the file was created
@@ -80,8 +102,8 @@ jobs:
         echo "✅ File created successfully"
         echo "📏 File size: $(wc -c < "$OUTPUT_FILE") bytes"
         echo "📄 Preview:"
-        head -10 "$OUTPUT_FILE"
-    
+        head -5 "$OUTPUT_FILE"
+        
     # 6. Upload to GitHub using GitHub API
     - name: 📤 Upload to GitHub Repository
       env:
