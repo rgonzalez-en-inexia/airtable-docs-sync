@@ -32,24 +32,35 @@ jobs:
     # 4. Generate documentation
     - name: 🔄 Generate Airtable documentation
       env:
-        AIRTABLE_TOKEN: ${{ secrets.AIRTABLE_TOKEN }}
-        AIRTABLE_BASE_ID: ${{ secrets.AIRTABLE_BASE_ID }}
+        # AIRTABLE_TOKEN: ${{ secrets.AIRTABLE_TOKEN }}
+        # AIRTABLE_BASE_ID: ${{ secrets.AIRTABLE_BASE_ID }}
+
+        AIRTABLE_TOKEN: ${{ secrets.AIRTABLE_TOKEN_AULAS }}
+        AIRTABLE_BASE_ID: ${{ secrets.AIRTABLE_BASE_ID_AULAS }}
       run: |
         echo "=== GENERATING DOCUMENTATION ==="
         
         # Run the Python script
         python sync_airtable.py
         
-        # Verify the file was created
-        if [ ! -f "database-structure.md" ]; then
-          echo "❌ ERROR: database-structure.md was not created"
+        # Verify the file was created KORU
+        # if [ ! -f "database-structure.md" ]; then
+          # echo "❌ ERROR: database-structure.md was not created"
+          # exit 1
+        # fi
+
+        # Verify the file was created AULAS
+        if [ ! -f "database-structure-aulas.md" ]; then
+          echo "❌ ERROR: database-structure-aulas.md was not created"
           exit 1
         fi
-        
+
         echo "✅ File created successfully"
-        echo "📏 File size: $(wc -c < database-structure.md) bytes"
+        # echo "📏 File size: $(wc -c < database-structure.md) bytes"
+        echo "📏 File size: $(wc -c < database-structure-aulas.md) bytes"
         echo "📄 Preview:"
-        head -10 database-structure.md
+        # head -10 database-structure.md
+        head -10 database-structure-aulas.md
     
     # 5. Upload to GitHub using GitHub API (VERSIÓN CORREGIDA)
     - name: 📤 Upload to GitHub Repository
@@ -60,7 +71,8 @@ jobs:
         echo "=== UPLOADING TO GITHUB REPOSITORY ==="
         
         # Check if file exists
-        FILE_PATH="database-structure.md"
+        # FILE_PATH="database-structure.md"
+        FILE_PATH="database-structure-aulas.md"
         if [ ! -f "$FILE_PATH" ]; then
           echo "❌ ERROR: $FILE_PATH not found"
           exit 1
@@ -166,5 +178,6 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: airtable-documentation
-        path: database-structure.md
+        # path: database-structure.md
+        path: database-structure-aulas.md
         retention-days: 7
