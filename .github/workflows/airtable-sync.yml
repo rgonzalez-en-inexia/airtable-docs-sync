@@ -41,14 +41,8 @@ jobs:
         python sync_airtable.py
         
         # Verify the file was created KORU
-        # if [ ! -f "database-structure.md" ]; then
-          # echo "❌ ERROR: database-structure.md was not created"
-          # exit 1
-        # fi
-
-        # Verify the file was created AULAS
-        if [ ! -f "database-structure-aulas.md" ]; then
-          echo "❌ ERROR: database-structure-aulas.md was not created"
+        if [ ! -f "database-structure.md" ]; then
+          echo "❌ ERROR: database-structure.md was not created"
           exit 1
         fi
 
@@ -56,8 +50,7 @@ jobs:
         # echo "📏 File size: $(wc -c < database-structure.md) bytes"
         echo "📏 File size: $(wc -c < database-structure-aulas.md) bytes"
         echo "📄 Preview:"
-        # head -10 database-structure.md
-        head -10 database-structure-aulas.md
+        head -10 database-structure.md
     
     # 5. Upload to GitHub using GitHub API (VERSIÓN CORREGIDA)
     - name: 📤 Upload to GitHub Repository
@@ -68,8 +61,7 @@ jobs:
         echo "=== UPLOADING TO GITHUB REPOSITORY ==="
         
         # Check if file exists
-        # FILE_PATH="database-structure.md"
-        FILE_PATH="database-structure-aulas.md"
+        FILE_PATH="database-structure.md"
         if [ ! -f "$FILE_PATH" ]; then
           echo "❌ ERROR: $FILE_PATH not found"
           exit 1
@@ -175,6 +167,5 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: airtable-documentation
-        # path: database-structure.md
-        path: database-structure-aulas.md
+        path: database-structure.md
         retention-days: 7
