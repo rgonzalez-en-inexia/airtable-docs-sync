@@ -4,6 +4,15 @@ on:
   schedule:
     - cron: '0 8 * * *'  # Daily at 8 AM UTC
   workflow_dispatch:      # Manual trigger
+    inputs:
+      base:
+        description: 'Which Airtable base to sync'
+        required: false
+        default: 'default'
+        type: choice
+        options:
+        - default
+        - aulas
 
 permissions:
   contents: write
@@ -29,39 +38,61 @@ jobs:
     - name: 📦 Install dependencies
       run: pip install requests
     
-    # 4. Generate documentation
+    # 4. Determinar qué base sincronizar
+    - name: 🔍 Determine which base to sync
+      id: select-base
+      run: |
+        if [[ "${{ github.event.inputs.base }}" == "aulas" ]]; then
+          echo "🔄 Selected: Aulas base"
+          echo "ENV_SUFFIX=_AULAS" >> $GITHUB_OUTPUT
+          echo "OUTPUT_FILE=database-structure-aulas.md" >> $GITHUB_OUTPUT
+          echo "SECRET_TOKEN=AIRTABLE_TOKEN_AULAS" >> $GITHUB_OUTPUT
+          echo "SECRET_BASE_ID=AIRTABLE_BASE_ID_AULAS" >> $GITHUB_OUTPUT
+        else
+          echo "🔄 Selected: Default base"
+          echo "ENV_SUFFIX=" >> $GITHUB_OUTPUT
+          echo "OUTPUT_FILE=database-structure.md" >> $GITHUB_OUTPUT
+          echo "SECRET_TOKEN=AIRTABLE_TOKEN" >> $GITHUB_OUTPUT
+          echo "SECRET_BASE_ID=AIRTABLE_BASE_ID" >> $GITHUB_OUTPUT
+        fi
+    
+    # 5. Generate documentation
     - name: 🔄 Generate Airtable documentation
       env:
-        AIRTABLE_TOKEN: ${{ secrets.AIRTABLE_TOKEN }}
-        AIRTABLE_BASE_ID: ${{ secrets.AIRTABLE_BASE_ID }}
+        AIRTABLE_TOKEN: ${{ secrets[steps.select-base.outputs.SECRET_TOKEN] }}
+        AIRTABLE_BASE_ID: ${{ secrets[steps.select-base.outputs.SECRET_BASE_ID] }}
+        OUTPUT_FILE: ${{ steps.select-base.outputs.OUTPUT_FILE }}
       run: |
         echo "=== GENERATING DOCUMENTATION ==="
+        echo "📁 Output file: $OUTPUT_FILE"
+        echo "🔑 Token variable: ${{ steps.select-base.outputs.SECRET_TOKEN }}"
+        echo "🔑 Base ID variable: ${{ steps.select-base.outputs.SECRET_BASE_ID }}"
         
-        # Run the Python script
-        python sync_airtable.py
+        # Run the Python script with parameters
+        python sync_airtable.py --output "$OUTPUT_FILE" --base "${{ github.event.inputs.base }}"
         
-        # Verify the file was created KORU
-        if [ ! -f "database-structure.md" ]; then
-          echo "❌ ERROR: database-structure.md was not created"
+        # Verify the file was created
+        if [ ! -f "$OUTPUT_FILE" ]; then
+          echo "❌ ERROR: $OUTPUT_FILE was not created"
           exit 1
         fi
 
         echo "✅ File created successfully"
-        # echo "📏 File size: $(wc -c < database-structure.md) bytes"
-        echo "📏 File size: $(wc -c < database-structure-aulas.md) bytes"
+        echo "📏 File size: $(wc -c < "$OUTPUT_FILE") bytes"
         echo "📄 Preview:"
-        head -10 database-structure.md
+        head -10 "$OUTPUT_FILE"
     
-    # 5. Upload to GitHub using GitHub API (VERSIÓN CORREGIDA)
+    # 6. Upload to GitHub using GitHub API
     - name: 📤 Upload to GitHub Repository
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         REPO: ${{ github.repository }}
+        FILE_PATH: ${{ steps.select-base.outputs.OUTPUT_FILE }}
       run: |
         echo "=== UPLOADING TO GITHUB REPOSITORY ==="
+        echo "📁 Uploading: $FILE_PATH"
         
         # Check if file exists
-        FILE_PATH="database-structure.md"
         if [ ! -f "$FILE_PATH" ]; then
           echo "❌ ERROR: $FILE_PATH not found"
           exit 1
@@ -70,7 +101,7 @@ jobs:
         # Encode file content to base64
         CONTENT_BASE64=$(base64 -w 0 "$FILE_PATH")
         
-        # Get file SHA if it exists - FORMA MÁS ROBUSTA
+        # Get file SHA if it exists
         echo "🔍 Checking if file already exists in repository..."
         
         SHA=""
@@ -78,50 +109,51 @@ jobs:
           -H "Accept: application/vnd.github.v3+json" \
           "https://api.github.com/repos/$REPO/contents/$FILE_PATH")
         
-        # Extraer SHA de forma más robusta usando jq si está disponible
-        if command -v jq &> /dev/null; then
-          SHA=$(echo "$API_RESPONSE" | jq -r '.sha // empty')
-        else
-          # Fallback: extraer SHA manualmente
-          SHA=$(echo "$API_RESPONSE" | grep -o '"sha"[[:space:]]*:[[:space:]]*"[^"]*"' | cut -d'"' -f4)
-        fi
+        # Extraer SHA usando jq (instalado por defecto en GitHub Actions)
+        SHA=$(echo "$API_RESPONSE" | jq -r '.sha // empty')
         
         if [ -n "$SHA" ] && [ "$SHA" != "null" ]; then
           echo "✅ File exists. SHA: ${SHA:0:8}..."
-          COMMIT_MESSAGE="📚 docs: update airtable structure [auto]"
+          COMMIT_MESSAGE="📚 docs: update $FILE_PATH [auto]"
           NEED_SHA=true
         else
           echo "🆕 File doesn't exist or SHA not found, will create new"
-          COMMIT_MESSAGE="📚 docs: create airtable structure [auto]"
+          COMMIT_MESSAGE="📚 docs: create $FILE_PATH [auto]"
           NEED_SHA=false
         fi
         
         # Create JSON payload
         if [ "$NEED_SHA" = true ] && [ -n "$SHA" ]; then
-          JSON_PAYLOAD='{
-            "message": "'"$COMMIT_MESSAGE"'",
-            "content": "'"$CONTENT_BASE64"'",
-            "sha": "'"$SHA"'",
-            "committer": {
-              "name": "GitHub Actions",
-              "email": "actions@github.com"
-            },
-            "branch": "main"
-          }'
+          JSON_PAYLOAD=$(jq -n \
+            --arg msg "$COMMIT_MESSAGE" \
+            --arg content "$CONTENT_BASE64" \
+            --arg sha "$SHA" \
+            '{
+              message: $msg,
+              content: $content,
+              sha: $sha,
+              committer: {
+                name: "GitHub Actions",
+                email: "actions@github.com"
+              },
+              branch: "main"
+            }')
         else
-          JSON_PAYLOAD='{
-            "message": "'"$COMMIT_MESSAGE"'",
-            "content": "'"$CONTENT_BASE64"'",
-            "committer": {
-              "name": "GitHub Actions",
-              "email": "actions@github.com"
-            },
-            "branch": "main"
-          }'
+          JSON_PAYLOAD=$(jq -n \
+            --arg msg "$COMMIT_MESSAGE" \
+            --arg content "$CONTENT_BASE64" \
+            '{
+              message: $msg,
+              content: $content,
+              committer: {
+                name: "GitHub Actions",
+                email: "actions@github.com"
+              },
+              branch: "main"
+            }')
         fi
         
         echo "🚀 Uploading file to GitHub..."
-        echo "Payload length: ${#JSON_PAYLOAD} characters"
         
         # Make API call
         UPLOAD_RESPONSE=$(curl -s -w "\nHTTP_STATUS:%{http_code}" -X PUT \
@@ -142,13 +174,9 @@ jobs:
           echo "🎉 SUCCESS: File uploaded to repository!"
           
           # Get commit URL
-          if command -v jq &> /dev/null; then
-            COMMIT_URL=$(echo "$JSON_RESPONSE" | jq -r '.commit.html_url // empty')
-          else
-            COMMIT_URL=$(echo "$JSON_RESPONSE" | grep -o '"html_url":"[^"]*"' | cut -d'"' -f4 | head -1)
-          fi
+          COMMIT_URL=$(echo "$JSON_RESPONSE" | jq -r '.commit.html_url // empty')
           
-          if [ -n "$COMMIT_URL" ]; then
+          if [ -n "$COMMIT_URL" ] && [ "$COMMIT_URL" != "null" ]; then
             echo "🔗 View commit: $COMMIT_URL"
           fi
           
@@ -161,11 +189,11 @@ jobs:
           exit 1
         fi
         
-    # 6. Create artifact for backup
+    # 7. Create artifact for backup
     - name: 🗃️ Create backup artifact
       if: success()
       uses: actions/upload-artifact@v4
       with:
-        name: airtable-documentation
-        path: database-structure.md
+        name: ${{ steps.select-base.outputs.OUTPUT_FILE }}
+        path: ${{ steps.select-base.outputs.OUTPUT_FILE }}
         retention-days: 7
