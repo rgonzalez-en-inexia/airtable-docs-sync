@@ -104,7 +104,7 @@ jobs:
         echo "📄 Preview:"
         head -5 "$OUTPUT_FILE"
         
-    # 6. Upload to GitHub using GitHub API (VERSIÓN CORREGIDA - maneja archivos grandes)
+    # 6. Upload to GitHub - Versión sin jq para payload
     - name: 📤 Upload to GitHub Repository
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -121,12 +121,7 @@ jobs:
         fi
         
         # Encode file content to base64
-        echo "🔧 Encoding file to base64..."
         CONTENT_BASE64=$(base64 -w 0 "$FILE_PATH")
-        FILE_SIZE=$(wc -c < "$FILE_PATH")
-        BASE64_SIZE=${#CONTENT_BASE64}
-        echo "📏 File size: $FILE_SIZE bytes"
-        echo "📏 Base64 size: $BASE6464_SIZE characters"
         
         # Get file SHA if it exists
         echo "🔍 Checking if file already exists in repository..."
@@ -136,60 +131,30 @@ jobs:
           -H "Accept: application/vnd.github.v3+json" \
           "https://api.github.com/repos/$REPO/contents/$FILE_PATH")
         
-        # Extraer SHA usando jq
+        # Extraer SHA usando jq (esto sí funciona porque la respuesta es pequeña)
         SHA=$(echo "$API_RESPONSE" | jq -r '.sha // empty')
         
         if [ -n "$SHA" ] && [ "$SHA" != "null" ]; then
           echo "✅ File exists. SHA: ${SHA:0:8}..."
           COMMIT_MESSAGE="📚 docs: update $FILE_PATH [auto]"
-          NEED_SHA=true
+          # Crear payload CON SHA
+          PAYLOAD_TEMPLATE='{"message":"%s","content":"%s","sha":"%s","committer":{"name":"GitHub Actions","email":"actions@github.com"},"branch":"main"}'
+          JSON_PAYLOAD=$(printf "$PAYLOAD_TEMPLATE" "$COMMIT_MESSAGE" "$CONTENT_BASE64" "$SHA")
         else
           echo "🆕 File doesn't exist, will create new"
           COMMIT_MESSAGE="📚 docs: create $FILE_PATH [auto]"
-          NEED_SHA=false
+          # Crear payload SIN SHA
+          PAYLOAD_TEMPLATE='{"message":"%s","content":"%s","committer":{"name":"GitHub Actions","email":"actions@github.com"},"branch":"main"}'
+          JSON_PAYLOAD=$(printf "$PAYLOAD_TEMPLATE" "$COMMIT_MESSAGE" "$CONTENT_BASE64")
         fi
-        
-        # Create JSON payload usando archivo temporal (EVITA error "Argument list too long")
-        echo "📝 Creating JSON payload..."
-        
-        if [ "$NEED_SHA" = true ] && [ -n "$SHA" ]; then
-          # Crear archivo temporal con JSON
-          jq -n \
-            --arg msg "$COMMIT_MESSAGE" \
-            --arg content "$CONTENT_BASE64" \
-            --arg sha "$SHA" \
-            '{
-              message: $msg,
-              content: $content,
-              sha: $sha,
-              committer: {
-                name: "GitHub Actions",
-                email: "actions@github.com"
-              },
-              branch: "main"
-            }' > /tmp/payload.json
-        else
-          # Crear archivo temporal sin SHA
-          jq -n \
-            --arg msg "$COMMIT_MESSAGE" \
-            --arg content "$CONTENT_BASE64" \
-            '{
-              message: $msg,
-              content: $content,
-              committer: {
-                name: "GitHub Actions",
-                email: "actions@github.com"
-              },
-              branch: "main"
-            }' > /tmp/payload.json
-        fi
-        
-        echo "✅ JSON payload created: /tmp/payload.json"
-        echo "📏 Payload size: $(wc -c < /tmp/payload.json) bytes"
         
         echo "🚀 Uploading file to GitHub..."
+        echo "📏 Payload size: ${#JSON_PAYLOAD} characters"
         
-        # Make API call usando el archivo temporal
+        # Guardar payload en archivo temporal para curl
+        echo "$JSON_PAYLOAD" > /tmp/payload.json
+        
+        # Make API call
         UPLOAD_RESPONSE=$(curl -s -w "\nHTTP_STATUS:%{http_code}" -X PUT \
           -H "Authorization: token $GH_TOKEN" \
           -H "Accept: application/vnd.github.v3+json" \
@@ -203,39 +168,29 @@ jobs:
         
         echo "📊 HTTP Status: $HTTP_STATUS"
         
+        # Clean up
+        rm -f /tmp/payload.json
+        
         # Check response
         if [ "$HTTP_STATUS" = "200" ] || [ "$HTTP_STATUS" = "201" ]; then
           echo "🎉 SUCCESS: File uploaded to repository!"
-          
-          # Get commit URL
-          COMMIT_URL=$(echo "$JSON_RESPONSE" | jq -r '.commit.html_url // empty')
-          
-          if [ -n "$COMMIT_URL" ] && [ "$COMMIT_URL" != "null" ]; then
-            echo "🔗 View commit: $COMMIT_URL"
-          fi
           
           # Get download URL
           DOWNLOAD_URL="https://raw.githubusercontent.com/$REPO/main/$FILE_PATH"
           echo "⬇️  Download URL: $DOWNLOAD_URL"
           
-          # Clean up temp file
-          rm -f /tmp/payload.json
+          # Intentar extraer commit URL
+          COMMIT_URL=$(echo "$JSON_RESPONSE" | grep -o '"html_url":"[^"]*"' | head -1 | cut -d'"' -f4 2>/dev/null || true)
+          if [ -n "$COMMIT_URL" ]; then
+            echo "🔗 View commit: $COMMIT_URL"
+          fi
         else
           echo "❌ ERROR: Failed to upload file (Status: $HTTP_STATUS)"
-          echo "Response preview:"
-          echo "$JSON_RESPONSE" | head -200
-          echo "..."
-          
-          # Mostrar más detalles del error
-          if [ -f "/tmp/payload.json" ]; then
-            echo "📄 Payload preview (first 500 chars):"
-            head -c 500 /tmp/payload.json
-            echo "..."
-          fi
-          
+          echo "Response:"
+          echo "$JSON_RESPONSE" | head -300
           exit 1
         fi
-        
+    
     # 7. Create artifact for backup
     - name: 🗃️ Create backup artifact
       if: success()
