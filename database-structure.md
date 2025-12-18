@@ -1,20 +1,20 @@
 # 🗂️ Airtable Database Structure - Default
 
-> **Last update**: 2025-12-11 20:46:38
+> **Last update**: 2025-12-18 12:56:18
 > **Base**: default (Default)
 > **Auto-generated** - Do not edit manually
 
 ## 📊 Summary
 
-- **Tables**: 18
-- **Total fields**: 302
+- **Tables**: 19
+- **Total fields**: 333
 - **Base ID**: `app9c8iiAYRGxxhtH`
 
-- **singleSelect fields**: 54
-- **multipleSelects fields**: 5
-- **number fields**: 31
-- **date fields**: 10
-- **formula fields**: 10
+- **singleSelect fields**: 57
+- **multipleSelects fields**: 6
+- **number fields**: 32
+- **date fields**: 11
+- **formula fields**: 11
 
 ---
 
@@ -41,14 +41,14 @@
 ## 📋 2. Conversaciones
 
 *Table ID: `tblhw3b9VCVrJtDu1`*
-*Fields: 25*
+*Fields: 26*
 
 | Field | Type | Description | Options |
 |-------|------|-------------|---------|
 | **ID_Conversacion**<br>`fldhpzpygAWASqIcm` | `autoNumber` | Type: autoNumber |  |
 | **Estudiante**<br>`fldsFM6LQCnmLIpev` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
 | **FechaAltaEstudiante**<br>`fldzwhZAcGxX19VAw` | `multipleLookupValues` | Type: multipleLookupValues |  |
-| **TipoPuerta**<br>`fldfGrwAFFXcL5jos` | `singleSelect` | Single choice dropdown | `aprender`, `preparar_evaluacion`, `mejorar_asignatura`, `desafio_personal`, `preparar-proximo-ano` |
+| **TipoPuerta**<br>`fldfGrwAFFXcL5jos` | `singleSelect` | Single choice dropdown | `aprender`, `preparar-evaluacion`, `estudiar`, `mejorar-habitos`, `prepararme-paes` |
 | **Titulo**<br>`fldNkHyWabgfGAThi` | `singleLineText` | Type: singleLineText |  |
 | **MateriaPrincipal**<br>`fld6eG16Hs7av0euL` | `singleLineText` | Type: singleLineText |  |
 | **TipoNEE**<br>`fldx65y33zQeiXOsi` | `singleLineText` | Type: singleLineText |  |
@@ -70,6 +70,7 @@
 | **MetricasDiarias**<br>`fldyzZZIXRSOHfm8p` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
 | **MetricasDiarias 2**<br>`fldxn7vaqpgCVhpbO` | `singleLineText` | Type: singleLineText |  |
 | **SesionesEstudio**<br>`fldlinKEtBloVl1xZ` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
+| **Seguimiento**<br>`fldZ5AqI2xyINL1hB` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
 
 ---
 
@@ -124,7 +125,7 @@
 ## 📋 5. Estudiantes
 
 *Table ID: `tblR5gbkydy59GOOC`*
-*Fields: 68*
+*Fields: 70*
 
 | Field | Type | Description | Options |
 |-------|------|-------------|---------|
@@ -145,7 +146,6 @@
 | **NombrePreferido**<br>`fldLdC48e8cV7Qn1f` | `singleLineText` | Type: singleLineText |  |
 | **Curso**<br>`fldhlrRfO42asiEru` | `singleSelect` | Single choice dropdown | `7 Básico`, `8 Básico`, `1 Medio`, `2 Medio`, `3 Medio` *(+1 more)* |
 | **Edad**<br>`fldBHYunaLfzhfzNN` | `singleSelect` | Single choice dropdown | `13`, `14`, `15`, `16`, `17` *(+3 more)* |
-| **TipoEstablecimiento**<br>`fldUmNM1OokmgjnE7` | `singleSelect` | Single choice dropdown | `Público (Municipal/SLEP)`, `Particular Subvencionado`, `Particular Pagado` |
 | **EstiloAprendizaje**<br>`fld0ckIVlh46CtbVb` | `singleSelect` | Single choice dropdown | `Visual`, `Auditivo`, `Kinestésico`, `Lectura/Escritura`, `No lo sé` |
 | **MateriasFuertes**<br>`fldNhz8Feiohchzi1` | `singleSelect` | Single choice dropdown | `Matemáticas`, `Lenguaje`, `Ciencias`, `Historia` |
 | **MateriasDebiles**<br>`fldH2m6C9msfoYLRn` | `singleSelect` | Single choice dropdown | `Lenguaje`, `Historia`, `Matemáticas`, `Ciencias` |
@@ -198,6 +198,9 @@
 | **TecnicaExitosa**<br>`fldSvEUCMpOi9wTgw` | `singleSelect` | Single choice dropdown | `Cornell`, `Feynman`, `MapasMentales`, `RepeticionEspaciada`, `Autoexplicacion` *(+2 more)* |
 | **GestionTiempoPreferida**<br>`fld5wX8Q0Mg2K8y6E` | `singleSelect` | Single choice dropdown | `Pomodoro-15`, `Pomodoro-25`, `Pomodoro-50`, `Bloques-tematicos`, `Libre` *(+1 more)* |
 | **SesionesEstudio**<br>`fldtXmk3sda4E269Q` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
+| **Seguimiento**<br>`fldwkiUb2xuYkjoKj` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
+| **Push_Subscription**<br>`fldiRXDQpOjg4uR6c` | `multilineText` | Multi-line text |  |
+| **Notificaciones_Activas**<br>`fldp8a9rl5JwiJIEr` | `checkbox` | True/False checkbox |  |
 
 ---
 
@@ -395,21 +398,59 @@
 ## 📋 15. RecursosDidacticos
 
 *Table ID: `tblhnDhyfno9kEmFd`*
-*Fields: 7*
+*Fields: 14*
 
 | Field | Type | Description | Options |
 |-------|------|-------------|---------|
-| **Recurso_Id**<br>`fldZaD23G5fA1oFM4` | `autoNumber` | Type: autoNumber |  |
-| **Indice1**<br>`fldOTouTbrUpVbVzU` | `singleLineText` | Type: singleLineText |  |
-| **Indice2**<br>`fld8xRCJ1LFqYQEgc` | `singleLineText` | Type: singleLineText |  |
-| **recurso_url**<br>`fldnMmWVkFixZi0PL` | `url` | URL link |  |
+| **ID_Recurso**<br>`fldZaD23G5fA1oFM4` | `autoNumber` | Type: autoNumber |  |
+| **Nombre**<br>`fldOTouTbrUpVbVzU` | `singleLineText` | Type: singleLineText |  |
+| **Tipo**<br>`fld8xRCJ1LFqYQEgc` | `singleSelect` | Single choice dropdown | `Técnica`, `GestionTiempo`, `Otro` |
+| **Categoria**<br>`fld51T1Ay8nHSKoxs` | `singleSelect` | Single choice dropdown | `Feynman`, `Cornell`, `MapasMentales`, `Pomodoro-15`, `Pomodoro-25` *(+1 more)* |
+| **URL_Video**<br>`fldnMmWVkFixZi0PL` | `url` | URL link |  |
+| **URL_Articulo**<br>`fld6jOLm5FckN8E6L` | `url` | URL link |  |
+| **DescripcionCorta**<br>`fldciO6vLftnABiqJ` | `multilineText` | Multi-line text |  |
+| **PasosResumidos**<br>`fldEWU6tdsS5PwyLI` | `multilineText` | Multi-line text |  |
+| **DiagramaASCII**<br>`fldZKFwCfFIrYtNvs` | `multilineText` | Multi-line text |  |
+| **IdealPara**<br>`fldBZATWF6Wd94WM4` | `multipleSelects` | Multiple choice dropdown | `TDAH`, `TEA`, `Dislexia`, `Visual`, `Verbal` *(+1 more)* |
 | **IdiomaHablado**<br>`fldL00xPEjB8ZMVh3` | `singleSelect` | Single choice dropdown | `Español`, `Inglés` |
 | **IdiomaSubtitulos**<br>`fldeftShiOyc4dtyP` | `singleSelect` | Single choice dropdown | `Español`, `Inglés` |
 | **Observaciones**<br>`fldDq4XrcYNJ3mKqj` | `singleLineText` | Type: singleLineText |  |
+| **Activo**<br>`fldJRQTRII9zoVDHC` | `checkbox` | True/False checkbox |  |
 
 ---
 
-## 📋 16. SesionesEstudio
+## 📋 16. Seguimiento
+
+*Table ID: `tblq2wnV8lPEHKb8p`*
+*Fields: 21*
+
+| Field | Type | Description | Options |
+|-------|------|-------------|---------|
+| **ID_Seguimiento**<br>`fldE4SpsvkoA2kGIp` | `autoNumber` | Type: autoNumber |  |
+| **Estudiante**<br>`fldYq22cPBj5DIGFA` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
+| **Email_Estudiante**<br>`fldpf9LPldEfOEAhz` | `multipleLookupValues` | Type: multipleLookupValues |  |
+| **Nombre_Estudiante**<br>`fldNxDZT5Y1C9fKRj` | `multipleLookupValues` | Type: multipleLookupValues |  |
+| **NEE_Estudiante**<br>`fldJ8nt1DhqzK86iA` | `multipleLookupValues` | Type: multipleLookupValues |  |
+| **Puerta**<br>`fldRE5Kx3rJfj6mDe` | `singleSelect` | Single choice dropdown | `aprender`, `estudiar`, `preparar-evaluacion`, `mejorar-habitos` |
+| **Contexto_Especifico**<br>`fldlBRLW13BwtXmib` | `multilineText` | Multi-line text |  |
+| **Estado**<br>`fldcZL43YOKNRg5o0` | `singleSelect` | Single choice dropdown | `activo`, `pausado`, `completado`, `abandonado` |
+| **Fase_Actual**<br>`fldsDHIIuiVfmnG2u` | `multilineText` | Multi-line text |  |
+| **Numero_Sesion**<br>`fldptShMJhlnse1Eo` | `number` | Numeric field |  |
+| **Fecha_Inicio**<br>`fld7dFPef4NPf8h5x` | `createdTime` | Auto-generated creation time |  |
+| **Ultima_Actualizacion**<br>`flddJlsYkR1dpudly` | `lastModifiedTime` | Auto-generated modification time |  |
+| **Dias_Desde_Ultima**<br>`flde7eZE7OovOVocD` | `formula` | Calculated field | Formula: `DATETIME_DIFF(NOW(), {flddJlsYkR1dpudly}, 'days')` |
+| **Fecha_Proximo_Checkin**<br>`fldYcCzIiOqQcFole` | `date` | Date |  |
+| **Resumen_Progreso**<br>`fldZSGkLa7laEIrVH` | `multilineText` | Multi-line text |  |
+| **Resultados_Reportados**<br>`fldyd9iCs4YOxkXnM` | `multilineText` | Multi-line text |  |
+| **Desafios_Pendientes**<br>`fld23eS2PpyPc5IMy` | `multilineText` | Multi-line text |  |
+| **Estrategia_Actual**<br>`fldLmnovnSMgh75wN` | `multilineText` | Multi-line text |  |
+| **Proxima_Accion**<br>`fldZFq6mxXqfkI6Su` | `multilineText` | Multi-line text |  |
+| **Reactivacion_Enviada**<br>`fldAfpeDIt3cp0FQU` | `checkbox` | True/False checkbox |  |
+| **Link_Conversacion**<br>`fldt6cIweSGmQBHnz` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
+
+---
+
+## 📋 17. SesionesEstudio
 
 *Table ID: `tbliVHFlDjE2UlO5c`*
 *Fields: 16*
@@ -435,7 +476,7 @@
 
 ---
 
-## 📋 17. Suscripciones
+## 📋 18. Suscripciones
 
 *Table ID: `tblowJOhwqRvVsWWc`*
 *Fields: 33*
@@ -478,7 +519,7 @@
 
 ---
 
-## 📋 18. VERSION_PROD
+## 📋 19. VERSION_PROD
 
 *Table ID: `tblStqh1QgUM2ZZGE`*
 *Fields: 15*
@@ -508,7 +549,7 @@
 ### 📋 Source Information
 - **Base**: Default (`default`)
 - **Base ID**: `app9c8iiAYRGxxhtH`
-- **Generated**: 2025-12-11 20:46:38
+- **Generated**: 2025-12-18 12:56:18
 
 ### 🛠️ Field Type Legend
 - **singleSelect**: Dropdown with single choice
@@ -526,7 +567,7 @@
 ### ⚡ Automation
 This document is auto-generated by GitHub Actions.
 **Update schedule**: Daily at 8:00 AM UTC
-**Last sync**: 2025-12-11 20:46:38
+**Last sync**: 2025-12-18 12:56:18
 
 ---
-*Documentation for Default base - Generated 2025-12-11 20:46:38*
+*Documentation for Default base - Generated 2025-12-18 12:56:18*
