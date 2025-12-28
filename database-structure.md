@@ -1,16 +1,16 @@
 # 🗂️ Airtable Database Structure - Default
 
-> **Last update**: 2025-12-18 12:56:18
+> **Last update**: 2025-12-28 14:07:25
 > **Base**: default (Default)
 > **Auto-generated** - Do not edit manually
 
 ## 📊 Summary
 
 - **Tables**: 19
-- **Total fields**: 333
+- **Total fields**: 339
 - **Base ID**: `app9c8iiAYRGxxhtH`
 
-- **singleSelect fields**: 57
+- **singleSelect fields**: 61
 - **multipleSelects fields**: 6
 - **number fields**: 32
 - **date fields**: 11
@@ -41,7 +41,7 @@
 ## 📋 2. Conversaciones
 
 *Table ID: `tblhw3b9VCVrJtDu1`*
-*Fields: 26*
+*Fields: 27*
 
 | Field | Type | Description | Options |
 |-------|------|-------------|---------|
@@ -58,14 +58,15 @@
 | **TokensFinal**<br>`fldaYGwxvLqtSFKws` | `number` | Numeric field |  |
 | **CostoAPI**<br>`fldvidJST7G3PhaTs` | `formula` | Calculated field | Formula: `0.6*{fldaYGwxvLqtSFKws}/1000000` |
 | **Resumen**<br>`fldLJbxM83Q7BLBfZ` | `multilineText` | Multi-line text |  |
-| **Activa**<br>`fldCvt5WUCe8du9JG` | `checkbox` | True/False checkbox |  |
 | **FechaInicio**<br>`fldUuqJjygGEcscrS` | `createdTime` | Auto-generated creation time |  |
 | **DiaSemanaInicio**<br>`fldbpEisAN1d2n4nm` | `formula` | Calculated field | Formula: `WEEKDAY(SET_TIMEZONE({fldUuqJjygGEcscrS}, 'America...` |
 | **UltimoMensaje**<br>`fldwOV5yGkT0tiMj3` | `lastModifiedTime` | Auto-generated modification time |  |
 | **Duracion**<br>`fld8K7xwvCEwgb64O` | `formula` | Calculated field | Formula: `DATETIME_DIFF({fldwOV5yGkT0tiMj3},{fldUuqJjygGEcsc...` |
+| **Activa**<br>`fldCvt5WUCe8du9JG` | `checkbox` | True/False checkbox |  |
+| **TipoFin**<br>`fldscUy5JHcZ2gtIW` | `singleSelect` | Single choice dropdown | `normal`, `abandonada`, `cerrada`, `reemplazada`, `sin_calificar` |
+| **Calificacion**<br>`fld16ThOYVoUuiAFF` | `number` | Numeric field |  |
 | **Sugerencia**<br>`fldHO4zYmEjQ6L4Rs` | `multilineText` | Multi-line text |  |
 | **EjemploExitoso**<br>`fldYU2aABG6bgqCTt` | `checkbox` | True/False checkbox |  |
-| **Calificacion**<br>`fld16ThOYVoUuiAFF` | `number` | Numeric field |  |
 | **Mensajes**<br>`fldL6s7K9zybmNuda` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
 | **MetricasDiarias**<br>`fldyzZZIXRSOHfm8p` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
 | **MetricasDiarias 2**<br>`fldxn7vaqpgCVhpbO` | `singleLineText` | Type: singleLineText |  |
@@ -125,7 +126,7 @@
 ## 📋 5. Estudiantes
 
 *Table ID: `tblR5gbkydy59GOOC`*
-*Fields: 70*
+*Fields: 75*
 
 | Field | Type | Description | Options |
 |-------|------|-------------|---------|
@@ -136,6 +137,7 @@
 | **Nombre**<br>`fldDs68JQokh38DX6` | `singleLineText` | Type: singleLineText |  |
 | **LlegoPor**<br>`fld51E4NaVZvq9upz` | `singleSelect` | Single choice dropdown | `ChatGPT u otra IA`, `Convenio con tu colegio`, `Dato o consejo de un(a) amigo(a)`, `Facebook`, `Google` *(+5 more)* |
 | **QuienDecidio**<br>`fldocqWgnEkChM2nQ` | `singleSelect` | Single choice dropdown | `Yo`, `Mi padre-madre o tutor(a)` |
+| **Genero**<br>`fldQ7uWbpXHadpSMA` | `singleSelect` | Single choice dropdown | `M`, `F`, `NB` |
 | **Estado**<br>`fldN9UGcBbKrtGPYD` | `singleSelect` | Single choice dropdown | `Activo`, `Bloqueado`, `suspendido` |
 | **Pais**<br>`fldlqQYUn3GMAVXHW` | `formula` | Calculated field | Formula: `IF({fld4e4pFqnpODVbJB}="",
   SWITCH({fldl1SW9SPvQ...` |
@@ -189,7 +191,7 @@
 | **Pagos 2**<br>`fldJnzfYBW5XHQxU8` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
 | **TokenReset**<br>`fldObhyfttEMNyDuu` | `multilineText` | Multi-line text |  |
 | **ExpiraReset**<br>`fldM7GFnh4adVSyx2` | `dateTime` | Date and time |  |
-| **DesafiosEspecificos**<br>`fld17Q7JtuZbAIATf` | `multipleSelects` | Multiple choice dropdown | `Atención sostenida`, `Memoria de trabajo`, `Decodificación lectora`, `Comprensión de textos`, `Inicio de tareas` *(+3 more)* |
+| **DesafiosEspecificos**<br>`fld17Q7JtuZbAIATf` | `multipleSelects` | Multiple choice dropdown | `Atención sostenida`, `Memoria de trabajo`, `Decodificación lectora`, `Comprensión de textos`, `Inicio de tareas` *(+8 more)* |
 | **FortalezasCognitivas**<br>`fld5lyEpWQDVoOHn1` | `multipleSelects` | Multiple choice dropdown | `Visual-espacial`, `Verbal-lingüística`, `Corporal-kinestésica`, `Lógico-matemática`, `Interpersonal` *(+2 more)* |
 | **PerfilExplicado**<br>`fld1EPlFr6rlyET2K` | `checkbox` | True/False checkbox |  |
 | **EtapaDiagnostico**<br>`fldXdivQkcqxOU371` | `singleSelect` | Single choice dropdown | `sin_iniciar`, `fortalezas_detectadas`, `desafios_detectados`, `completo` |
@@ -201,6 +203,10 @@
 | **Seguimiento**<br>`fldwkiUb2xuYkjoKj` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
 | **Push_Subscription**<br>`fldiRXDQpOjg4uR6c` | `multilineText` | Multi-line text |  |
 | **Notificaciones_Activas**<br>`fldp8a9rl5JwiJIEr` | `checkbox` | True/False checkbox |  |
+| **SSO_Provider**<br>`fld3rYzqN4VUtw4Bj` | `singleSelect` | Single choice dropdown | `google`, `apple`, `email`, `legacy` |
+| **SSO_ProviderID**<br>`fld1bIxqwZIlOELiw` | `singleLineText` | Type: singleLineText |  |
+| **LoginMethod**<br>`fldzkXML6QwcEy2rg` | `singleSelect` | Single choice dropdown | `email`, `google`, `apple` |
+| **FotoPerfil**<br>`fldZfFUfmilD7lkGj` | `url` | URL link |  |
 
 ---
 
@@ -549,7 +555,7 @@
 ### 📋 Source Information
 - **Base**: Default (`default`)
 - **Base ID**: `app9c8iiAYRGxxhtH`
-- **Generated**: 2025-12-18 12:56:18
+- **Generated**: 2025-12-28 14:07:25
 
 ### 🛠️ Field Type Legend
 - **singleSelect**: Dropdown with single choice
@@ -567,7 +573,7 @@
 ### ⚡ Automation
 This document is auto-generated by GitHub Actions.
 **Update schedule**: Daily at 8:00 AM UTC
-**Last sync**: 2025-12-18 12:56:18
+**Last sync**: 2025-12-28 14:07:25
 
 ---
-*Documentation for Default base - Generated 2025-12-18 12:56:18*
+*Documentation for Default base - Generated 2025-12-28 14:07:25*
