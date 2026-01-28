@@ -1,18 +1,18 @@
 # 🗂️ Airtable Database Structure - Default
 
-> **Last update**: 2026-01-09 21:03:04
+> **Last update**: 2026-01-28 20:08:30
 > **Base**: default (Default)
 > **Auto-generated** - Do not edit manually
 
 ## 📊 Summary
 
-- **Tables**: 19
-- **Total fields**: 347
+- **Tables**: 20
+- **Total fields**: 378
 - **Base ID**: `app9c8iiAYRGxxhtH`
 
-- **singleSelect fields**: 61
+- **singleSelect fields**: 66
 - **multipleSelects fields**: 6
-- **number fields**: 33
+- **number fields**: 35
 - **date fields**: 11
 - **formula fields**: 11
 
@@ -127,18 +127,19 @@
 ## 📋 5. Estudiantes
 
 *Table ID: `tblR5gbkydy59GOOC`*
-*Fields: 82*
+*Fields: 97*
 
 | Field | Type | Description | Options |
 |-------|------|-------------|---------|
 | **ID_Estudiante**<br>`fldp7qIUatWYG2zw2` | `autoNumber` | Type: autoNumber |  |
 | **Email**<br>`fldaPohMI9tlgDW4t` | `email` | Email address |  |
+| **SesionActivaToken**<br>`fldeNdxf94vhx95qp` | `singleLineText` | Type: singleLineText |  |
 | **Contrasena**<br>`fld2VACy7rMKduyLP` | `multilineText` | Multi-line text |  |
 | **Rol**<br>`fld62uCAFaxkz5scC` | `singleSelect` | Single choice dropdown | `Estudiante`, `Apoderado`, `Admin` |
 | **Nombre**<br>`fldDs68JQokh38DX6` | `singleLineText` | Type: singleLineText |  |
 | **LlegoPor**<br>`fld51E4NaVZvq9upz` | `singleSelect` | Single choice dropdown | `ChatGPT u otra IA`, `Convenio con tu colegio`, `Dato o consejo de un(a) amigo(a)`, `Facebook`, `Google` *(+5 more)* |
 | **QuienDecidio**<br>`fldocqWgnEkChM2nQ` | `singleSelect` | Single choice dropdown | `Yo`, `Mi padre-madre o tutor(a)` |
-| **Genero**<br>`fldQ7uWbpXHadpSMA` | `singleSelect` | Single choice dropdown | `M`, `F`, `NB` |
+| **Genero**<br>`fldQ7uWbpXHadpSMA` | `singleSelect` | Single choice dropdown | `Hombre`, `Mujer`, `Otro`, `Prefiero no registrarlo` |
 | **Estado**<br>`fldN9UGcBbKrtGPYD` | `singleSelect` | Single choice dropdown | `Activo`, `Bloqueado`, `suspendido` |
 | **Pais**<br>`fldlqQYUn3GMAVXHW` | `formula` | Calculated field | Formula: `IF({fld4e4pFqnpODVbJB}="",
   SWITCH({fldl1SW9SPvQ...` |
@@ -148,16 +149,16 @@
 | **Celular**<br>`fldDJTv1TC3Dwr8b1` | `phoneNumber` | Phone number |  |
 | **NombrePreferido**<br>`fldLdC48e8cV7Qn1f` | `singleLineText` | Type: singleLineText |  |
 | **Curso**<br>`fldhlrRfO42asiEru` | `singleSelect` | Single choice dropdown | `7 Básico`, `8 Básico`, `1 Medio`, `2 Medio`, `3 Medio` *(+1 more)* |
-| **Edad**<br>`fldBHYunaLfzhfzNN` | `singleSelect` | Single choice dropdown | `13`, `14`, `15`, `16`, `17` *(+3 more)* |
+| **Edad**<br>`fldBHYunaLfzhfzNN` | `number` | Numeric field |  |
 | **EdadActual**<br>`fldqWWnlGSugEUugs` | `number` | Numeric field |  |
 | **EstiloAprendizaje**<br>`fld0ckIVlh46CtbVb` | `singleSelect` | Single choice dropdown | `Visual`, `Auditivo`, `Kinestésico`, `Lectura/Escritura`, `No lo sé` |
 | **MateriasFuertes**<br>`fldNhz8Feiohchzi1` | `singleSelect` | Single choice dropdown | `Matemáticas`, `Lenguaje`, `Ciencias`, `Historia` |
 | **MateriasDebiles**<br>`fldH2m6C9msfoYLRn` | `singleSelect` | Single choice dropdown | `Lenguaje`, `Historia`, `Matemáticas`, `Ciencias` |
 | **HaRepetido**<br>`fldZgc8D6koiQgda4` | `checkbox` | True/False checkbox |  |
-| **TiposNEE**<br>`fld4uN4bHlLVEz3Mx` | `multipleSelects` | Multiple choice dropdown | `TDAH`, `Dislexia`, `TEA`, `Discalculia`, `Ninguno` |
+| **TiposNEE**<br>`fld4uN4bHlLVEz3Mx` | `multipleSelects` | Multiple choice dropdown | `TDAH`, `Dislexia`, `TEA`, `Discalculia`, `Ninguno` *(+1 more)* |
 | **RecibePIE**<br>`fldn3Sioto5nfisur` | `checkbox` | True/False checkbox |  |
 | **NivelAnsiedad**<br>`fld5u3seaJi0JePIG` | `number` | Numeric field |  |
-| **InteresesPersonales**<br>`fldykiNRSZPdeVHw6` | `multipleSelects` | Multiple choice dropdown | `Practicar deportes`, `Videojuegos en consola`, `Escuchar música en móvil`, `Leer`, `Pasear en la Naturaleza` *(+4 more)* |
+| **InteresesPersonales**<br>`fldykiNRSZPdeVHw6` | `multipleSelects` | Multiple choice dropdown | `Practicar deportes`, `Videojuegos en consola`, `Escuchar música`, `Leer`, `Pasear en la Naturaleza` *(+4 more)* |
 | **Idolo**<br>`fldlI8eMEZJCzBo7Y` | `singleLineText` | Type: singleLineText |  |
 | **AspiracionFutura**<br>`fldlS5kKiRrjMMLuo` | `multilineText` | Multi-line text |  |
 | **OnboardingCompletado**<br>`fld1peJxyAKgqLRg6` | `checkbox` | True/False checkbox |  |
@@ -214,7 +215,21 @@
 | **FechaConsentimiento**<br>`fldCXlCEXEPSXnOso` | `dateTime` | Date and time |  |
 | **VersionConsentimientoPrivacidad**<br>`fldW806HTDiGPOuTb` | `singleLineText` | Type: singleLineText |  |
 | **VersionConsentimientoTerminos**<br>`fldafyDVp3nlKaTAS` | `singleLineText` | Type: singleLineText |  |
-| **SesionActivaToken**<br>`fldeNdxf94vhx95qp` | `singleLineText` | Type: singleLineText |  |
+| **EmailVerificado**<br>`fldrDwPxquu2KGEY1` | `checkbox` | True/False checkbox |  |
+| **RequiereConsentimientoParental**<br>`fldlBYsfa4cYGWKWU` | `checkbox` | True/False checkbox |  |
+| **EstadoConsentimientoParental**<br>`fldGQiCgFthYb2hdv` | `singleSelect` | Single choice dropdown | `no_requerido`, `pendiente`, `otorgado`, `revocado` |
+| **TokenAutorizacionParental**<br>`fld0OkdR69ANOfzWh` | `singleLineText` | Type: singleLineText |  |
+| **TokenExpiracion**<br>`fldRk7px6Zoj0Fm87` | `dateTime` | Date and time |  |
+| **ConsentidorNombre**<br>`fld0IGWNXeXxAfW7L` | `singleLineText` | Type: singleLineText |  |
+| **ConsentidorRelacion**<br>`fldKCEPepa3HTkRNK` | `singleSelect` | Single choice dropdown | `Padre`, `Madre`, `Tutor Legal` |
+| **ConsentidorEmail**<br>`fldAVfMKqn7bY8OOJ` | `email` | Email address |  |
+| **FechaConsentimientoParental**<br>`fld2x2CfKdTKUaBBO` | `dateTime` | Date and time |  |
+| **ConsentidorIP**<br>`fldMo2OBRZxpqDnGl` | `singleLineText` | Type: singleLineText |  |
+| **ConsentidorUserAgent**<br>`fldwPadlV8LGmmfLI` | `singleLineText` | Type: singleLineText |  |
+| **IPRegistro**<br>`fldtdS5JrOWCHtC3R` | `singleLineText` | Type: singleLineText |  |
+| **PaisDetectadoIP**<br>`fldeSwPyE7ua5wtSb` | `singleLineText` | Type: singleLineText |  |
+| **ConfirmaEdad**<br>`flduUy3LxXTKr9SFw` | `checkbox` | True/False checkbox |  |
+| **FechaConfirmaEdad**<br>`fldfeZ0wWjVxQFR5C` | `dateTime` | Date and time |  |
 
 ---
 
@@ -558,12 +573,38 @@
 
 ---
 
+## 📋 20. PostulacionesConvenios
+
+*Table ID: `tblU7CHwVifHvTYDF`*
+*Fields: 16*
+
+| Field | Type | Description | Options |
+|-------|------|-------------|---------|
+| **Rec**<br>`fldPYxxRrEPcH5185` | `autoNumber` | Type: autoNumber |  |
+| **FechaIngreso**<br>`flddVMlA67KB0y9I8` | `createdTime` | Auto-generated creation time |  |
+| **Pais**<br>`fld60qkbLxX00uKWK` | `singleSelect` | Single choice dropdown |  |
+| **EstadoProvincia**<br>`fldqKNgEe80ISS5vd` | `singleSelect` | Single choice dropdown | `Todo`, `In progress`, `Done` |
+| **Ciudad**<br>`fldVJ4oFappSSVewR` | `singleSelect` | Single choice dropdown |  |
+| **Colegio**<br>`fldmzJCnbzRviRVlH` | `singleLineText` | Type: singleLineText |  |
+| **Dependencia**<br>`fldaJB3ozQXRwXkFH` | `singleSelect` | Single choice dropdown |  |
+| **MatriculaTotal**<br>`fld3zQbi9ZodLIcvS` | `number` | Numeric field |  |
+| **NombreSolicitante**<br>`fldE2eq4PDyUX2GHr` | `singleLineText` | Type: singleLineText |  |
+| **CargoSolicitante**<br>`fldtuuFGUeKVMvDfc` | `singleLineText` | Type: singleLineText |  |
+| **EmailSolicitante**<br>`fld8xURPPDngG9MYC` | `email` | Email address |  |
+| **TelefonoSolicitante**<br>`fldA8kJNZyhq7Jvyq` | `phoneNumber` | Phone number |  |
+| **RevisadaAutomatica**<br>`fld3GpaRUchUlpchb` | `dateTime` | Date and time |  |
+| **RevisadaManual**<br>`flduaQA892j5ek4t9` | `dateTime` | Date and time |  |
+| **Aprobada**<br>`fldY4FuyGQIneX8oM` | `checkbox` | True/False checkbox |  |
+| **MotivoRechazo**<br>`fldmp9E5z1K5ao4Aj` | `multilineText` | Multi-line text |  |
+
+---
+
 ## 🔄 About This Documentation
 
 ### 📋 Source Information
 - **Base**: Default (`default`)
 - **Base ID**: `app9c8iiAYRGxxhtH`
-- **Generated**: 2026-01-09 21:03:04
+- **Generated**: 2026-01-28 20:08:30
 
 ### 🛠️ Field Type Legend
 - **singleSelect**: Dropdown with single choice
@@ -581,7 +622,7 @@
 ### ⚡ Automation
 This document is auto-generated by GitHub Actions.
 **Update schedule**: Daily at 8:00 AM UTC
-**Last sync**: 2026-01-09 21:03:04
+**Last sync**: 2026-01-28 20:08:30
 
 ---
-*Documentation for Default base - Generated 2026-01-09 21:03:04*
+*Documentation for Default base - Generated 2026-01-28 20:08:30*
