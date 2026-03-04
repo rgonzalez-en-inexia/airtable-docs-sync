@@ -1,19 +1,19 @@
 # 🗂️ Airtable Database Structure - Default
 
-> **Last update**: 2026-02-26 12:40:19
+> **Last update**: 2026-03-04 16:43:37
 > **Base**: default (Default)
 > **Auto-generated** - Do not edit manually
 
 ## 📊 Summary
 
-- **Tables**: 22
-- **Total fields**: 406
+- **Tables**: 23
+- **Total fields**: 424
 - **Base ID**: `app9c8iiAYRGxxhtH`
 
-- **singleSelect fields**: 69
-- **multipleSelects fields**: 7
-- **number fields**: 36
-- **date fields**: 12
+- **singleSelect fields**: 71
+- **multipleSelects fields**: 8
+- **number fields**: 37
+- **date fields**: 14
 - **formula fields**: 12
 
 ---
@@ -152,7 +152,7 @@
 ## 📋 6. Estudiantes
 
 *Table ID: `tblR5gbkydy59GOOC`*
-*Fields: 105*
+*Fields: 109*
 
 | Field | Type | Description | Options |
 |-------|------|-------------|---------|
@@ -178,7 +178,7 @@
 | **Celular**<br>`fldDJTv1TC3Dwr8b1` | `phoneNumber` | Phone number |  |
 | **NombrePreferido**<br>`fldLdC48e8cV7Qn1f` | `singleLineText` | Type: singleLineText |  |
 | **Curso**<br>`fldhlrRfO42asiEru` | `singleSelect` | Single choice dropdown | `7 Básico`, `8 Básico`, `1 Medio`, `2 Medio`, `3 Medio` *(+1 more)* |
-| **Edad**<br>`fldBHYunaLfzhfzNN` | `number` | Numeric field |  |
+| **FechaNacimiento**<br>`fldBHYunaLfzhfzNN` | `date` | Date |  |
 | **EdadActual**<br>`fldqWWnlGSugEUugs` | `number` | Numeric field |  |
 | **EstiloAprendizaje**<br>`fld0ckIVlh46CtbVb` | `singleSelect` | Single choice dropdown | `Visual`, `Auditivo`, `Kinestésico`, `Lectura/Escritura`, `No lo sé` |
 | **MateriasFuertes**<br>`fldNhz8Feiohchzi1` | `singleSelect` | Single choice dropdown | `Matemáticas`, `Lenguaje`, `Ciencias`, `Historia` |
@@ -195,8 +195,9 @@
 | **UltimaActividad**<br>`fld00gaBZOkktKJYO` | `dateTime` | Date and time |  |
 | **DiasDesdeUltima**<br>`fldYd2NI4ued8FXc7` | `formula` | Calculated field | Formula: `DATETIME_DIFF(
      SET_TIMEZONE(NOW(), 'America/...` |
-| **CantidadConversaciones**<br>`fldkF1lllYaBcR4Bl` | `formula` | Calculated field | Formula: `{fldJZJ0PotO13gABR}+{fldA3hx5Y8HUCQQxe}+{fldT3F5dU...` |
+| **CantidadConversacionesDeDias**<br>`fldkF1lllYaBcR4Bl` | `formula` | Calculated field | Formula: `{fldJZJ0PotO13gABR}+{fldA3hx5Y8HUCQQxe}+{fldT3F5dU...` |
 | **CantidadConversacionesExitosas**<br>`fldY1vwqXfZLzzn2W` | `count` | Type: count |  |
+| **CantidadConversacionesTotales**<br>`fld3EuETc0w2ZsgZr` | `count` | Type: count |  |
 | **Lunes**<br>`fldJZJ0PotO13gABR` | `count` | Type: count |  |
 | **Martes**<br>`fldA3hx5Y8HUCQQxe` | `count` | Type: count |  |
 | **Miercoles**<br>`fldT3F5dUstvcWDaK` | `count` | Type: count |  |
@@ -266,6 +267,9 @@
 | **FechaConfirmaEdad**<br>`fldfeZ0wWjVxQFR5C` | `dateTime` | Date and time |  |
 | **Anuncios**<br>`fldnbVzJLcx4NsUuj` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
 | **AnunciosVistos**<br>`fld3I3aEDwtqgz2W9` | `singleLineText` | Type: singleLineText |  |
+| **PlanActual**<br>`fldnLcg9DbxjdWCN2` | `singleLineText` | Type: singleLineText |  |
+| **FechaVencimientoPlan**<br>`fldleXvHmd3Xg9pSJ` | `date` | Date |  |
+| **Testimonios**<br>`fldx7wYmuAkcXwfPA` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
 
 ---
 
@@ -458,7 +462,33 @@
 
 ---
 
-## 📋 16. Recordatorios
+## 📋 16. PostulacionesConvenios
+
+*Table ID: `tblU7CHwVifHvTYDF`*
+*Fields: 16*
+
+| Field | Type | Description | Options |
+|-------|------|-------------|---------|
+| **Rec**<br>`fldPYxxRrEPcH5185` | `autoNumber` | Type: autoNumber |  |
+| **FechaIngreso**<br>`flddVMlA67KB0y9I8` | `createdTime` | Auto-generated creation time |  |
+| **Pais**<br>`fld60qkbLxX00uKWK` | `singleSelect` | Single choice dropdown |  |
+| **EstadoProvincia**<br>`fldqKNgEe80ISS5vd` | `singleSelect` | Single choice dropdown | `Todo`, `In progress`, `Done` |
+| **Ciudad**<br>`fldVJ4oFappSSVewR` | `singleSelect` | Single choice dropdown |  |
+| **Colegio**<br>`fldmzJCnbzRviRVlH` | `singleLineText` | Type: singleLineText |  |
+| **Dependencia**<br>`fldaJB3ozQXRwXkFH` | `singleSelect` | Single choice dropdown |  |
+| **MatriculaTotal**<br>`fld3zQbi9ZodLIcvS` | `number` | Numeric field |  |
+| **NombreSolicitante**<br>`fldE2eq4PDyUX2GHr` | `singleLineText` | Type: singleLineText |  |
+| **CargoSolicitante**<br>`fldtuuFGUeKVMvDfc` | `singleLineText` | Type: singleLineText |  |
+| **EmailSolicitante**<br>`fld8xURPPDngG9MYC` | `email` | Email address |  |
+| **TelefonoSolicitante**<br>`fldA8kJNZyhq7Jvyq` | `phoneNumber` | Phone number |  |
+| **RevisadaAutomatica**<br>`fld3GpaRUchUlpchb` | `dateTime` | Date and time |  |
+| **RevisadaManual**<br>`flduaQA892j5ek4t9` | `dateTime` | Date and time |  |
+| **Aprobada**<br>`fldY4FuyGQIneX8oM` | `checkbox` | True/False checkbox |  |
+| **MotivoRechazo**<br>`fldmp9E5z1K5ao4Aj` | `multilineText` | Multi-line text |  |
+
+---
+
+## 📋 17. Recordatorios
 
 *Table ID: `tbll95VSiGdzEPEsZ`*
 *Fields: 7*
@@ -475,7 +505,7 @@
 
 ---
 
-## 📋 17. RecursosDidacticos
+## 📋 18. RecursosDidacticos
 
 *Table ID: `tblhnDhyfno9kEmFd`*
 *Fields: 14*
@@ -499,7 +529,7 @@
 
 ---
 
-## 📋 18. Seguimiento
+## 📋 19. Seguimiento
 
 *Table ID: `tblq2wnV8lPEHKb8p`*
 *Fields: 21*
@@ -531,7 +561,7 @@
 
 ---
 
-## 📋 19. SesionesEstudio
+## 📋 20. SesionesEstudio
 
 *Table ID: `tbliVHFlDjE2UlO5c`*
 *Fields: 16*
@@ -557,7 +587,7 @@
 
 ---
 
-## 📋 20. Suscripciones
+## 📋 21. Suscripciones
 
 *Table ID: `tblowJOhwqRvVsWWc`*
 *Fields: 33*
@@ -600,7 +630,31 @@
 
 ---
 
-## 📋 21. VERSION_PROD
+## 📋 22. Testimonios
+
+*Table ID: `tblMamG4VXbtJZNSd`*
+*Fields: 14*
+
+| Field | Type | Description | Options |
+|-------|------|-------------|---------|
+| **ID_Testimonio**<br>`fldLPPjGgYFjrTUBB` | `autoNumber` | Type: autoNumber |  |
+| **Estudiante**<br>`fld4AG3mcFaWpwuts` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
+| **Texto**<br>`fldLoMVwRWEBpfpY8` | `multilineText` | Multi-line text |  |
+| **ImagenURL**<br>`fldqfk4WI6CSYy0sO` | `url` | URL link |  |
+| **Estado**<br>`fldSG4KwgwtQqO6ER` | `singleSelect` | Single choice dropdown | `Pendiente`, `Aprobado`, `Rechazado` |
+| **Pais**<br>`fldtzOuum3vrMDcdX` | `singleSelect` | Single choice dropdown | `Argentina`, `Bolivia`, `Chile`, `Colombia`, `Ecuador` *(+7 more)* |
+| **Edad**<br>`fld6dRJYRVhag0UWP` | `number` | Numeric field |  |
+| **TiposNEE**<br>`fld00qa4CY0zNONTg` | `multipleSelects` | Multiple choice dropdown |  |
+| **NombreMostrar**<br>`fldG9KdLMeKUE3gF9` | `singleLineText` | Type: singleLineText |  |
+| **ConversacionesAlEnviar**<br>`fldR1HqiuecBOT2kQ` | `number` | Numeric field |  |
+| **FechaEnvio**<br>`fld8RXhYQO1GCgUHH` | `createdTime` | Auto-generated creation time |  |
+| **FechaRevision**<br>`fldJMArz5vIs2qjWK` | `dateTime` | Date and time |  |
+| **NotasInternas**<br>`fld8tNgQeYXHpjJOk` | `multilineText` | Multi-line text |  |
+| **MostrarEnLanding**<br>`fldAC5GZyNVxn7tKk` | `checkbox` | True/False checkbox |  |
+
+---
+
+## 📋 23. VERSION_PROD
 
 *Table ID: `tblStqh1QgUM2ZZGE`*
 *Fields: 15*
@@ -625,38 +679,12 @@
 
 ---
 
-## 📋 22. PostulacionesConvenios
-
-*Table ID: `tblU7CHwVifHvTYDF`*
-*Fields: 16*
-
-| Field | Type | Description | Options |
-|-------|------|-------------|---------|
-| **Rec**<br>`fldPYxxRrEPcH5185` | `autoNumber` | Type: autoNumber |  |
-| **FechaIngreso**<br>`flddVMlA67KB0y9I8` | `createdTime` | Auto-generated creation time |  |
-| **Pais**<br>`fld60qkbLxX00uKWK` | `singleSelect` | Single choice dropdown |  |
-| **EstadoProvincia**<br>`fldqKNgEe80ISS5vd` | `singleSelect` | Single choice dropdown | `Todo`, `In progress`, `Done` |
-| **Ciudad**<br>`fldVJ4oFappSSVewR` | `singleSelect` | Single choice dropdown |  |
-| **Colegio**<br>`fldmzJCnbzRviRVlH` | `singleLineText` | Type: singleLineText |  |
-| **Dependencia**<br>`fldaJB3ozQXRwXkFH` | `singleSelect` | Single choice dropdown |  |
-| **MatriculaTotal**<br>`fld3zQbi9ZodLIcvS` | `number` | Numeric field |  |
-| **NombreSolicitante**<br>`fldE2eq4PDyUX2GHr` | `singleLineText` | Type: singleLineText |  |
-| **CargoSolicitante**<br>`fldtuuFGUeKVMvDfc` | `singleLineText` | Type: singleLineText |  |
-| **EmailSolicitante**<br>`fld8xURPPDngG9MYC` | `email` | Email address |  |
-| **TelefonoSolicitante**<br>`fldA8kJNZyhq7Jvyq` | `phoneNumber` | Phone number |  |
-| **RevisadaAutomatica**<br>`fld3GpaRUchUlpchb` | `dateTime` | Date and time |  |
-| **RevisadaManual**<br>`flduaQA892j5ek4t9` | `dateTime` | Date and time |  |
-| **Aprobada**<br>`fldY4FuyGQIneX8oM` | `checkbox` | True/False checkbox |  |
-| **MotivoRechazo**<br>`fldmp9E5z1K5ao4Aj` | `multilineText` | Multi-line text |  |
-
----
-
 ## 🔄 About This Documentation
 
 ### 📋 Source Information
 - **Base**: Default (`default`)
 - **Base ID**: `app9c8iiAYRGxxhtH`
-- **Generated**: 2026-02-26 12:40:19
+- **Generated**: 2026-03-04 16:43:37
 
 ### 🛠️ Field Type Legend
 - **singleSelect**: Dropdown with single choice
@@ -674,7 +702,7 @@
 ### ⚡ Automation
 This document is auto-generated by GitHub Actions.
 **Update schedule**: Daily at 8:00 AM UTC
-**Last sync**: 2026-02-26 12:40:19
+**Last sync**: 2026-03-04 16:43:37
 
 ---
-*Documentation for Default base - Generated 2026-02-26 12:40:19*
+*Documentation for Default base - Generated 2026-03-04 16:43:37*
