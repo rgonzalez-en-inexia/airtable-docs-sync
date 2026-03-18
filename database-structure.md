@@ -1,19 +1,19 @@
 # 🗂️ Airtable Database Structure - Default
 
-> **Last update**: 2026-03-13 14:53:32
+> **Last update**: 2026-03-18 08:59:27
 > **Base**: default (Default)
 > **Auto-generated** - Do not edit manually
 
 ## 📊 Summary
 
 - **Tables**: 24
-- **Total fields**: 448
+- **Total fields**: 451
 - **Base ID**: `app9c8iiAYRGxxhtH`
 
-- **singleSelect fields**: 77
+- **singleSelect fields**: 78
 - **multipleSelects fields**: 8
 - **number fields**: 39
-- **date fields**: 15
+- **date fields**: 16
 - **formula fields**: 12
 
 ---
@@ -63,7 +63,7 @@
 
 ---
 
-## 📋 3. CodigosDescuentosBecas
+## 📋 3. CodigosBeca
 
 *Table ID: `tblbJONkSMMSwwmh4`*
 *Fields: 10*
@@ -71,14 +71,14 @@
 | Field | Type | Description | Options |
 |-------|------|-------------|---------|
 | **Codigo**<br>`fldHomfihCqQgDxSC` | `singleLineText` | Type: singleLineText |  |
-| **Tipo**<br>`fldnLXDsLH8JRO1Af` | `singleLineText` | Type: singleLineText |  |
+| **Tipo**<br>`fldnLXDsLH8JRO1Af` | `singleSelect` | Single choice dropdown | `BECA`, `Tester` |
 | **UsosMaximos**<br>`fld69Ws9F38CdFFCO` | `number` | Numeric field |  |
 | **UsosActuales**<br>`fldJWXbVuqOxfZhfA` | `number` | Numeric field |  |
 | **FechaExpiracion**<br>`fldxTjF7VmSafvfku` | `date` | Date |  |
 | **Activo**<br>`fldubNWCX1ZO2zvkX` | `checkbox` | True/False checkbox |  |
 | **Descripcion**<br>`fldZhdWkoJrdRuE7g` | `singleLineText` | Type: singleLineText |  |
 | **DescuentoPp**<br>`fldMtH7CUtxABSfdx` | `percent` | Percentage |  |
-| **Usado**<br>`fldxhvbEe07IOCi7X` | `checkbox` | True/False checkbox |  |
+| **EnUso**<br>`fldxhvbEe07IOCi7X` | `checkbox` | True/False checkbox |  |
 | **FechaPrimerUso**<br>`fldp6xx9q6AQNlJvt` | `dateTime` | Date and time |  |
 
 ---
@@ -86,7 +86,7 @@
 ## 📋 4. Conversaciones
 
 *Table ID: `tblhw3b9VCVrJtDu1`*
-*Fields: 27*
+*Fields: 28*
 
 | Field | Type | Description | Options |
 |-------|------|-------------|---------|
@@ -104,6 +104,7 @@
 | **CostoAPI**<br>`fldvidJST7G3PhaTs` | `formula` | Calculated field | Formula: `0.6*{fldaYGwxvLqtSFKws}/1000000` |
 | **Resumen**<br>`fldLJbxM83Q7BLBfZ` | `multilineText` | Multi-line text |  |
 | **FechaInicio**<br>`fldUuqJjygGEcscrS` | `createdTime` | Auto-generated creation time |  |
+| **SemanaISO**<br>`fldT2n1sMu58ilaGM` | `singleLineText` | Type: singleLineText |  |
 | **DiaSemanaInicio**<br>`fldbpEisAN1d2n4nm` | `formula` | Calculated field | Formula: `WEEKDAY(SET_TIMEZONE({fldUuqJjygGEcscrS}, 'America...` |
 | **UltimoMensaje**<br>`fldwOV5yGkT0tiMj3` | `lastModifiedTime` | Auto-generated modification time |  |
 | **Duracion**<br>`fld8K7xwvCEwgb64O` | `formula` | Calculated field | Formula: `DATETIME_DIFF({fldwOV5yGkT0tiMj3},{fldUuqJjygGEcsc...` |
@@ -172,12 +173,13 @@
 ## 📋 7. Estudiantes
 
 *Table ID: `tblR5gbkydy59GOOC`*
-*Fields: 113*
+*Fields: 115*
 
 | Field | Type | Description | Options |
 |-------|------|-------------|---------|
 | **ID_Estudiante**<br>`fldp7qIUatWYG2zw2` | `autoNumber` | Type: autoNumber |  |
 | **Email**<br>`fldaPohMI9tlgDW4t` | `email` | Email address |  |
+| **IDExternoPago**<br>`fld6P8XQEE3SNZy7X` | `multipleLookupValues` | Type: multipleLookupValues |  |
 | **SesionActivaToken**<br>`fldeNdxf94vhx95qp` | `singleLineText` | Type: singleLineText |  |
 | **SesionActivaDeviceId**<br>`fld8hno4n2Q0byffc` | `singleLineText` | Type: singleLineText |  |
 | **Contrasena**<br>`fld2VACy7rMKduyLP` | `multilineText` | Multi-line text |  |
@@ -185,6 +187,7 @@
 | **Nombre**<br>`fldDs68JQokh38DX6` | `singleLineText` | Type: singleLineText |  |
 | **PlanActual**<br>`fldnLcg9DbxjdWCN2` | `singleLineText` | Type: singleLineText |  |
 | **FechaVencimientoPlan**<br>`fldleXvHmd3Xg9pSJ` | `date` | Date |  |
+| **FechaEliminacion**<br>`fldYNz9WZM6kirtaG` | `date` | Date |  |
 | **ModalidadPremium**<br>`fldyFxnLf3QYEoYKj` | `singleSelect` | Single choice dropdown | `Pago_Normal`, `Pago_Campaña`, `Descuento_Grupal`, `Beca_Colegio`, `Beca_Personal` *(+1 more)* |
 | **CampanaId**<br>`fldwWox9y7hTiykir` | `singleLineText` | Type: singleLineText |  |
 | **TramoGrupal**<br>`fldqdmmP5SqdO9ex8` | `singleSelect` | Single choice dropdown | `T1`, `T2`, `T3` |
@@ -669,22 +672,22 @@
 | **Edad**<br>`fld6dRJYRVhag0UWP` | `number` | Numeric field |  |
 | **Texto**<br>`fldLoMVwRWEBpfpY8` | `multilineText` | Multi-line text |  |
 | **ImagenURL**<br>`fldqfk4WI6CSYy0sO` | `url` | URL link |  |
-| **Estado**<br>`fldSG4KwgwtQqO6ER` | `singleSelect` | Single choice dropdown | `Pendiente`, `Aprobado`, `Rechazado` |
 | **Pais**<br>`fldtzOuum3vrMDcdX` | `singleSelect` | Single choice dropdown | `Argentina`, `Bolivia`, `Chile`, `Colombia`, `Ecuador` *(+7 more)* |
 | **TiposNEE**<br>`fld00qa4CY0zNONTg` | `multipleSelects` | Multiple choice dropdown | `TDA`, `TDAH`, `TEA`, `Dislexia`, `Discalculia` *(+1 more)* |
 | **ConversacionesAlEnviar**<br>`fldR1HqiuecBOT2kQ` | `number` | Numeric field |  |
 | **FechaEnvio**<br>`fld8RXhYQO1GCgUHH` | `createdTime` | Auto-generated creation time |  |
+| **Estado**<br>`fldSG4KwgwtQqO6ER` | `singleSelect` | Single choice dropdown | `Pendiente`, `Aprobado`, `Rechazado` |
 | **FechaRevision**<br>`fldJMArz5vIs2qjWK` | `dateTime` | Date and time |  |
 | **NotasInternas**<br>`fld8tNgQeYXHpjJOk` | `multilineText` | Multi-line text |  |
 | **MostrarEnLanding**<br>`fldAC5GZyNVxn7tKk` | `checkbox` | True/False checkbox |  |
 | **MostrarAvisos**<br>`fldN79TbLpbkGuFWT` | `checkbox` | True/False checkbox |  |
 | **Consentimiento**<br>`fldCEipr2tKeJqMej` | `checkbox` | True/False checkbox |  |
 | **FechaConsentimiento**<br>`fldEp626LDM4xCmd0` | `dateTime` | Date and time |  |
-| **Pregunta1**<br>`fldEtPCm0j7w1AvpI` | `singleSelect` | Single choice dropdown | `R1`, `R2` |
-| **Pregunta2**<br>`fldziGIfAiNiR6xfe` | `singleSelect` | Single choice dropdown | `R1`, `R2` |
-| **Pregunta3**<br>`fldPktTOTnXMWqiWE` | `singleSelect` | Single choice dropdown | `R1`, `R2` |
-| **Pregunta4**<br>`fldmqLoWXkNJR89WW` | `singleSelect` | Single choice dropdown | `R1`, `R2` |
-| **Pregunta5**<br>`fld8OpJJBBWb1H8K3` | `singleSelect` | Single choice dropdown | `R1`, `R2` |
+| **Pregunta1**<br>`fldEtPCm0j7w1AvpI` | `singleSelect` | Single choice dropdown | `Sí`, `No` |
+| **Pregunta2**<br>`fldziGIfAiNiR6xfe` | `singleSelect` | Single choice dropdown | `Me ha servido mucho`, `Me ha servido algo`, `Me ha servido poco`, `No me ha servido` |
+| **Pregunta3**<br>`fldPktTOTnXMWqiWE` | `singleSelect` | Single choice dropdown | `Mucho`, `Bastante`, `Algo`, `Nada` |
+| **Pregunta4**<br>`fldmqLoWXkNJR89WW` | `singleSelect` | Single choice dropdown | `Aprender algo puntual`, `Preparar una evaluación`, `Aprender a estudiar` |
+| **Pregunta5**<br>`fld8OpJJBBWb1H8K3` | `singleSelect` | Single choice dropdown | `Mucho, me asombra`, `Bastante`, `Lo percibo débilmente`, `No lo he notado` |
 
 ---
 
@@ -718,7 +721,7 @@
 ### 📋 Source Information
 - **Base**: Default (`default`)
 - **Base ID**: `app9c8iiAYRGxxhtH`
-- **Generated**: 2026-03-13 14:53:32
+- **Generated**: 2026-03-18 08:59:27
 
 ### 🛠️ Field Type Legend
 - **singleSelect**: Dropdown with single choice
@@ -736,7 +739,7 @@
 ### ⚡ Automation
 This document is auto-generated by GitHub Actions.
 **Update schedule**: Daily at 8:00 AM UTC
-**Last sync**: 2026-03-13 14:53:32
+**Last sync**: 2026-03-18 08:59:27
 
 ---
-*Documentation for Default base - Generated 2026-03-13 14:53:32*
+*Documentation for Default base - Generated 2026-03-18 08:59:27*
