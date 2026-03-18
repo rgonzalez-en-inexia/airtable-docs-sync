@@ -13,6 +13,7 @@ on:
         options:
         - default
         - aulas
+        - prod
 
 permissions:
   contents: write
@@ -42,58 +43,60 @@ jobs:
     - name: 🔍 Determine which base to sync
       id: select-base
       run: |
-        if [[ "${{ github.event.inputs.base }}" == "aulas" ]]; then
-          echo "🔄 Selected: Aulas base"
+        # When triggered by cron, inputs.base is empty — default to "default"
+        BASE_SELECTION="${{ github.event.inputs.base }}"
+        BASE_SELECTION="${BASE_SELECTION:-default}"
+        echo "🔄 Selected base: $BASE_SELECTION"
+
+        if [[ "$BASE_SELECTION" == "aulas" ]]; then
           echo "ENV_SUFFIX=_AULAS" >> $GITHUB_OUTPUT
           echo "OUTPUT_FILE=database-structure-aulas.md" >> $GITHUB_OUTPUT
-          echo "SECRET_TOKEN=AIRTABLE_TOKEN_AULAS" >> $GITHUB_OUTPUT
-          echo "SECRET_BASE_ID=AIRTABLE_BASE_ID_AULAS" >> $GITHUB_OUTPUT
+        elif [[ "$BASE_SELECTION" == "prod" ]]; then
+          echo "ENV_SUFFIX=_PROD" >> $GITHUB_OUTPUT
+          echo "OUTPUT_FILE=database-structure-prod.md" >> $GITHUB_OUTPUT
         else
-          echo "🔄 Selected: Default base"
           echo "ENV_SUFFIX=" >> $GITHUB_OUTPUT
           echo "OUTPUT_FILE=database-structure.md" >> $GITHUB_OUTPUT
-          echo "SECRET_TOKEN=AIRTABLE_TOKEN" >> $GITHUB_OUTPUT
-          echo "SECRET_BASE_ID=AIRTABLE_BASE_ID" >> $GITHUB_OUTPUT
         fi
-    
+
+        echo "BASE_SELECTION=$BASE_SELECTION" >> $GITHUB_OUTPUT
+        
     # 5. Generate documentation (VERSIÓN CORREGIDA)
     - name: 🔄 Generate Airtable documentation
       id: generate-docs
       env:
-        # Pasar TODOS los secretos relevantes al ambiente
         AIRTABLE_TOKEN_DEFAULT: ${{ secrets.AIRTABLE_TOKEN }}
         AIRTABLE_BASE_ID_DEFAULT: ${{ secrets.AIRTABLE_BASE_ID }}
         AIRTABLE_TOKEN_AULAS: ${{ secrets.AIRTABLE_TOKEN_AULAS }}
         AIRTABLE_BASE_ID_AULAS: ${{ secrets.AIRTABLE_BASE_ID_AULAS }}
+        AIRTABLE_TOKEN_PROD: ${{ secrets.AIRTABLE_TOKEN_PROD }}
+        AIRTABLE_BASE_ID_PROD: ${{ secrets.AIRTABLE_BASE_ID_PROD }}
         OUTPUT_FILE: ${{ steps.select-base.outputs.OUTPUT_FILE }}
+        BASE_SELECTION: ${{ steps.select-base.outputs.BASE_SELECTION }}
       run: |
         echo "=== GENERATING DOCUMENTATION ==="
         echo "📁 Output file: $OUTPUT_FILE"
-        echo "🔑 Base selection: ${{ github.event.inputs.base }}"
-        
-        # Determinar qué variables usar basado en la selección
-        if [[ "${{ github.event.inputs.base }}" == "aulas" ]]; then
+        echo "🔑 Base selection: $BASE_SELECTION"
+
+        if [[ "$BASE_SELECTION" == "aulas" ]]; then
           echo "🔄 Using Aulas credentials"
           export AIRTABLE_TOKEN="$AIRTABLE_TOKEN_AULAS"
           export AIRTABLE_BASE_ID="$AIRTABLE_BASE_ID_AULAS"
-          echo "✅ Token variable: AIRTABLE_TOKEN_AULAS"
-          echo "✅ Base ID variable: AIRTABLE_BASE_ID_AULAS"
+        elif [[ "$BASE_SELECTION" == "prod" ]]; then
+          echo "🔄 Using Prod credentials"
+          export AIRTABLE_TOKEN="$AIRTABLE_TOKEN_PROD"
+          export AIRTABLE_BASE_ID="$AIRTABLE_BASE_ID_PROD"
         else
           echo "🔄 Using Default credentials"
           export AIRTABLE_TOKEN="$AIRTABLE_TOKEN_DEFAULT"
           export AIRTABLE_BASE_ID="$AIRTABLE_BASE_ID_DEFAULT"
-          echo "✅ Token variable: AIRTABLE_TOKEN"
-          echo "✅ Base ID variable: AIRTABLE_BASE_ID"
         fi
-        
-        # Debug: mostrar que las variables están configuradas
+
         echo "🔍 Debug - Token length: ${#AIRTABLE_TOKEN}"
         echo "🔍 Debug - Base ID: $AIRTABLE_BASE_ID"
-        
-        # Run the Python script
-        python sync_airtable.py --output "$OUTPUT_FILE" --base "${{ github.event.inputs.base }}"
-        
-        # Verify the file was created
+
+        python sync_airtable.py --output "$OUTPUT_FILE" --base "$BASE_SELECTION"
+
         if [ ! -f "$OUTPUT_FILE" ]; then
           echo "❌ ERROR: $OUTPUT_FILE was not created"
           exit 1
