@@ -15,7 +15,7 @@ def parse_arguments():
     parser = argparse.ArgumentParser(description='Generate Airtable documentation')
     parser.add_argument('--output', default='database-structure.md',
                        help='Output filename (default: database-structure.md)')
-    parser.add_argument('--base', choices=['default', 'aulas'], default='default',
+    parser.add_argument('--base', choices=['default', 'aulas', 'prod'], default='default',
                        help='Which Airtable base to sync (default: default)')
     
     return parser.parse_args()
