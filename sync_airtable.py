@@ -20,13 +20,17 @@ def parse_arguments():
     
     return parser.parse_args()
 
-def get_configuration(args):
-    """Get configuration based on arguments"""
-    # Determine which environment variables to use
+    def get_configuration(args):
+        """Get configuration based on arguments"""
+        # Determine which environment variables to use
     if args.base == 'aulas':
         token_var = 'AIRTABLE_TOKEN_AULAS'
         base_id_var = 'AIRTABLE_BASE_ID_AULAS'
         base_display_name = 'Aulas'
+    elif args.base == 'prod':
+        token_var = 'AIRTABLE_TOKEN_PROD'
+        base_id_var = 'AIRTABLE_BASE_ID_PROD'
+        base_display_name = 'Production'
     else:
         token_var = 'AIRTABLE_TOKEN'
         base_id_var = 'AIRTABLE_BASE_ID'
