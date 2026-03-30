@@ -1,17 +1,17 @@
 # 🗂️ Airtable Database Structure - Production
 
-> **Last update**: 2026-03-18 13:12:06
+> **Last update**: 2026-03-30 19:23:09
 > **Base**: prod (Production)
 > **Auto-generated** - Do not edit manually
 
 ## 📊 Summary
 
 - **Tables**: 24
-- **Total fields**: 451
+- **Total fields**: 450
 - **Base ID**: `appr2x4VzE0OySqOu`
 
-- **singleSelect fields**: 79
-- **multipleSelects fields**: 7
+- **singleSelect fields**: 78
+- **multipleSelects fields**: 8
 - **number fields**: 39
 - **date fields**: 16
 - **formula fields**: 11
@@ -66,17 +66,18 @@
 ## 📋 3. CodigosBeca
 
 *Table ID: `tbl5bbz43RzV0gIuw`*
-*Fields: 10*
+*Fields: 11*
 
 | Field | Type | Description | Options |
 |-------|------|-------------|---------|
 | **Codigo**<br>`fldc023KTbWvp388d` | `singleLineText` | Type: singleLineText |  |
+| **Asignado**<br>`fldy4a0P95GCEs2J9` | `checkbox` | True/False checkbox |  |
 | **Tipo**<br>`fld491EELlMUN0tK5` | `singleSelect` | Single choice dropdown | `BECA`, `Tester` |
 | **UsosMaximos**<br>`fldWjZe1tw5S7yFY4` | `number` | Numeric field |  |
 | **UsosActuales**<br>`fldqPfHifS9SOuibW` | `number` | Numeric field |  |
 | **FechaExpiracion**<br>`flddi3exBjtChdfAP` | `date` | Date |  |
 | **Activo**<br>`fldUCnFepR87O4JxS` | `checkbox` | True/False checkbox |  |
-| **Descripcion**<br>`fldjsEwDbIa9kgSW6` | `singleLineText` | Type: singleLineText |  |
+| **Descripcion**<br>`fldjsEwDbIa9kgSW6` | `percent` | Percentage |  |
 | **DescuentoPp**<br>`fldKBS5omqiMOMWSU` | `percent` | Percentage |  |
 | **EnUso**<br>`fldIGJcZ8NkUKOspG` | `checkbox` | True/False checkbox |  |
 | **FechaPrimerUso**<br>`flde7mkDLH7aRjdSw` | `dateTime` | Date and time |  |
@@ -86,7 +87,7 @@
 ## 📋 4. Conversaciones
 
 *Table ID: `tblhw3b9VCVrJtDu1`*
-*Fields: 29*
+*Fields: 28*
 
 | Field | Type | Description | Options |
 |-------|------|-------------|---------|
@@ -117,7 +118,6 @@
 | **MetricasDiarias 2**<br>`fldxn7vaqpgCVhpbO` | `singleLineText` | Type: singleLineText |  |
 | **SesionesEstudio**<br>`fldlinKEtBloVl1xZ` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
 | **Seguimiento**<br>`fldZ5AqI2xyINL1hB` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
-| **Mensajes copy**<br>`fld8o0qKL51jTMW4r` | `singleLineText` | Type: singleLineText |  |
 | **SemanaISO**<br>`fldlio9jZ4QLw6NMv` | `singleLineText` | Type: singleLineText |  |
 
 ---
@@ -131,6 +131,7 @@
 |-------|------|-------------|---------|
 | **OA**<br>`fldrjQyvXRk6shh5j` | `multilineText` | Multi-line text |  |
 | **NumeroReg**<br>`fld8fkhty8OMXYwNX` | `autoNumber` | Type: autoNumber |  |
+| **OAnivel**<br>`fld2iZPfBxmNgBXA8` | `number` | Numeric field |  |
 | **OAserial**<br>`fld9wnfptnEeNincH` | `number` | Numeric field |  |
 | **OAmateria**<br>`fldPPTulbJihy1UmV` | `singleSelect` | Single choice dropdown | `Matemática`, `Comprensión lectora`, `Historia y Geografía`, `Ciencias` |
 | **OAeje**<br>`fldye5FSdw7sM0DGm` | `singleSelect` | Single choice dropdown | `Medición`, `Números y operaciones`, `Geometría`, `Números`, `Álgebra y funciones` *(+16 more)* |
@@ -142,7 +143,6 @@
 | **OApertinenciaContenidosM1Respaldo**<br>`fldiPVNTu2WVLWPuR` | `multilineText` | Multi-line text |  |
 | **OAhabilidades**<br>`fldRtf2rvabm7MvhR` | `singleSelect` | Single choice dropdown | `3.1. Habilidad: Resolver Problemas | 3.2. Habilidad: Modelar | 3.3. Habilidad: Representar`, `Ninguna`, `3.1. Habilidad: Resolver Problemas | 3.3. Habilidad: Representar`, `Resolver Problemas | Modelar | Representar`, `Resolver Problemas | Representar | Argumentar` *(+13 more)* |
 | **OApertinenciaHabilidadesM1Respaldo**<br>`fldgk4odkACec8b56` | `multilineText` | Multi-line text |  |
-| **OAnivel**<br>`fld2iZPfBxmNgBXA8` | `number` | Numeric field |  |
 | **OAnivelTxt**<br>`fldqX7bbGHJFCSJb9` | `singleSelect` | Single choice dropdown | `5° Básico`, `6° Básico`, `7° Básico`, `8° Básico` |
 | **OAantiguedad**<br>`fldgT3bnJbcwkUnBD` | `number` | Numeric field |  |
 
@@ -174,7 +174,7 @@
 ## 📋 7. Estudiantes
 
 *Table ID: `tblR5gbkydy59GOOC`*
-*Fields: 114*
+*Fields: 113*
 
 | Field | Type | Description | Options |
 |-------|------|-------------|---------|
@@ -208,7 +208,7 @@
 | **TiposNEE**<br>`fld4uN4bHlLVEz3Mx` | `multipleSelects` | Multiple choice dropdown | `TDAH`, `Dislexia`, `TEA`, `Discalculia`, `Ninguno` *(+1 more)* |
 | **RecibePIE**<br>`fldn3Sioto5nfisur` | `checkbox` | True/False checkbox |  |
 | **NivelAnsiedad**<br>`fld5u3seaJi0JePIG` | `number` | Numeric field |  |
-| **InteresesPersonales**<br>`fldykiNRSZPdeVHw6` | `multipleSelects` | Multiple choice dropdown | `Practicar deportes`, `Videojuegos en consola`, `Escuchar música`, `Leer`, `Pasear en la Naturaleza` *(+4 more)* |
+| **InteresesPersonales**<br>`fldykiNRSZPdeVHw6` | `multipleSelects` | Multiple choice dropdown | `Crear contenido`, `Escuchar música`, `Juegos en el celular`, `Juntarme con amigos(as)`, `Leer` *(+8 more)* |
 | **Idolo**<br>`fldlI8eMEZJCzBo7Y` | `singleLineText` | Type: singleLineText |  |
 | **AspiracionFutura**<br>`fldlS5kKiRrjMMLuo` | `multilineText` | Multi-line text |  |
 | **OnboardingCompletado**<br>`fld1peJxyAKgqLRg6` | `checkbox` | True/False checkbox |  |
@@ -288,11 +288,10 @@
 | **Anuncios**<br>`fldnbVzJLcx4NsUuj` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
 | **AnunciosVistos**<br>`fld3I3aEDwtqgz2W9` | `singleLineText` | Type: singleLineText |  |
 | **Testimonios**<br>`fldWJEC7RMA6aNhEs` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
-| **IDExternoPago (from Suscripciones)**<br>`fldQxB8ES0c0UAKem` | `multipleLookupValues` | Type: multipleLookupValues |  |
+| **IDExternoPago**<br>`fldQxB8ES0c0UAKem` | `multipleLookupValues` | Type: multipleLookupValues |  |
 | **PlanActual**<br>`fldMrctNRhGeIfVvC` | `singleLineText` | Type: singleLineText |  |
 | **FechaVencimientoPlan**<br>`fldfl0TSu0IqXEPSR` | `date` | Date |  |
 | **FechaEliminacion**<br>`fld0fy4zuSWh7hM4r` | `date` | Date |  |
-| **Field 111**<br>`fldSA2JU0gP2bq5dI` | `singleLineText` | Type: singleLineText |  |
 | **CantidadConversacionesTotales**<br>`fldzQcJY2bDgg2JXX` | `count` | Type: count |  |
 | **PlanRiesgo**<br>`fldbf0ySCVeuJNmls` | `checkbox` | True/False checkbox |  |
 | **AvatarURL**<br>`fldzT2N08WHtBCFCW` | `url` | URL link |  |
@@ -673,7 +672,7 @@
 | **Texto**<br>`fldW6WG2g4srYx6Wi` | `multilineText` | Multi-line text |  |
 | **ImagenURL**<br>`fld793C7UxXgOPybX` | `url` | URL link |  |
 | **Pais**<br>`fldUOJwGkb3HXaHSb` | `singleSelect` | Single choice dropdown | `Argentina`, `Bolivia`, `Chile`, `Colombia`, `Ecuador` *(+7 more)* |
-| **TiposNEE**<br>`fldUH5HL7DjBDWMd4` | `singleSelect` | Single choice dropdown | `Discalculia`, `Dislexia`, `Ninguno`, `TDA`, `TDAH` *(+1 more)* |
+| **TiposNEE**<br>`fldUH5HL7DjBDWMd4` | `multipleSelects` | Multiple choice dropdown | `Discalculia`, `Dislexia`, `Ninguno`, `TDA`, `TDAH` *(+1 more)* |
 | **ConversacionesAlEnviar**<br>`fldwiH6KtS8fXyMFS` | `number` | Numeric field |  |
 | **FechaEnvio**<br>`fldrri5YW5bZXzTm9` | `createdTime` | Auto-generated creation time |  |
 | **Estado**<br>`fldXHOUtCWekNqt2Z` | `singleSelect` | Single choice dropdown | `Aprobado`, `Pendiente`, `Postergado`, `Rechazado` |
@@ -721,7 +720,7 @@
 ### 📋 Source Information
 - **Base**: Production (`prod`)
 - **Base ID**: `appr2x4VzE0OySqOu`
-- **Generated**: 2026-03-18 13:12:06
+- **Generated**: 2026-03-30 19:23:09
 
 ### 🛠️ Field Type Legend
 - **singleSelect**: Dropdown with single choice
@@ -739,7 +738,7 @@
 ### ⚡ Automation
 This document is auto-generated by GitHub Actions.
 **Update schedule**: Daily at 8:00 AM UTC
-**Last sync**: 2026-03-18 13:12:06
+**Last sync**: 2026-03-30 19:23:09
 
 ---
-*Documentation for Production base - Generated 2026-03-18 13:12:06*
+*Documentation for Production base - Generated 2026-03-30 19:23:09*
