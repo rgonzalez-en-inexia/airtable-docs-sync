@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Airtable Structure Documentation Generator
-Supports multiple Airtable bases
+Supports  multiple Airtable bases
 """
 
 import os
