@@ -15,7 +15,7 @@ def parse_arguments():
     parser = argparse.ArgumentParser(description='Generate Airtable documentation')
     parser.add_argument('--output', default='database-structure.md',
                        help='Output filename (default: database-structure.md)')
-    parser.add_argument('--base', choices=['default', 'aulas', 'prod'], default='default',
+    parser.add_argument('--base', choices=['default', 'aulas', 'prod', 'analytics'], default='default',
                        help='Which Airtable base to sync (default: default)')
     
     return parser.parse_args()
@@ -31,6 +31,10 @@ def get_configuration(args):
         token_var = 'AIRTABLE_TOKEN_PROD'
         base_id_var = 'AIRTABLE_BASE_ID_PROD'
         base_display_name = 'Production'
+    elif args.base == 'analytics':
+        token_var = 'AIRTABLE_TOKEN_ANALYTICS'
+        base_id_var = 'AIRTABLE_BASE_ID_ANALYTICS'
+        base_display_name = 'Analytics'
     else:
         token_var = 'AIRTABLE_TOKEN'
         base_id_var = 'AIRTABLE_BASE_ID'
