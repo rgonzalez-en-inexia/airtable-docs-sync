@@ -14,6 +14,7 @@ on:
         - default
         - aulas
         - prod
+        - analytics
 
 permissions:
   contents: write
@@ -54,6 +55,9 @@ jobs:
         elif [[ "$BASE_SELECTION" == "prod" ]]; then
           echo "ENV_SUFFIX=_PROD" >> $GITHUB_OUTPUT
           echo "OUTPUT_FILE=database-structure-prod.md" >> $GITHUB_OUTPUT
+        elif [[ "$BASE_SELECTION" == "analytics" ]]; then
+          echo "ENV_SUFFIX=_ANALYTICS" >> $GITHUB_OUTPUT
+          echo "OUTPUT_FILE=database-structure-analytics.md" >> $GITHUB_OUTPUT
         else
           echo "ENV_SUFFIX=" >> $GITHUB_OUTPUT
           echo "OUTPUT_FILE=database-structure.md" >> $GITHUB_OUTPUT
@@ -61,7 +65,7 @@ jobs:
 
         echo "BASE_SELECTION=$BASE_SELECTION" >> $GITHUB_OUTPUT
         
-    # 5. Generate documentation (VERSIÓN CORREGIDA)
+    # 5. Generate documentation
     - name: 🔄 Generate Airtable documentation
       id: generate-docs
       env:
@@ -71,6 +75,8 @@ jobs:
         AIRTABLE_BASE_ID_AULAS: ${{ secrets.AIRTABLE_BASE_ID_AULAS }}
         AIRTABLE_TOKEN_PROD: ${{ secrets.AIRTABLE_TOKEN_PROD }}
         AIRTABLE_BASE_ID_PROD: ${{ secrets.AIRTABLE_BASE_ID_PROD }}
+        AIRTABLE_TOKEN_ANALYTICS: ${{ secrets.AIRTABLE_TOKEN_ANALYTICS }}
+        AIRTABLE_BASE_ID_ANALYTICS: ${{ secrets.AIRTABLE_BASE_ID_ANALYTICS }}
         OUTPUT_FILE: ${{ steps.select-base.outputs.OUTPUT_FILE }}
         BASE_SELECTION: ${{ steps.select-base.outputs.BASE_SELECTION }}
       run: |
@@ -86,6 +92,10 @@ jobs:
           echo "🔄 Using Prod credentials"
           export AIRTABLE_TOKEN="$AIRTABLE_TOKEN_PROD"
           export AIRTABLE_BASE_ID="$AIRTABLE_BASE_ID_PROD"
+        elif [[ "$BASE_SELECTION" == "analytics" ]]; then
+          echo "🔄 Using Analytics credentials"
+          export AIRTABLE_TOKEN="$AIRTABLE_TOKEN_ANALYTICS"
+          export AIRTABLE_BASE_ID="$AIRTABLE_BASE_ID_ANALYTICS"
         else
           echo "🔄 Using Default credentials"
           export AIRTABLE_TOKEN="$AIRTABLE_TOKEN_DEFAULT"
@@ -107,7 +117,7 @@ jobs:
         echo "📄 Preview:"
         head -5 "$OUTPUT_FILE"
         
-    # 6. Upload to GitHub - Versión sin jq para payload
+    # 6. Upload to GitHub
     - name: 📤 Upload to GitHub Repository
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -134,19 +144,17 @@ jobs:
           -H "Accept: application/vnd.github.v3+json" \
           "https://api.github.com/repos/$REPO/contents/$FILE_PATH")
         
-        # Extraer SHA usando jq (esto sí funciona porque la respuesta es pequeña)
+        # Extraer SHA usando jq
         SHA=$(echo "$API_RESPONSE" | jq -r '.sha // empty')
         
         if [ -n "$SHA" ] && [ "$SHA" != "null" ]; then
           echo "✅ File exists. SHA: ${SHA:0:8}..."
           COMMIT_MESSAGE="📚 docs: update $FILE_PATH [auto]"
-          # Crear payload CON SHA
           PAYLOAD_TEMPLATE='{"message":"%s","content":"%s","sha":"%s","committer":{"name":"GitHub Actions","email":"actions@github.com"},"branch":"main"}'
           JSON_PAYLOAD=$(printf "$PAYLOAD_TEMPLATE" "$COMMIT_MESSAGE" "$CONTENT_BASE64" "$SHA")
         else
           echo "🆕 File doesn't exist, will create new"
           COMMIT_MESSAGE="📚 docs: create $FILE_PATH [auto]"
-          # Crear payload SIN SHA
           PAYLOAD_TEMPLATE='{"message":"%s","content":"%s","committer":{"name":"GitHub Actions","email":"actions@github.com"},"branch":"main"}'
           JSON_PAYLOAD=$(printf "$PAYLOAD_TEMPLATE" "$COMMIT_MESSAGE" "$CONTENT_BASE64")
         fi
@@ -178,11 +186,9 @@ jobs:
         if [ "$HTTP_STATUS" = "200" ] || [ "$HTTP_STATUS" = "201" ]; then
           echo "🎉 SUCCESS: File uploaded to repository!"
           
-          # Get download URL
           DOWNLOAD_URL="https://raw.githubusercontent.com/$REPO/main/$FILE_PATH"
           echo "⬇️  Download URL: $DOWNLOAD_URL"
           
-          # Intentar extraer commit URL
           COMMIT_URL=$(echo "$JSON_RESPONSE" | grep -o '"html_url":"[^"]*"' | head -1 | cut -d'"' -f4 2>/dev/null || true)
           if [ -n "$COMMIT_URL" ]; then
             echo "🔗 View commit: $COMMIT_URL"
