@@ -1,20 +1,20 @@
 # 🗂️ Airtable Database Structure - Aulas
 
-> **Last update**: 2025-12-08 22:04:10
+> **Last update**: 2026-05-01 16:38:40
 > **Base**: aulas (Aulas)
 > **Auto-generated** - Do not edit manually
 
 ## 📊 Summary
 
 - **Tables**: 44
-- **Total fields**: 1554
+- **Total fields**: 1557
 - **Base ID**: `appEuz3PoChgzMmCH`
 
-- **singleSelect fields**: 119
+- **singleSelect fields**: 120
 - **multipleSelects fields**: 1
 - **number fields**: 278
 - **date fields**: 8
-- **formula fields**: 191
+- **formula fields**: 192
 
 ---
 
@@ -472,6 +472,7 @@
 |-------|------|-------------|---------|
 | **RUTdocente**<br>`fld8Gt06jdpc6ejVv` | `singleLineText` | Type: singleLineText |  |
 | **DocentePaterno**<br>`fldXyZDfCqXyadr7Q` | `singleLineText` | Type: singleLineText |  |
+| **ObservadoAula**<br>`fld1D9iED1DSFowdI` | `checkbox` | True/False checkbox |  |
 | **DocenteMaterno**<br>`fldU56HyPLWh43lKC` | `singleLineText` | Type: singleLineText |  |
 | **DocenteNombres**<br>`fldinXY1mUDJEdjqt` | `singleLineText` | Type: singleLineText |  |
 | **DocenteDepartamento**<br>`fldbHn8kTlqs8fyRP` | `singleLineText` | Type: singleLineText |  |
@@ -485,10 +486,9 @@ SUBSTITUTE(
 | **CantObsAula**<br>`fldtdkjt78UBYq7cW` | `count` | Type: count |  |
 | **CantObsAula-TS2**<br>`fldXQL0NqPasfPdEY` | `count` | Type: count |  |
 | **CantEntrevistas**<br>`fldvEKOkP3aF89QgG` | `count` | Type: count |  |
-| **ObservadoAula**<br>`fld1D9iED1DSFowdI` | `checkbox` | True/False checkbox |  |
 | **EvaluadorAula**<br>`fldXt71n4VQtIAfDF` | `checkbox` | True/False checkbox |  |
 | **DocenteNombreCompleto**<br>`fldwqw6lTfEm5K5n9` | `formula` | Calculated field | Formula: `TRIM({fldXyZDfCqXyadr7Q}) &' '& TRIM({fldU56HyPLWh...` |
-| **DocenteNombreCompletoTag**<br>`fldDxdLjUqB4amCeW` | `singleSelect` | Single choice dropdown | `Alonso Araya Lorena`, `Alonso Rodríguez Laura`, `Araya Gómez José`, `Bustamante Fuentes Alejandro`, `Bustamante Muñoz Jimena` *(+405 more)* |
+| **DocenteNombreCompletoTag**<br>`fldDxdLjUqB4amCeW` | `singleSelect` | Single choice dropdown | `Alonso Araya Lorena`, `Alonso Rodríguez Laura`, `Araya Gómez José`, `Bustamante Fuentes Alejandro`, `Bustamante Muñoz Jimena` *(+408 more)* |
 | **JefaturaCurso**<br>`fldzK3fUFUeWsVH9T` | `singleLineText` | Type: singleLineText |  |
 | **HaceIngles**<br>`fldqdr3cFctnTWHNl` | `checkbox` | True/False checkbox |  |
 | **DocentePrioritario**<br>`fldI3hfFSELsDn482` | `checkbox` | True/False checkbox |  |
@@ -1244,7 +1244,7 @@ IF({flduwh4A0VTIsSlpy}>...` |
 ## 📋 25. ObservacionesAula
 
 *Table ID: `tblkCt3OoYP9VxSaQ`*
-*Fields: 302*
+*Fields: 304*
 
 | Field | Type | Description | Options |
 |-------|------|-------------|---------|
@@ -1268,6 +1268,7 @@ DATETIME_DIFF({fldn...` |
 | **colegioEnObservacion**<br>`fld8wGYZq13B6p7Is` | `multipleLookupValues` | Type: multipleLookupValues |  |
 | **FechaStr**<br>`fldKPKvwvitbw2Lee` | `formula` | Calculated field | Formula: `DATETIME_FORMAT({fldHAZn5seSh1HeNs}, "DD/MM/YYYY")...` |
 | **Anno**<br>`fldFcckrk8vp8JaxR` | `formula` | Calculated field | Formula: `YEAR({fldHAZn5seSh1HeNs})` |
+| **Anno_tag**<br>`fldO7jm4cvwZlMcZ9` | `singleSelect` | Single choice dropdown | `2025`, `2026` |
 | **Mes**<br>`fldig9voFXRdxg2pm` | `formula` | Calculated field | Formula: `MONTH({fldHAZn5seSh1HeNs})` |
 | **TrimSem**<br>`fldhjl7pTei0hfIB9` | `number` | Numeric field |  |
 | **HorarioClase**<br>`fldYpzlc1sG57j4nA` | `singleSelect` | Single choice dropdown | `A continuación de recreo sin turno de patio solidario`, `Primera hora de la mañana después de 15 min jefatura`, `A continuación de recreo con turno de patio solidario`, `A continuación de otra hora de clases`, `Primera hora de la mañana  (High)` *(+1 more)* |
@@ -1305,7 +1306,7 @@ DATETIME_DIFF({fldn...` |
 | **DesempennoGeneralCalif**<br>`fldfXoNFBe231o0gQ` | `formula` | Calculated field | Formula: `IF({fldA2C25xXLvVFMO4}=4,"🏆 Sobresaliente",
    IF...` |
 | **Evaluador**<br>`fldEyJAsWwMs3IJ8y` | `singleLineText` | Type: singleLineText |  |
-| **EvaluadorTag**<br>`fldXerv4MNGxbUir0` | `singleSelect` | Single choice dropdown | `Paula Neill`, `González Arancibia, Raúl`, `Vargas , Luis Valentín`, `Lodi , Claudia`, `Dapelo , Rossana` *(+17 more)* |
+| **EvaluadorTag**<br>`fldXerv4MNGxbUir0` | `singleSelect` | Single choice dropdown | `Paula Neill`, `González Arancibia, Raúl`, `Vargas , Luis Valentín`, `Lodi , Claudia`, `Dapelo , Rossana` *(+21 more)* |
 | **EmailEvaluador**<br>`fldXnWSfH3yVaetl9` | `singleLineText` | Type: singleLineText |  |
 | **INEXIA_A010_Sugerencia**<br>`fldyKAwbHjISGqBXw` | `multilineText` | Multi-line text |  |
 | **PromptIAguionEntrevista**<br>`fld1WUEA6AwdhntCr` | `formula` | Calculated field | Formula: `"Escala de evaluación: Sobresaliente/Bueno/Básico/...` |
@@ -1331,8 +1332,9 @@ IF({fldPgyoWmGQWzm...` |
 | **CalificacionTiempoTrabajoTxt**<br>`fldGa9IX9YyAWrWni` | `number` | Numeric field |  |
 | **CalificacionTiempoTrabajo**<br>`fldsZog0vm405Vlrw` | `number` | Numeric field |  |
 | **PROMEDIO_CVSOCIOEM**<br>`fldZY9VpBpFBNjttw` | `formula` | Calculated field | Formula: `IF(
-  ({fld2NI9dWEeyQh9ic}+
-   {fldQtaLOxZrVgyrE...` |
+  OR(
+    {fld2NI9dWEeyQh9ic}>0,
+    {fldQt...` |
 | **PROMEDIO_CVSOCIOEMtxt**<br>`fldnz4kqmiau7ytIk` | `formula` | Calculated field | Formula: `SWITCH(ROUND({fldZY9VpBpFBNjttw},0),
   4, "Sobres...` |
 | **ValorInclusion**<br>`fld2NI9dWEeyQh9ic` | `formula` | Calculated field | Formula: `IF(
@@ -1359,8 +1361,9 @@ IF({fldPgyoWmGQWzm...` |
 | **ValorConvivenciaAutoridadTxt**<br>`fldwfNXQt3DL2n0iq` | `formula` | Calculated field | Formula: `SWITCH(ROUND({fldJkeHP5idQX1qw7},0),
   4, "Sobres...` |
 | **PROMEDIO_ENSEÑANZA**<br>`fldWEewnZoZMmhmGD` | `formula` | Calculated field | Formula: `IF(
-  ({fldBXxajODHbNmrKN}+
-   {fldgFOklVKTjkrCM...` |
+  OR(
+   {fldBXxajODHbNmrKN}>0,
+   {fldgFOk...` |
 | **PROMEDIO_ENSEÑANZAtxt**<br>`fldkxmE3F62GOK135` | `formula` | Calculated field | Formula: `SWITCH(ROUND({fldWEewnZoZMmhmGD},0),
   4, "Sobres...` |
 | **ValorPlanificacion**<br>`fldBXxajODHbNmrKN` | `formula` | Calculated field | Formula: `IF(
@@ -1406,7 +1409,7 @@ IF({fldPgyoWmGQWzm...` |
 | **ValorPrebasicaTxt**<br>`fldx7A9C6NA3kYXL7` | `formula` | Calculated field | Formula: `SWITCH(ROUND({flduPtbtnrY4yD3OS},0),
   4, "Sobres...` |
 | **INI_LlegaPuntual**<br>`fldPHR3Or1cbtHcdy` | `number` | Numeric field |  |
-| **INI_LlegaPuntualTxt**<br>`fldyb3z6nZAg76NiW` | `singleSelect` | Single choice dropdown | `Llega apenas toca`, `Llega levemente tarde`, `Está en la puerta antes del toque de timbre`, `Evaluador(a) no observa esta parte de la clase` |
+| **INI_LlegaPuntualTxt**<br>`fldyb3z6nZAg76NiW` | `singleSelect` | Single choice dropdown | `Llega apenas toca`, `Llega levemente tarde`, `Está en la puerta antes del toque de timbre`, `Evaluador(a) no observa esta parte de la clase`, `Llega tarde` |
 | **INI_ReaccionRespeto**<br>`fldXNGss6gvusit5z` | `number` | Numeric field |  |
 | **INI_ReaccionRespetoTxt**<br>`fldTSTmosTr9lrJQS` | `singleSelect` | Single choice dropdown | `Aceptable`, `Bueno`, `Básico`, `Insatisfactorio`, `Sobresaliente` *(+5 more)* |
 | **INI_LograAmbiente**<br>`fldPgyoWmGQWzmfuH` | `number` | Numeric field |  |
@@ -1436,13 +1439,13 @@ IF({fldPgyoWmGQWzm...` |
 | **DES_DaOportunidadDeExplorar**<br>`fldXt2J3xwtepv1Bu` | `number` | Numeric field |  |
 | **DES_DaOportunidadDeExplorarTxt**<br>`fldjws2BrNJdKqN9X` | `singleSelect` | Single choice dropdown | `Aceptable`, `Deficiente`, `Bueno`, `Excelente`, `Insatisfactorio` *(+8 more)* |
 | **DES_MonitoreaOrienta**<br>`fldZ6R3O72vjun6jE` | `number` | Numeric field |  |
-| **DES_MonitoreaOrientaTxt**<br>`fldvfJ1MAByVPxWCi` | `singleSelect` | Single choice dropdown | `Deficiente`, `Bueno`, `Aceptable`, `Sobresaliente`, `Básico` *(+4 more)* |
+| **DES_MonitoreaOrientaTxt**<br>`fldvfJ1MAByVPxWCi` | `singleSelect` | Single choice dropdown | `Deficiente`, `Bueno`, `Aceptable`, `Sobresaliente`, `Básico` *(+5 more)* |
 | **DES_TodosTrabajan**<br>`fldapmUCY9D70Yr7h` | `number` | Numeric field |  |
 | **DES_TodosTrabajanTxt**<br>`flddQERWAoXoAwyuV` | `singleSelect` | Single choice dropdown | `Sobresaliente`, `Bueno`, `Deficiente`, `Excelente`, `Básico` *(+6 more)* |
 | **DES_MasTrabajoEncargoAdelantados**<br>`fldQmXCPOeRThFwsw` | `number` | Numeric field |  |
 | **DES_MasTrabajoEncargoAdelantadosTxt**<br>`fldZiLEQioVv96qq1` | `singleSelect` | Single choice dropdown | `No, los que terminan antes aprovechan el tiempo a su elección`, `Sí, les encarga ayudar a compañeros(as)`, `Sí, les entrega material adicional a medida que terminan`, `No, los que terminan antes se quedan "de brazos cruzados"`, `Sí, tiene preparadas actividades complementarias` *(+4 more)* |
 | **DES_SabeAdaptarParaNEE**<br>`flduRfYIZ9sECZMu5` | `number` | Numeric field |  |
-| **DES_SabeAdaptarParaNEETxt**<br>`fldrwPtcs7DiMZ0Cd` | `singleSelect` | Single choice dropdown | `Bueno`, `Aceptable`, `Excelente`, `No aplica, no hay NEE en este curso`, `Deficiente` *(+5 more)* |
+| **DES_SabeAdaptarParaNEETxt**<br>`fldrwPtcs7DiMZ0Cd` | `singleSelect` | Single choice dropdown | `Bueno`, `Aceptable`, `Excelente`, `No aplica, no hay NEE en este curso`, `Deficiente` *(+6 more)* |
 | **DES_ActividadesVariadas**<br>`fldJMMr23Vyrb03Ee` | `number` | Numeric field |  |
 | **DES_ActividadesVariadasTxt**<br>`fldPwkHkOZPC8MJVO` | `singleSelect` | Single choice dropdown | `Bueno`, `Aceptable`, `Excelente`, `No aplica, no hay NEE en este curso`, `Deficiente` *(+4 more)* |
 | **DES_PensamientoCritico**<br>`fld1ThlbrK8D2YZvk` | `number` | Numeric field |  |
@@ -1454,7 +1457,7 @@ IF({fldPgyoWmGQWzm...` |
 | **DES_EscuchaValora**<br>`fldOlChoOztzsxF6p` | `number` | Numeric field |  |
 | **DES_EscuchaValoraTxt**<br>`fldMoSX6H5GbIEX8r` | `singleSelect` | Single choice dropdown | `Bueno`, `Aceptable`, `Excelente`, `No aplica, no hay NEE en este curso`, `Deficiente` *(+5 more)* |
 | **DES_TratoRespetoCordial**<br>`fldFTua08ZQP93IPt` | `number` | Numeric field |  |
-| **DES_TratoRespetoCordialTxt**<br>`fldbn5P5DRVzr0x2s` | `singleSelect` | Single choice dropdown | `Aceptable`, `Excelente`, `Bueno`, `Sobresaliente`, `Básico` *(+3 more)* |
+| **DES_TratoRespetoCordialTxt**<br>`fldbn5P5DRVzr0x2s` | `singleSelect` | Single choice dropdown | `Aceptable`, `Excelente`, `Bueno`, `Sobresaliente`, `Básico` *(+4 more)* |
 | **DES_TratoPorNombre**<br>`fldu3fiLCaJbmwMhZ` | `number` | Numeric field |  |
 | **DES_TratoPorNombreTxt**<br>`fldSmlDJl8tpZAcLn` | `singleSelect` | Single choice dropdown | `A algunos`, `A unos pocos`, `A Algunos(as)`, `A bastantes`, `A todos(as)` |
 | **DES_MantieneAmbiente**<br>`fldy10smqzrIuCSXj` | `number` | Numeric field |  |
@@ -1466,11 +1469,11 @@ IF({fldPgyoWmGQWzm...` |
 | **DES_FelicitaPequenosLogros**<br>`fldQRJN8koQ0Z4uWU` | `number` | Numeric field |  |
 | **DES_FelicitaPequenosLogrosTxt**<br>`fldxdhCGanQLnsPUd` | `singleSelect` | Single choice dropdown | `Bueno`, `Sobresaliente`, `Excelente`, `Insatisfactorio`, `Bastante` *(+3 more)* |
 | **DES_IntervieneProntamenteConvivencia**<br>`fldmkYt1hPEsyXwRq` | `number` | Numeric field |  |
-| **DES_IntervieneProntamenteConvivenciaTxt**<br>`fldHN2OG7XaDRl7Qu` | `singleSelect` | Single choice dropdown | `Aceptable`, `No fue necesario en esta clase`, `Deficiente`, `Básico`, `Sobresaliente` *(+4 more)* |
+| **DES_IntervieneProntamenteConvivenciaTxt**<br>`fldHN2OG7XaDRl7Qu` | `singleSelect` | Single choice dropdown | `Aceptable`, `No fue necesario en esta clase`, `Deficiente`, `Básico`, `Sobresaliente` *(+5 more)* |
 | **DES_AplicaNormativaCriteriosamente**<br>`fldXnokWioyTEgDhg` | `number` | Numeric field |  |
 | **DES_AplicaNormativaCriteriosamenteTxt**<br>`fldHxxIwkIqWsBsZb` | `singleSelect` | Single choice dropdown | `Bueno`, `Aceptable`, `Insatisfactorio`, `No fue necesario en esta clase`, `Sobresaliente` *(+5 more)* |
 | **DES_TieneRecursosManejoCurso**<br>`fld8beaKuEgi75BcZ` | `number` | Numeric field |  |
-| **DES_TieneRecursosManejoCursoTxt**<br>`fldOSpEYPGz7UgBIt` | `singleSelect` | Single choice dropdown | `Bueno`, `Aceptable`, `Excelente`, `Básico`, `Sobresaliente` *(+3 more)* |
+| **DES_TieneRecursosManejoCursoTxt**<br>`fldOSpEYPGz7UgBIt` | `singleSelect` | Single choice dropdown | `Bueno`, `Aceptable`, `Excelente`, `Básico`, `Sobresaliente` *(+4 more)* |
 | **DES_ValoraSolucionesNovedosas**<br>`fldb42vK7lHUjwq5L` | `number` | Numeric field |  |
 | **DES_ValoraSolucionesNovedosasTxt**<br>`fldQCEbwNkksgwA5J` | `singleSelect` | Single choice dropdown | `Bueno`, `Aceptable`, `Excelente`, `Básico`, `Sobresaliente` *(+4 more)* |
 | **DES_SuperadoDisciplina**<br>`fld0w4oHLVdqnvHzA` | `number` | Numeric field |  |
@@ -1483,11 +1486,11 @@ IF({fldPgyoWmGQWzm...` |
 | **INGL_PoneOrdenEnIngles**<br>`fld6pfgM5dj5zQS8V` | `number` | Numeric field |  |
 | **INGL_PoneOrdenEnInglesTxt**<br>`fld6Hzib2pkMYNn9t` | `singleSelect` | Single choice dropdown | `Luego de unas primeras frases en Español, continua en Inglés`, `Desde que entra, los ordena y da instrucciones en Inglés` |
 | **INGL_SiEstudianteConsultaEnIngles**<br>`fldHbliR1vG4yfBtc` | `number` | Numeric field |  |
-| **INGL_SiEstudianteConsultaEnInglesTxt**<br>`fld8XiRFerJ0kHNl8` | `singleSelect` | Single choice dropdown | `Le habla en Inglés motivándolo(a) a preguntar también en Inglés`, `Combina Español con Inglés` |
+| **INGL_SiEstudianteConsultaEnInglesTxt**<br>`fld8XiRFerJ0kHNl8` | `singleSelect` | Single choice dropdown | `Le habla en Inglés motivándolo(a) a preguntar también en Inglés`, `Combina Español con Inglés`, `La acepta y la contesta en Español` |
 | **INGL_DocenteInglesTodaLaClase**<br>`fldbRA52hLE5s8gOg` | `number` | Numeric field |  |
 | **INGL_DocenteInglesTodaLaClaseTxt**<br>`fldyTTRpQQcOstufo` | `singleSelect` | Single choice dropdown | `Sí`, `No` |
 | **INGL_EstudiantesInglesTodaLaClase**<br>`fldvKwaxoqB4LXJz7` | `number` | Numeric field |  |
-| **INGL_EstudiantesInglesTodaLaClaseTxt**<br>`fld41RxAbH18a38As` | `singleSelect` | Single choice dropdown | `Algunos, motivados por el(la) docente`, `Casi siempre, hacen buenos esfuerzos`, `Muy pocos o ninguno` |
+| **INGL_EstudiantesInglesTodaLaClaseTxt**<br>`fld41RxAbH18a38As` | `singleSelect` | Single choice dropdown | `Algunos, motivados por el(la) docente`, `Casi siempre, hacen buenos esfuerzos`, `Muy pocos o ninguno`, `Pocos, con poco esfuerzo de el(la) docente` |
 | **PB_TonoVoz**<br>`fldP9hv7Z4t3xosWA` | `number` | Numeric field |  |
 | **PB_TonoVozTxt**<br>`fldkHraTA8EwGJOqm` | `singleSelect` | Single choice dropdown | `Sí, habla normal`, `A veces lo infantiliza` |
 | **PB_AsistenteValorAgregado**<br>`fldk4Rlep8X7VdYeQ` | `number` | Numeric field |  |
@@ -1524,6 +1527,8 @@ IF({fldPgyoWmGQWzm...` |
 | **CumplimientoAnteriorTxt**<br>`fld3fZnN0cY4yJwQG` | `singleSelect` | Single choice dropdown | `Básico`, `Bueno`, `Sobresaliente` |
 | **FirmaEvaluador**<br>`fldqety6zcZSgYWdB` | `multipleAttachments` | Type: multipleAttachments |  |
 | **PDF1docente**<br>`fld7yK1nSYwfe302Z` | `multipleAttachments` | Type: multipleAttachments |  |
+| **FORTALEZAS_DETALLES**<br>`fldGyoQ7E1GKpnx15` | `formula` | Calculated field | Formula: `IF({fld2p0FRDkGEssDx0}=7,
+  IF({fldXNGss6gvusit5z...` |
 | **PDF1docenteOK**<br>`fldts11V4VNASxVXC` | `number` | Numeric field |  |
 | **FlagCamposA010_OK**<br>`fld2p0FRDkGEssDx0` | `formula` | Calculated field | Formula: `IF(
   AND(
@@ -1682,7 +1687,7 @@ IF({fldPgyoWmGQWzm...` |
 ## 📋 27. ObservacionesAulaPorCampo
 
 *Table ID: `tblD12MY3AU7z1gmg`*
-*Fields: 20*
+*Fields: 21*
 
 | Field | Type | Description | Options |
 |-------|------|-------------|---------|
@@ -1691,6 +1696,7 @@ IF({fldPgyoWmGQWzm...` |
 | **NumeroObsAulaLookUp**<br>`fldi5xNrhXvNbCxd1` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
 | **ColegioTag**<br>`fldwBnZDNJcpER7YZ` | `multipleLookupValues` | Type: multipleLookupValues |  |
 | **CicloTag**<br>`fldGRasMA7p2N38Dh` | `multipleLookupValues` | Type: multipleLookupValues |  |
+| **Anno_tag**<br>`fldhptrmqtZ3p3D5T` | `multipleLookupValues` | Type: multipleLookupValues |  |
 | **FechaTxt**<br>`fldys7XoF45cOH9ii` | `multipleLookupValues` | Type: multipleLookupValues |  |
 | **Curso**<br>`fldPI9LVFvljNGCv3` | `multipleLookupValues` | Type: multipleLookupValues |  |
 | **DocenteTag**<br>`fldIzYbpTMUPc8k29` | `multipleLookupValues` | Type: multipleLookupValues |  |
@@ -1703,7 +1709,7 @@ IF({fldPgyoWmGQWzm...` |
 | **NivelObservadoValor**<br>`fldKdOKGqOfhCSURa` | `number` | Numeric field |  |
 | **CampoTxt**<br>`fldGw4gOy6pwcBamR` | `singleLineText` | Type: singleLineText |  |
 | **NivelObservadoTxt**<br>`fld6ikQHnCDqtG0V0` | `singleLineText` | Type: singleLineText |  |
-| **NivelObservadoTag**<br>`fld3SkK2zaNq535Ni` | `singleSelect` | Single choice dropdown | `Llega apenas toca`, `Lo logra con gestos y pocas palabras`, `Algunos reaccionan`, `Logra un buen ambiente de trabajo`, `Logra ordenar y disponer al grupo sin decir una palabra` *(+158 more)* |
+| **NivelObservadoTag**<br>`fld3SkK2zaNq535Ni` | `singleSelect` | Single choice dropdown | `Llega apenas toca`, `Lo logra con gestos y pocas palabras`, `Algunos reaccionan`, `Logra un buen ambiente de trabajo`, `Logra ordenar y disponer al grupo sin decir una palabra` *(+164 more)* |
 | **version9002v2**<br>`fldTrkF4D7M13DaHt` | `singleLineText` | Type: singleLineText |  |
 | **flagDePaso**<br>`fldzHXtRxfF3JZMbe` | `number` | Numeric field |  |
 
@@ -2207,7 +2213,7 @@ IF({fldPgyoWmGQWzm...` |
 ### 📋 Source Information
 - **Base**: Aulas (`aulas`)
 - **Base ID**: `appEuz3PoChgzMmCH`
-- **Generated**: 2025-12-08 22:04:10
+- **Generated**: 2026-05-01 16:38:40
 
 ### 🛠️ Field Type Legend
 - **singleSelect**: Dropdown with single choice
@@ -2225,7 +2231,7 @@ IF({fldPgyoWmGQWzm...` |
 ### ⚡ Automation
 This document is auto-generated by GitHub Actions.
 **Update schedule**: Daily at 8:00 AM UTC
-**Last sync**: 2025-12-08 22:04:10
+**Last sync**: 2026-05-01 16:38:40
 
 ---
-*Documentation for Aulas base - Generated 2025-12-08 22:04:10*
+*Documentation for Aulas base - Generated 2026-05-01 16:38:40*
