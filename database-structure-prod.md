@@ -1,20 +1,20 @@
 # 🗂️ Airtable Database Structure - Production
 
-> **Last update**: 2026-03-30 19:23:09
+> **Last update**: 2026-05-11 12:37:58
 > **Base**: prod (Production)
 > **Auto-generated** - Do not edit manually
 
 ## 📊 Summary
 
-- **Tables**: 24
-- **Total fields**: 450
+- **Tables**: 25
+- **Total fields**: 480
 - **Base ID**: `appr2x4VzE0OySqOu`
 
 - **singleSelect fields**: 78
 - **multipleSelects fields**: 8
-- **number fields**: 39
+- **number fields**: 47
 - **date fields**: 16
-- **formula fields**: 11
+- **formula fields**: 13
 
 ---
 
@@ -66,12 +66,13 @@
 ## 📋 3. CodigosBeca
 
 *Table ID: `tbl5bbz43RzV0gIuw`*
-*Fields: 11*
+*Fields: 12*
 
 | Field | Type | Description | Options |
 |-------|------|-------------|---------|
 | **Codigo**<br>`fldc023KTbWvp388d` | `singleLineText` | Type: singleLineText |  |
 | **Asignado**<br>`fldy4a0P95GCEs2J9` | `checkbox` | True/False checkbox |  |
+| **Quién**<br>`fldwvdomvHxsGmDKL` | `singleLineText` | Type: singleLineText |  |
 | **Tipo**<br>`fld491EELlMUN0tK5` | `singleSelect` | Single choice dropdown | `BECA`, `Tester` |
 | **UsosMaximos**<br>`fldWjZe1tw5S7yFY4` | `number` | Numeric field |  |
 | **UsosActuales**<br>`fldqPfHifS9SOuibW` | `number` | Numeric field |  |
@@ -87,13 +88,14 @@
 ## 📋 4. Conversaciones
 
 *Table ID: `tblhw3b9VCVrJtDu1`*
-*Fields: 28*
+*Fields: 32*
 
 | Field | Type | Description | Options |
 |-------|------|-------------|---------|
 | **ID_Conversacion**<br>`fldhpzpygAWASqIcm` | `autoNumber` | Type: autoNumber |  |
 | **Estudiante**<br>`fldsFM6LQCnmLIpev` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
 | **FechaAltaEstudiante**<br>`fldzwhZAcGxX19VAw` | `multipleLookupValues` | Type: multipleLookupValues |  |
+| **PlanActual**<br>`fldbgbDsg38T8NiC1` | `multipleLookupValues` | Type: multipleLookupValues |  |
 | **TipoPuerta**<br>`fldfGrwAFFXcL5jos` | `singleSelect` | Single choice dropdown | `aprender`, `preparar-evaluacion`, `estudiar`, `mejorar-habitos`, `prepararme-paes` |
 | **Titulo**<br>`fldNkHyWabgfGAThi` | `singleLineText` | Type: singleLineText |  |
 | **MateriaPrincipal**<br>`fld6eG16Hs7av0euL` | `singleLineText` | Type: singleLineText |  |
@@ -102,7 +104,10 @@
 | **CantidadMensajesFinal**<br>`fldNlONZcXOGV6s2M` | `number` | Numeric field |  |
 | **Tokens**<br>`fldtCm0VWw3wvkt0V` | `rollup` | Rollup from linked records |  |
 | **TokensFinal**<br>`fldaYGwxvLqtSFKws` | `number` | Numeric field |  |
-| **CostoAPI**<br>`fldvidJST7G3PhaTs` | `formula` | Calculated field | Formula: `0.6*{fldaYGwxvLqtSFKws}/1000000` |
+| **PctCacheHit**<br>`fldY1hwGOEA5DakIT` | `number` | Numeric field |  |
+| **TokensCacheados**<br>`fld41NxRNU8glw1qu` | `rollup` | Rollup from linked records |  |
+| **CostoAPI**<br>`fldvidJST7G3PhaTs` | `rollup` | Rollup from linked records |  |
+| **CostoPromedioMensaje**<br>`fldxuCDhxTLqE6NbA` | `formula` | Calculated field | Formula: `({fldvidJST7G3PhaTs}/{fldQFSerbNJRUagkv})+0` |
 | **Resumen**<br>`fldLJbxM83Q7BLBfZ` | `multilineText` | Multi-line text |  |
 | **FechaInicio**<br>`fldUuqJjygGEcscrS` | `createdTime` | Auto-generated creation time |  |
 | **DiaSemanaInicio**<br>`fldbpEisAN1d2n4nm` | `formula` | Calculated field | Formula: `WEEKDAY(SET_TIMEZONE({fldUuqJjygGEcscrS}, 'America...` |
@@ -174,24 +179,29 @@
 ## 📋 7. Estudiantes
 
 *Table ID: `tblR5gbkydy59GOOC`*
-*Fields: 113*
+*Fields: 116*
 
 | Field | Type | Description | Options |
 |-------|------|-------------|---------|
 | **ID_Estudiante**<br>`fldp7qIUatWYG2zw2` | `autoNumber` | Type: autoNumber |  |
 | **Email**<br>`fldaPohMI9tlgDW4t` | `email` | Email address |  |
+| **SacarDeDashboard**<br>`fldtLsUh1RVBhX3Kj` | `checkbox` | True/False checkbox |  |
+| **UltimaActividad**<br>`fld00gaBZOkktKJYO` | `dateTime` | Date and time |  |
+| **CantidadConversaciones**<br>`fldkF1lllYaBcR4Bl` | `formula` | Calculated field | Formula: `{fldJZJ0PotO13gABR}+{fldA3hx5Y8HUCQQxe}+{fldT3F5dU...` |
 | **SesionActivaToken**<br>`fldeNdxf94vhx95qp` | `singleLineText` | Type: singleLineText |  |
+| **Trigger1**<br>`fldIgPFMi7SkSiYXu` | `formula` | Calculated field | Formula: `IF(
+  AND({fldDs68JQokh38DX6}!="",{fldaPohMI9tlgD...` |
 | **SesionActivaDeviceId**<br>`fldYLUuvamWwFf1Xm` | `singleLineText` | Type: singleLineText |  |
 | **Contrasena**<br>`fld2VACy7rMKduyLP` | `multilineText` | Multi-line text |  |
 | **Rol**<br>`fld62uCAFaxkz5scC` | `singleSelect` | Single choice dropdown | `Estudiante`, `Apoderado`, `Admin` |
 | **Nombre**<br>`fldDs68JQokh38DX6` | `singleLineText` | Type: singleLineText |  |
 | **LlegoPor**<br>`fld51E4NaVZvq9upz` | `singleSelect` | Single choice dropdown | `ChatGPT u otra IA`, `Convenio con tu colegio`, `Dato o consejo de un(a) amigo(a)`, `Facebook`, `Google` *(+5 more)* |
-| **QuienDecidio**<br>`fldocqWgnEkChM2nQ` | `singleSelect` | Single choice dropdown | `Yo`, `Mi padre-madre o tutor(a)` |
+| **QuienDecidio**<br>`fldocqWgnEkChM2nQ` | `singleSelect` | Single choice dropdown | `Yo`, `Mi padre, madre o tutor(a)` |
 | **Genero**<br>`fldQ7uWbpXHadpSMA` | `singleSelect` | Single choice dropdown | `Hombre`, `Mujer`, `Otro`, `Prefiero no registrarlo` |
 | **Estado**<br>`fldN9UGcBbKrtGPYD` | `singleSelect` | Single choice dropdown | `Activo`, `Bloqueado`, `suspendido` |
 | **Pais**<br>`fldlqQYUn3GMAVXHW` | `formula` | Calculated field | Formula: `IF({fld4e4pFqnpODVbJB}="",
   SWITCH({fldl1SW9SPvQ...` |
-| **PaisElegido**<br>`fld4e4pFqnpODVbJB` | `singleSelect` | Single choice dropdown | `Chile`, `Argentina`, `Perú`, `Colombia`, `México` *(+7 more)* |
+| **PaisElegido**<br>`fld4e4pFqnpODVbJB` | `singleSelect` | Single choice dropdown | `Argentina`, `Bolivia`, `Chile`, `Colombia`, `Costa Rica` *(+13 more)* |
 | **TZ**<br>`fldBKjR4g8qcF9JZV` | `formula` | Calculated field | Formula: `IF({fld4e4pFqnpODVbJB}!="",
   SWITCH(
     {fld4e...` |
@@ -202,22 +212,21 @@
 | **Curso**<br>`fldhlrRfO42asiEru` | `singleSelect` | Single choice dropdown | `7 Básico`, `8 Básico`, `1 Medio`, `2 Medio`, `3 Medio` *(+1 more)* |
 | **EdadActual**<br>`fldqWWnlGSugEUugs` | `number` | Numeric field |  |
 | **EstiloAprendizaje**<br>`fld0ckIVlh46CtbVb` | `singleSelect` | Single choice dropdown | `Visual`, `Auditivo`, `Kinestésico`, `Lectura/Escritura`, `No lo sé` |
-| **MateriasFuertes**<br>`fldNhz8Feiohchzi1` | `singleSelect` | Single choice dropdown | `Matemáticas`, `Lenguaje`, `Ciencias`, `Historia` |
-| **MateriasDebiles**<br>`fldH2m6C9msfoYLRn` | `singleSelect` | Single choice dropdown | `Lenguaje`, `Historia`, `Matemáticas`, `Ciencias` |
+| **MateriasFuertes**<br>`fldNhz8Feiohchzi1` | `singleSelect` | Single choice dropdown | `Matemáticas`, `Lenguaje`, `Ciencias`, `Historia`, `Economía` |
+| **MateriasDebiles**<br>`fldH2m6C9msfoYLRn` | `singleSelect` | Single choice dropdown | `Lenguaje`, `Historia`, `Matemáticas`, `Ciencias`, `Economía` |
 | **HaRepetido**<br>`fldZgc8D6koiQgda4` | `checkbox` | True/False checkbox |  |
 | **TiposNEE**<br>`fld4uN4bHlLVEz3Mx` | `multipleSelects` | Multiple choice dropdown | `TDAH`, `Dislexia`, `TEA`, `Discalculia`, `Ninguno` *(+1 more)* |
 | **RecibePIE**<br>`fldn3Sioto5nfisur` | `checkbox` | True/False checkbox |  |
 | **NivelAnsiedad**<br>`fld5u3seaJi0JePIG` | `number` | Numeric field |  |
-| **InteresesPersonales**<br>`fldykiNRSZPdeVHw6` | `multipleSelects` | Multiple choice dropdown | `Crear contenido`, `Escuchar música`, `Juegos en el celular`, `Juntarme con amigos(as)`, `Leer` *(+8 more)* |
+| **InteresesPersonales**<br>`fldykiNRSZPdeVHw6` | `multipleSelects` | Multiple choice dropdown | `Crear contenidos`, `Escuchar música`, `Jugar en el celular`, `Juntarme con amigos(as)`, `Leer` *(+8 more)* |
 | **Idolo**<br>`fldlI8eMEZJCzBo7Y` | `singleLineText` | Type: singleLineText |  |
 | **AspiracionFutura**<br>`fldlS5kKiRrjMMLuo` | `multilineText` | Multi-line text |  |
 | **OnboardingCompletado**<br>`fld1peJxyAKgqLRg6` | `checkbox` | True/False checkbox |  |
 | **FechaRegistro**<br>`fldvMB0YXrUFGNThv` | `dateTime` | Date and time |  |
-| **UltimaActividad**<br>`fld00gaBZOkktKJYO` | `dateTime` | Date and time |  |
 | **DiasDesdeUltima**<br>`fldYd2NI4ued8FXc7` | `formula` | Calculated field | Formula: `DATETIME_DIFF(
      SET_TIMEZONE(NOW(), 'America/...` |
-| **CantidadConversaciones**<br>`fldkF1lllYaBcR4Bl` | `formula` | Calculated field | Formula: `{fldJZJ0PotO13gABR}+{fldA3hx5Y8HUCQQxe}+{fldT3F5dU...` |
 | **CantidadConversacionesExitosas**<br>`fldY1vwqXfZLzzn2W` | `count` | Type: count |  |
+| **DiaPreferido**<br>`fldESkDeDmK7TybbX` | `formula` | Calculated field | Formula: `IF(AND({fldJZJ0PotO13gABR}>={fldA3hx5Y8HUCQQxe},{f...` |
 | **Lunes**<br>`fldJZJ0PotO13gABR` | `count` | Type: count |  |
 | **Martes**<br>`fldA3hx5Y8HUCQQxe` | `count` | Type: count |  |
 | **Miercoles**<br>`fldT3F5dUstvcWDaK` | `count` | Type: count |  |
@@ -317,7 +326,35 @@
 
 ---
 
-## 📋 9. Logros
+## 📋 9. Leads
+
+*Table ID: `tblUq5FfmdnAp1ozz`*
+*Fields: 16*
+
+| Field | Type | Description | Options |
+|-------|------|-------------|---------|
+| **Mail**<br>`fld5cTnmu1E9J3VrJ` | `email` | Email address |  |
+| **Nombre**<br>`fldNjhvgvQ7e9hfSL` | `singleLineText` | Type: singleLineText |  |
+| **FechaCreacion**<br>`fldJ75dBlmGzlCXWu` | `createdTime` | Auto-generated creation time |  |
+| **FechaEnvioRegalo**<br>`fld6QQ8q3rtCObL8J` | `dateTime` | Date and time |  |
+| **FechaRetargeting24hrs**<br>`fldDftksolpjrdKAh` | `dateTime` | Date and time |  |
+| **Pais**<br>`fldvSD5nFm9vV16vY` | `singleSelect` | Single choice dropdown | `EC`, `BO`, `CO`, `VE`, `CL` |
+| **UTMSource**<br>`fldF8yOPC75xkpwKh` | `singleLineText` | Type: singleLineText |  |
+| **UTMMedium**<br>`fld4p4cwe0IGKSRhv` | `singleLineText` | Type: singleLineText |  |
+| **UTMCampaign**<br>`fldCZV4qsTgTuLo1b` | `singleLineText` | Type: singleLineText |  |
+| **Compro**<br>`fldMdEs1PA0XtLkRg` | `checkbox` | True/False checkbox |  |
+| **flagEnvioMail**<br>`fldkdso2b3HgnLPOE` | `formula` | Calculated field | Formula: `IF(
+  AND(
+    {fldNjhvgvQ7e9hfSL}!="",{fld5cTnm...` |
+| **Whatsapp**<br>`fldZQ4qUODNbrtENq` | `phoneNumber` | Phone number |  |
+| **FormatoPreferido**<br>`fldRqaDn6v6ZQiX8X` | `singleLineText` | Type: singleLineText |  |
+| **PrecioAceptable**<br>`fldd85tNWYixY9UBd` | `singleLineText` | Type: singleLineText |  |
+| **ProblemaMedioPago**<br>`fldAJUriXuRi76k79` | `multilineText` | Multi-line text |  |
+| **InteresTaller**<br>`fldPf04EFIr8Eflf2` | `singleLineText` | Type: singleLineText |  |
+
+---
+
+## 📋 10. Logros
 
 *Table ID: `tblIezwTdqN8x1T8H`*
 *Fields: 6*
@@ -333,10 +370,10 @@
 
 ---
 
-## 📋 10. Mensajes
+## 📋 11. Mensajes
 
 *Table ID: `tblk3NUMOZhQX42AJ`*
-*Fields: 11*
+*Fields: 14*
 
 | Field | Type | Description | Options |
 |-------|------|-------------|---------|
@@ -346,19 +383,21 @@
 | **Rol**<br>`fldrBWwu17uehpmwN` | `singleSelect` | Single choice dropdown | `estudiante`, `asistente`, `sistema` |
 | **Contenido**<br>`fldskyjOSEa80QeoI` | `richText` | Rich text with formatting |  |
 | **TokensUsados**<br>`fld7kXyt2mxu2jff8` | `number` | Numeric field |  |
-| **ModeloIA**<br>`fld0hzK2Pf0nah5Uq` | `singleSelect` | Single choice dropdown | `gpt-4o`, `gpt-4o-mini`, `gpt-4-vision` |
+| **ModeloIA**<br>`fld0hzK2Pf0nah5Uq` | `singleLineText` | Type: singleLineText |  |
 | **Timestamp**<br>`fldrycW7y7bBFaLUy` | `createdTime` | Auto-generated creation time |  |
 | **ContieneImagen**<br>`fld8ohAvc4OTu8d7K` | `checkbox` | True/False checkbox |  |
 | **MetricasDiarias**<br>`fldPbYZ1ceJdydjrN` | `singleLineText` | Type: singleLineText |  |
-| **CostoMensaje**<br>`fldSYiKZmNSUahvGN` | `formula` | Calculated field | Formula: `SWITCH("MoleloIA=",
-  "gpt-4o", {fld7kXyt2mxu2jff...` |
+| **CostoMensaje**<br>`fldSYiKZmNSUahvGN` | `number` | Numeric field |  |
+| **TokensInput**<br>`fldziuynjZAoI8SX8` | `number` | Numeric field |  |
+| **TokensCacheados**<br>`fldeErlTg8gBN3FGz` | `number` | Numeric field |  |
+| **TokensOutput**<br>`fldc4tqbAiLmMGCCc` | `number` | Numeric field |  |
 
 ---
 
-## 📋 11. MetricasDiarias
+## 📋 12. MetricasDiarias
 
 *Table ID: `tblgF1aCbdkC8PWU7`*
-*Fields: 13*
+*Fields: 16*
 
 | Field | Type | Description | Options |
 |-------|------|-------------|---------|
@@ -374,11 +413,14 @@
 | **MateriaPrincipal**<br>`fldqJSZzHM6qSXs6v` | `singleLineText` | Type: singleLineText |  |
 | **EjemplosExitosos**<br>`fldP735LNZKJO3vD0` | `number` | Numeric field |  |
 | **Errores**<br>`fldoI5Qex28nI3Tq5` | `number` | Numeric field |  |
+| **TokensCacheados**<br>`fld7cuB3fK8dRg9ZO` | `number` | Numeric field |  |
+| **PctCacheHit**<br>`fld6wqh7gUiVX3tbd` | `number` | Numeric field |  |
+| **CostoReal**<br>`fldfcE1sACpSs5NOV` | `number` | Numeric field |  |
 | **CostoEstimado	**<br>`fldJjSPpuvmsEmOmP` | `currency` | Currency amount |  |
 
 ---
 
-## 📋 12. MetricasNEE
+## 📋 13. MetricasNEE
 
 *Table ID: `tblZ8HxhJrrePHPNE`*
 *Fields: 10*
@@ -398,7 +440,7 @@
 
 ---
 
-## 📋 13. Pagadores
+## 📋 14. Pagadores
 
 *Table ID: `tblkl6i81e7fyKRKI`*
 *Fields: 18*
@@ -426,7 +468,7 @@
 
 ---
 
-## 📋 14. Pagos
+## 📋 15. Pagos
 
 *Table ID: `tbllGZKmZYWmRTZk1`*
 *Fields: 17*
@@ -453,7 +495,7 @@
 
 ---
 
-## 📋 15. ParametrosGenerales
+## 📋 16. ParametrosGenerales
 
 *Table ID: `tblGybdcCD0zm1STD`*
 *Fields: 5*
@@ -468,7 +510,7 @@
 
 ---
 
-## 📋 16. PlanesEstudio
+## 📋 17. PlanesEstudio
 
 *Table ID: `tblQbkeIjxnW6GZnI`*
 *Fields: 11*
@@ -489,7 +531,7 @@
 
 ---
 
-## 📋 17. PostulacionesConvenios
+## 📋 18. PostulacionesConvenios
 
 *Table ID: `tblU7CHwVifHvTYDF`*
 *Fields: 16*
@@ -515,7 +557,7 @@
 
 ---
 
-## 📋 18. Recordatorios
+## 📋 19. Recordatorios
 
 *Table ID: `tbll95VSiGdzEPEsZ`*
 *Fields: 7*
@@ -532,7 +574,7 @@
 
 ---
 
-## 📋 19. RecursosDidacticos
+## 📋 20. RecursosDidacticos
 
 *Table ID: `tblhnDhyfno9kEmFd`*
 *Fields: 14*
@@ -556,7 +598,7 @@
 
 ---
 
-## 📋 20. Seguimiento
+## 📋 21. Seguimiento
 
 *Table ID: `tblq2wnV8lPEHKb8p`*
 *Fields: 21*
@@ -588,7 +630,7 @@
 
 ---
 
-## 📋 21. SesionesEstudio
+## 📋 22. SesionesEstudio
 
 *Table ID: `tbliVHFlDjE2UlO5c`*
 *Fields: 16*
@@ -614,7 +656,7 @@
 
 ---
 
-## 📋 22. Suscripciones
+## 📋 23. Suscripciones
 
 *Table ID: `tblowJOhwqRvVsWWc`*
 *Fields: 34*
@@ -658,7 +700,7 @@
 
 ---
 
-## 📋 23. Testimonios
+## 📋 24. Testimonios
 
 *Table ID: `tblLkbXyveEP7z1mj`*
 *Fields: 22*
@@ -690,7 +732,7 @@
 
 ---
 
-## 📋 24. VERSION_PROD
+## 📋 25. VERSION_PROD
 
 *Table ID: `tblStqh1QgUM2ZZGE`*
 *Fields: 15*
@@ -720,7 +762,7 @@
 ### 📋 Source Information
 - **Base**: Production (`prod`)
 - **Base ID**: `appr2x4VzE0OySqOu`
-- **Generated**: 2026-03-30 19:23:09
+- **Generated**: 2026-05-11 12:37:58
 
 ### 🛠️ Field Type Legend
 - **singleSelect**: Dropdown with single choice
@@ -738,7 +780,7 @@
 ### ⚡ Automation
 This document is auto-generated by GitHub Actions.
 **Update schedule**: Daily at 8:00 AM UTC
-**Last sync**: 2026-03-30 19:23:09
+**Last sync**: 2026-05-11 12:37:58
 
 ---
-*Documentation for Production base - Generated 2026-03-30 19:23:09*
+*Documentation for Production base - Generated 2026-05-11 12:37:58*
