@@ -1,16 +1,16 @@
 # 🗂️ Airtable Database Structure - Default
 
-> **Last update**: 2026-05-17 09:53:36
+> **Last update**: 2026-05-18 11:49:41
 > **Base**: default (Default)
 > **Auto-generated** - Do not edit manually
 
 ## 📊 Summary
 
-- **Tables**: 29
-- **Total fields**: 596
+- **Tables**: 30
+- **Total fields**: 607
 - **Base ID**: `app9c8iiAYRGxxhtH`
 
-- **singleSelect fields**: 93
+- **singleSelect fields**: 92
 - **multipleSelects fields**: 8
 - **number fields**: 71
 - **date fields**: 17
@@ -36,7 +36,7 @@
 ## 📋 2. Estudiantes
 
 *Table ID: `tblR5gbkydy59GOOC`*
-*Fields: 119*
+*Fields: 120*
 
 | Field | Type | Description | Options |
 |-------|------|-------------|---------|
@@ -165,6 +165,7 @@
 | **PlanRiesgo**<br>`fldafI2tXD93EhK4j` | `checkbox` | True/False checkbox |  |
 | **AvatarURL**<br>`fld9NmFP2vnePNzyj` | `url` | URL link |  |
 | **EIA_Sesiones**<br>`fldjgTqy6phK9R1Bs` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
+| **SeñalesDeInteres**<br>`fldf0NM2s3OmDEKZy` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
 
 ---
 
@@ -309,10 +310,10 @@
 
 | Field | Type | Description | Options |
 |-------|------|-------------|---------|
-| **EventoKey**<br>`fldVCsTcat2qUesQZ` | `singleLineText` | Type: singleLineText |  |
-| **ID_EventoEIA**<br>`fldXGFxACX04WRyY4` | `singleLineText` | Type: singleLineText |  |
-| **Evento**<br>`fldVReUxgwrIP6t9D` | `singleSelect` | Single choice dropdown | `view`, `start`, `datos_submit`, `prompt_original_submit`, `respuesta_ia_shown` *(+13 more)* |
-| **Timestamp**<br>`fldwYb1LsIRSMlOt8` | `dateTime` | Date and time |  |
+| **EventoKey**<br>`fldVCsTcat2qUesQZ` | `autoNumber` | Type: autoNumber |  |
+| **Evento**<br>`fldVReUxgwrIP6t9D` | `singleLineText` | Type: singleLineText |  |
+| **Timestamp**<br>`fldwYb1LsIRSMlOt8` | `createdTime` | Auto-generated creation time |  |
+| **SessionUUID**<br>`fldlSKOO45y99VXHp` | `singleLineText` | Type: singleLineText |  |
 | **MetadataJSON**<br>`fldWIXg6dRGKn7BjF` | `multilineText` | Multi-line text |  |
 | **UTMSource**<br>`flddjTdwBFrDLMPt9` | `singleLineText` | Type: singleLineText |  |
 | **UTMMedium**<br>`flda51hBwkPuie2vY` | `singleLineText` | Type: singleLineText |  |
@@ -496,7 +497,7 @@
 ## 📋 14. Leads
 
 *Table ID: `tblJm5bEpjpYFOyXu`*
-*Fields: 20*
+*Fields: 21*
 
 | Field | Type | Description | Options |
 |-------|------|-------------|---------|
@@ -505,7 +506,7 @@
 | **FechaCreacion**<br>`fldS8Gi4RsSNcjK6g` | `createdTime` | Auto-generated creation time |  |
 | **FechaEnvioRegalo**<br>`fldQE0HJvZQRO49oy` | `dateTime` | Date and time |  |
 | **FechaRetargeting24hrs**<br>`fldNvqo2MgTjKExGi` | `dateTime` | Date and time |  |
-| **Pais**<br>`fldbnhH33vFPgt0xW` | `singleSelect` | Single choice dropdown | `EC`, `CO`, `VE`, `MX`, `CL` *(+2 more)* |
+| **Pais**<br>`fldbnhH33vFPgt0xW` | `singleSelect` | Single choice dropdown | `AR`, `BO`, `BR`, `CL`, `CO` *(+5 more)* |
 | **UTMSource**<br>`fld4TLED9yKFET97o` | `singleLineText` | Type: singleLineText |  |
 | **UTMMedium**<br>`fldDoauIYuC1z68Gt` | `singleLineText` | Type: singleLineText |  |
 | **UTMCampaign**<br>`fldaSMb3Pu29FkLyN` | `singleLineText` | Type: singleLineText |  |
@@ -520,8 +521,9 @@
 | **InteresTaller**<br>`fldnFghOmpxnKnmGW` | `singleLineText` | Type: singleLineText |  |
 | **OrigenLead**<br>`fldIO9TUnjMVjzmbV` | `singleSelect` | Single choice dropdown | `Libro`, `KORU`, `EIA`, `OF` |
 | **EIA_SesionOrigen**<br>`fldqQd2QeZ8IzzHTy` | `singleLineText` | Type: singleLineText |  |
-| **RolDeclarado**<br>`fldYOxbkhaCHu7Ctp` | `singleSelect` | Single choice dropdown | `estudiante`, `madre_padre_tutor`, `docente`, `estudios_superiores`, `otros` |
+| **RolDeclarado**<br>`fldYOxbkhaCHu7Ctp` | `singleSelect` | Single choice dropdown | `estudiante`, `madre_padre_tutor`, `docente`, `estudios_superiores`, `otro` |
 | **EIA_Sesiones**<br>`fldrYbi1cTMgTrb9M` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
+| **AceptaComunicaciones**<br>`fldKfQH8GNjPg9dPS` | `checkbox` | True/False checkbox |  |
 
 ---
 
@@ -786,7 +788,26 @@
 
 ---
 
-## 📋 26. SesionesEstudio
+## 📋 26. SenalesDeInteres
+
+*Table ID: `tblrD0bpHujQVuLUU`*
+*Fields: 9*
+
+| Field | Type | Description | Options |
+|-------|------|-------------|---------|
+| **ID_Senal**<br>`fldNB1rgAcRDKsoHI` | `autoNumber` | Type: autoNumber |  |
+| **Estudiante**<br>`flduMAAjAsWJSUl7v` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
+| **TipoSenal**<br>`fldDl7kgM5GFSeAvr` | `singleLineText` | Type: singleLineText |  |
+| **Detalle**<br>`fldZQVSzNbNQAea3o` | `singleLineText` | Type: singleLineText |  |
+| **FechaSenal**<br>`fldqPogW9e2YZuq8f` | `createdTime` | Auto-generated creation time |  |
+| **PlanAlMomento**<br>`fld38CkJvSopH544u` | `singleLineText` | Type: singleLineText |  |
+| **ModalidadPremium**<br>`fld1dJRBEkipPc060` | `singleLineText` | Type: singleLineText |  |
+| **Procesada**<br>`fldc18D1EJTELawxJ` | `checkbox` | True/False checkbox |  |
+| **FechaProcesada**<br>`fldBAWRR0Y0ZF2yog` | `dateTime` | Date and time |  |
+
+---
+
+## 📋 27. SesionesEstudio
 
 *Table ID: `tbliVHFlDjE2UlO5c`*
 *Fields: 16*
@@ -812,7 +833,7 @@
 
 ---
 
-## 📋 27. Suscripciones
+## 📋 28. Suscripciones
 
 *Table ID: `tblowJOhwqRvVsWWc`*
 *Fields: 35*
@@ -857,7 +878,7 @@
 
 ---
 
-## 📋 28. Testimonios
+## 📋 29. Testimonios
 
 *Table ID: `tblMamG4VXbtJZNSd`*
 *Fields: 22*
@@ -889,7 +910,7 @@
 
 ---
 
-## 📋 29. VERSION_PROD
+## 📋 30. VERSION_PROD
 
 *Table ID: `tblStqh1QgUM2ZZGE`*
 *Fields: 15*
@@ -919,7 +940,7 @@
 ### 📋 Source Information
 - **Base**: Default (`default`)
 - **Base ID**: `app9c8iiAYRGxxhtH`
-- **Generated**: 2026-05-17 09:53:36
+- **Generated**: 2026-05-18 11:49:41
 
 ### 🛠️ Field Type Legend
 - **singleSelect**: Dropdown with single choice
@@ -937,7 +958,7 @@
 ### ⚡ Automation
 This document is auto-generated by GitHub Actions.
 **Update schedule**: Daily at 8:00 AM UTC
-**Last sync**: 2026-05-17 09:53:36
+**Last sync**: 2026-05-18 11:49:41
 
 ---
-*Documentation for Default base - Generated 2026-05-17 09:53:36*
+*Documentation for Default base - Generated 2026-05-18 11:49:41*
