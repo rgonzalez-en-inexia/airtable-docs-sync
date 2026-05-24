@@ -1,6 +1,6 @@
 # 🗂️ Airtable Database Structure - Default
 
-> **Last update**: 2026-05-23 09:59:56
+> **Last update**: 2026-05-24 10:01:00
 > **Base**: default (Default)
 > **Auto-generated** - Do not edit manually
 
@@ -447,54 +447,13 @@
 | **Clicks**<br>`fldKkrVkPxCugJ4b2` | `number` | Numeric field |  |
 | **RegistrosAtribuidos**<br>`fld3KVzAltjVsOfhp` | `number` | Numeric field |  |
 | **SesionesAtribuidas**<br>`fldNhqVN01PiF9si3` | `number` | Numeric field |  |
-| **CreatedAt**<br>`fldPRsYX9W0Pbq9hD` | `dateTime` | Date and time |  |
+| **CreatedAt**<br>`fldPRsYX9W0Pbq9hD` | `createdTime` | Auto-generated creation time |  |
 | **UltimoClick**<br>`fldf513i1wMUx5FIG` | `dateTime` | Date and time |  |
 | **SesionOrigen**<br>`fldiDWFIyJp4PgUP2` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
 
 ---
 
-## 📋 12. EjemplosPedagogicos
-
-*Table ID: `tblzOij9Mx124aVEy`*
-*Fields: 13*
-
-| Field | Type | Description | Options |
-|-------|------|-------------|---------|
-| **ID**<br>`fld7nNpEk18RrIJ79` | `autoNumber` | Type: autoNumber |  |
-| **FechaCreacion**<br>`fldkAXm3fz2N3GaQO` | `date` | Date |  |
-| **TipoNEE**<br>`flddME05ykLgFBqe6` | `singleSelect` | Single choice dropdown |  |
-| **Materia**<br>`fld9N4GssjTlpM6Pq` | `singleSelect` | Single choice dropdown | `Todo`, `In progress`, `Done` |
-| **TemaEspecifico**<br>`fldT3xksy4ZxJqEMQ` | `singleLineText` | Type: singleLineText |  |
-| **CasoEstudio**<br>`fld9upI59cIpKYtM4` | `singleLineText` | Type: singleLineText |  |
-| **PromptUtilizado**<br>`fld8i2Cspjx7N8m3e` | `multilineText` | Multi-line text |  |
-| **InteraccionEstudiante**<br>`fldpMrypMehg5i8Sh` | `multilineText` | Multi-line text |  |
-| **RespuestaAsistente**<br>`fldBA0VCTRRxL02Ld` | `multilineText` | Multi-line text |  |
-| **Resultado**<br>`fldYS38LT3pnbbC7x` | `singleSelect` | Single choice dropdown | `éxito`, `mejorable`, `fallo` |
-| **Aprendizaje**<br>`flddqjxmk7pntxYyx` | `multilineText` | Multi-line text |  |
-| **TuRating**<br>`fld0aNINPo9rJ1cul` | `number` | Numeric field |  |
-| **Tags**<br>`fldp9aZ3JJjHYL0mC` | `multipleSelects` | Multiple choice dropdown | `timer`, `refuerzo_positivo`, `instrucciones_cortas` |
-
----
-
-## 📋 13. EventosSignificativos
-
-*Table ID: `tblKU5sD9MdcTQmSH`*
-*Fields: 8*
-
-| Field | Type | Description | Options |
-|-------|------|-------------|---------|
-| **ID**<br>`fldlMD8qLO1qMbn3j` | `autoNumber` | Type: autoNumber |  |
-| **Timestamp**<br>`fldGK0v40C91xCkQD` | `dateTime` | Date and time |  |
-| **Usuario**<br>`fld2OiSMOXDN3dUGT` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
-| **TipoEvento**<br>`fldH058ArfLzCuoEy` | `singleSelect` | Single choice dropdown | `primera_sesion`, `resolucion_exitosa`, `sesion_larga_5min`, `uso_imagen`, `cambio_materia` *(+2 more)* |
-| **Materia**<br>`fldZf4OThGc5JU7y5` | `singleLineText` | Type: singleLineText |  |
-| **TipoNEE**<br>`fldI6weNWvtgebLy6` | `singleLineText` | Type: singleLineText |  |
-| **TiempoHastaEvento**<br>`fldDjBVVgPRp2KaMO` | `number` | Numeric field |  |
-| **DatosContexto**<br>`fld7wFo3pRTystgMN` | `multilineText` | Multi-line text |  |
-
----
-
-## 📋 14. Leads
+## 📋 12. Leads
 
 *Table ID: `tblJm5bEpjpYFOyXu`*
 *Fields: 21*
@@ -524,6 +483,47 @@
 | **RolDeclarado**<br>`fldYOxbkhaCHu7Ctp` | `singleSelect` | Single choice dropdown | `estudiante`, `madre_padre_tutor`, `docente`, `estudios_superiores`, `otro` |
 | **EIA_Sesiones**<br>`fldrYbi1cTMgTrb9M` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
 | **AceptaComunicaciones**<br>`fldKfQH8GNjPg9dPS` | `checkbox` | True/False checkbox |  |
+
+---
+
+## 📋 13. EjemplosPedagogicos
+
+*Table ID: `tblzOij9Mx124aVEy`*
+*Fields: 13*
+
+| Field | Type | Description | Options |
+|-------|------|-------------|---------|
+| **ID**<br>`fld7nNpEk18RrIJ79` | `autoNumber` | Type: autoNumber |  |
+| **FechaCreacion**<br>`fldkAXm3fz2N3GaQO` | `date` | Date |  |
+| **TipoNEE**<br>`flddME05ykLgFBqe6` | `singleSelect` | Single choice dropdown |  |
+| **Materia**<br>`fld9N4GssjTlpM6Pq` | `singleSelect` | Single choice dropdown | `Todo`, `In progress`, `Done` |
+| **TemaEspecifico**<br>`fldT3xksy4ZxJqEMQ` | `singleLineText` | Type: singleLineText |  |
+| **CasoEstudio**<br>`fld9upI59cIpKYtM4` | `singleLineText` | Type: singleLineText |  |
+| **PromptUtilizado**<br>`fld8i2Cspjx7N8m3e` | `multilineText` | Multi-line text |  |
+| **InteraccionEstudiante**<br>`fldpMrypMehg5i8Sh` | `multilineText` | Multi-line text |  |
+| **RespuestaAsistente**<br>`fldBA0VCTRRxL02Ld` | `multilineText` | Multi-line text |  |
+| **Resultado**<br>`fldYS38LT3pnbbC7x` | `singleSelect` | Single choice dropdown | `éxito`, `mejorable`, `fallo` |
+| **Aprendizaje**<br>`flddqjxmk7pntxYyx` | `multilineText` | Multi-line text |  |
+| **TuRating**<br>`fld0aNINPo9rJ1cul` | `number` | Numeric field |  |
+| **Tags**<br>`fldp9aZ3JJjHYL0mC` | `multipleSelects` | Multiple choice dropdown | `timer`, `refuerzo_positivo`, `instrucciones_cortas` |
+
+---
+
+## 📋 14. EventosSignificativos
+
+*Table ID: `tblKU5sD9MdcTQmSH`*
+*Fields: 8*
+
+| Field | Type | Description | Options |
+|-------|------|-------------|---------|
+| **ID**<br>`fldlMD8qLO1qMbn3j` | `autoNumber` | Type: autoNumber |  |
+| **Timestamp**<br>`fldGK0v40C91xCkQD` | `dateTime` | Date and time |  |
+| **Usuario**<br>`fld2OiSMOXDN3dUGT` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
+| **TipoEvento**<br>`fldH058ArfLzCuoEy` | `singleSelect` | Single choice dropdown | `primera_sesion`, `resolucion_exitosa`, `sesion_larga_5min`, `uso_imagen`, `cambio_materia` *(+2 more)* |
+| **Materia**<br>`fldZf4OThGc5JU7y5` | `singleLineText` | Type: singleLineText |  |
+| **TipoNEE**<br>`fldI6weNWvtgebLy6` | `singleLineText` | Type: singleLineText |  |
+| **TiempoHastaEvento**<br>`fldDjBVVgPRp2KaMO` | `number` | Numeric field |  |
+| **DatosContexto**<br>`fld7wFo3pRTystgMN` | `multilineText` | Multi-line text |  |
 
 ---
 
@@ -940,7 +940,7 @@
 ### 📋 Source Information
 - **Base**: Default (`default`)
 - **Base ID**: `app9c8iiAYRGxxhtH`
-- **Generated**: 2026-05-23 09:59:56
+- **Generated**: 2026-05-24 10:01:00
 
 ### 🛠️ Field Type Legend
 - **singleSelect**: Dropdown with single choice
@@ -958,7 +958,7 @@
 ### ⚡ Automation
 This document is auto-generated by GitHub Actions.
 **Update schedule**: Daily at 8:00 AM UTC
-**Last sync**: 2026-05-23 09:59:56
+**Last sync**: 2026-05-24 10:01:00
 
 ---
-*Documentation for Default base - Generated 2026-05-23 09:59:56*
+*Documentation for Default base - Generated 2026-05-24 10:01:00*
