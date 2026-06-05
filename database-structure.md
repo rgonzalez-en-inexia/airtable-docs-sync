@@ -1,6 +1,6 @@
 # 🗂️ Airtable Database Structure - Default
 
-> **Last update**: 2026-06-04 21:55:03
+> **Last update**: 2026-06-05 11:33:22
 > **Base**: default (Default)
 > **Auto-generated** - Do not edit manually
 
@@ -459,7 +459,72 @@
 
 ---
 
-## 📋 12. Leads
+## 📋 12. Events
+
+*Table ID: `tblmuAev9phNXJoF3`*
+*Fields: 30*
+
+| Field | Type | Description | Options |
+|-------|------|-------------|---------|
+| **EventID**<br>`fldCVq8xSTRRmoEQv` | `singleLineText` | Type: singleLineText |  |
+| **EventName**<br>`fld9yv9rI0O4Grq2e` | `singleLineText` | Type: singleLineText |  |
+| **EventTime**<br>`fldkMSmHlvmui1AmE` | `dateTime` | Date and time |  |
+| **ReceivedAt**<br>`fldRXTv1xDwHITv1H` | `dateTime` | Date and time |  |
+| **Environment**<br>`fldDSkV083gEfNcO7` | `singleLineText` | Type: singleLineText |  |
+| **ProductContext**<br>`fldevF2WYo7HmgEkp` | `singleLineText` | Type: singleLineText |  |
+| **AnonID**<br>`fldwmci6Q06oYpqiN` | `singleLineText` | Type: singleLineText |  |
+| **PersonID**<br>`fldca048w6rsTTT2D` | `singleLineText` | Type: singleLineText |  |
+| **StudentID**<br>`fldQ8pP4Eh2OI12BJ` | `singleLineText` | Type: singleLineText |  |
+| **FamilyID**<br>`fldsiTMjoTJFqhUTb` | `singleLineText` | Type: singleLineText |  |
+| **PagadorID**<br>`fldmxbzNyDVZWdQ6S` | `singleLineText` | Type: singleLineText |  |
+| **JourneyID**<br>`fldujKwvrNn3VRTDT` | `singleLineText` | Type: singleLineText |  |
+| **SessionID**<br>`fldNoKzA5RubL3aZV` | `singleLineText` | Type: singleLineText |  |
+| **TouchpointID**<br>`fldSUTqNxxRZcrIHN` | `singleLineText` | Type: singleLineText |  |
+| **ShareLinkID**<br>`fldLJkLfdxJg8Q6aC` | `singleLineText` | Type: singleLineText |  |
+| **RootShareLinkID**<br>`flduwWNd1LYuUrCba` | `singleLineText` | Type: singleLineText |  |
+| **InstitutionID**<br>`fldjYsQEWpDDmcAzK` | `singleLineText` | Type: singleLineText |  |
+| **CohortID**<br>`fld2RwM0K9YTrSs8b` | `singleLineText` | Type: singleLineText |  |
+| **UTMSource**<br>`fldRsCXw6TztJvaqP` | `singleLineText` | Type: singleLineText |  |
+| **UTMMedium**<br>`fldtSNAGBuang0Btl` | `singleLineText` | Type: singleLineText |  |
+| **UTMCampaign**<br>`fldKcxLkd8QWAaElG` | `singleLineText` | Type: singleLineText |  |
+| **UTMContent**<br>`fldGCI92HuAjm3AmJ` | `singleLineText` | Type: singleLineText |  |
+| **UTMTerm**<br>`flddVbMWhfp6TPVbu` | `singleLineText` | Type: singleLineText |  |
+| **Fbclid**<br>`fld3ll6X3vrxybuDw` | `singleLineText` | Type: singleLineText |  |
+| **Referrer**<br>`fld2ezShryGaUhEN0` | `multilineText` | Multi-line text |  |
+| **PageURL**<br>`fld79g0piBOr8rspb` | `multilineText` | Multi-line text |  |
+| **AppVersion**<br>`fldwU25KP4rPsMJPk` | `singleLineText` | Type: singleLineText |  |
+| **WorkerVersion**<br>`fldt4kJjVemHvNDEN` | `singleLineText` | Type: singleLineText |  |
+| **PropertiesJSON**<br>`fldlwf0TYmNsl65pG` | `multilineText` | Multi-line text |  |
+| **IdempotencyKey**<br>`fldbFD0GKJVurYhfI` | `singleLineText` | Type: singleLineText |  |
+
+---
+
+## 📋 13. GrowthAnalysis
+
+*Table ID: `tbl6wrx1FNs9OzcT3`*
+*Fields: 15*
+
+| Field | Type | Description | Options |
+|-------|------|-------------|---------|
+| **AnalysisID**<br>`fldhY0DM1LBgdrqGr` | `singleLineText` | Type: singleLineText |  |
+| **AnalysisType**<br>`fld5Q2RmBPwdfym58` | `singleLineText` | Type: singleLineText |  |
+| **PeriodStart**<br>`fld8c5mhhd9n0FgGM` | `dateTime` | Date and time |  |
+| **PeriodEnd**<br>`fldlkCPSVPWul1Hjq` | `dateTime` | Date and time |  |
+| **DataSnapshotID**<br>`fldsqO8XV6gfSiy2o` | `singleLineText` | Type: singleLineText |  |
+| **ExecutiveSummary**<br>`fldcpXJx0QaJBGpX8` | `multilineText` | Multi-line text |  |
+| **Findings**<br>`fldlURvfVsd16MsFA` | `multilineText` | Multi-line text |  |
+| **Anomalies**<br>`fldPYxd155OpXMNX3` | `multilineText` | Multi-line text |  |
+| **SegmentsToAct**<br>`fldDMDItMb6WeHuBb` | `multilineText` | Multi-line text |  |
+| **Hypotheses**<br>`fldqqeVdFMdP4SHus` | `multilineText` | Multi-line text |  |
+| **RecommendedActions**<br>`fldKpv93ZUSSAepKD` | `multilineText` | Multi-line text |  |
+| **Priority**<br>`fldDc0bmtRVwyNEGi` | `singleLineText` | Type: singleLineText |  |
+| **HumanDecision**<br>`fldDCN3s3DBX820Bo` | `multilineText` | Multi-line text |  |
+| **ActionStatus**<br>`fldmsKrjaLKaT2PCO` | `singleLineText` | Type: singleLineText |  |
+| **CreatedAt**<br>`fldIvXXmSaDFHrHCU` | `dateTime` | Date and time |  |
+
+---
+
+## 📋 14. Leads
 
 *Table ID: `tblJm5bEpjpYFOyXu`*
 *Fields: 21*
@@ -492,7 +557,7 @@
 
 ---
 
-## 📋 13. EjemplosPedagogicos
+## 📋 15. EjemplosPedagogicos
 
 *Table ID: `tblzOij9Mx124aVEy`*
 *Fields: 13*
@@ -515,7 +580,7 @@
 
 ---
 
-## 📋 14. EventosSignificativos
+## 📋 16. EventosSignificativos
 
 *Table ID: `tblKU5sD9MdcTQmSH`*
 *Fields: 8*
@@ -533,7 +598,196 @@
 
 ---
 
-## 📋 15. Logros
+## 📋 17. IdentityMap
+
+*Table ID: `tblRIoIJVSqDU32wX`*
+*Fields: 14*
+
+| Field | Type | Description | Options |
+|-------|------|-------------|---------|
+| **IdentityID**<br>`fld5lOnCRP7yVfBdR` | `singleLineText` | Type: singleLineText |  |
+| **AnonID**<br>`fldz02zeHVEB9pLlT` | `singleLineText` | Type: singleLineText |  |
+| **DeviceID**<br>`fldiKD2pTtysZhDxy` | `singleLineText` | Type: singleLineText |  |
+| **Email**<br>`fldPXzTcsmtregGS4` | `singleLineText` | Type: singleLineText |  |
+| **EmailHash**<br>`fldJQjygjiO2emt6I` | `singleLineText` | Type: singleLineText |  |
+| **PersonID**<br>`fldDZOqzpLZlDeFE5` | `singleLineText` | Type: singleLineText |  |
+| **LeadID**<br>`fldGh6ZNrSxhAMLjN` | `singleLineText` | Type: singleLineText |  |
+| **StudentID**<br>`fldHdKhJWT3T2gcqx` | `singleLineText` | Type: singleLineText |  |
+| **PagadorID**<br>`fldhQ4r1evA9gZAma` | `singleLineText` | Type: singleLineText |  |
+| **FamilyID**<br>`fldfC5SG498WTk0Sl` | `singleLineText` | Type: singleLineText |  |
+| **FirstSeenAt**<br>`fldUD5Pa063sLMoRA` | `dateTime` | Date and time |  |
+| **LastSeenAt**<br>`fldBoh8UJdDT6AeRE` | `dateTime` | Date and time |  |
+| **Confidence**<br>`fldT9dCV4VoKDKcBB` | `singleLineText` | Type: singleLineText |  |
+| **Source**<br>`fldkrN8ZapK9QcY7s` | `singleLineText` | Type: singleLineText |  |
+
+---
+
+## 📋 18. Interventions
+
+*Table ID: `tbldwEc4pjgfCAIVf`*
+*Fields: 20*
+
+| Field | Type | Description | Options |
+|-------|------|-------------|---------|
+| **InterventionID**<br>`fldb9a5MNyOu91bJV` | `singleLineText` | Type: singleLineText |  |
+| **PersonID**<br>`fldCOPPvf1l0CLlFk` | `singleLineText` | Type: singleLineText |  |
+| **StudentID**<br>`fldafYjC56IIu6AA5` | `singleLineText` | Type: singleLineText |  |
+| **FamilyID**<br>`fldhYwkTpDEmRH5ZM` | `singleLineText` | Type: singleLineText |  |
+| **InterventionType**<br>`fldYoMpklMuvTVRkS` | `singleLineText` | Type: singleLineText |  |
+| **TriggerReason**<br>`fldUAI9SMFAG1bVzX` | `multilineText` | Multi-line text |  |
+| **TriggerEventID**<br>`fldd9OsbmLWPRgnbu` | `singleLineText` | Type: singleLineText |  |
+| **LifecycleStageAtTrigger**<br>`fldTowfywssvAdSOE` | `singleLineText` | Type: singleLineText |  |
+| **CreditsGranted**<br>`fldKlvBdtdq5ibCzE` | `number` | Numeric field |  |
+| **CreditsType**<br>`fldqQBDoG2MrWZ0iC` | `singleLineText` | Type: singleLineText |  |
+| **MessageSent**<br>`fldc27ttxgjW1QdT6` | `multilineText` | Multi-line text |  |
+| **Channel**<br>`fldepKUp3xA5xxxEg` | `singleLineText` | Type: singleLineText |  |
+| **CreatedAt**<br>`fldyeXuWQepXsAag2` | `dateTime` | Date and time |  |
+| **DeliveredAt**<br>`fldLrtaMbGecUBxDN` | `dateTime` | Date and time |  |
+| **OpenedAt**<br>`fldkywMc94VO1IquH` | `dateTime` | Date and time |  |
+| **ClickedAt**<br>`fldViX6iUIGw27zlP` | `dateTime` | Date and time |  |
+| **RedeemedAt**<br>`fldFCYaK1w9YAUulU` | `dateTime` | Date and time |  |
+| **OutcomeWindowDays**<br>`fldKk3TPOwNnrSdBS` | `number` | Numeric field |  |
+| **OutcomeEvent**<br>`fldE5sDObyIt7YlHh` | `singleLineText` | Type: singleLineText |  |
+| **OutcomeSuccess**<br>`fldWZ8GHHrF2Tid2E` | `checkbox` | True/False checkbox |  |
+
+---
+
+## 📋 19. Institutions
+
+*Table ID: `tbl65wIkkQhADQARg`*
+*Fields: 12*
+
+| Field | Type | Description | Options |
+|-------|------|-------------|---------|
+| **InstitutionID**<br>`fldZKrX7kcd0kNyjW` | `singleLineText` | Type: singleLineText |  |
+| **Country**<br>`fldGoseduDCZyaZip` | `singleLineText` | Type: singleLineText |  |
+| **InstitutionOfficialID**<br>`fldvsn9MW6zdlupiT` | `singleLineText` | Type: singleLineText |  |
+| **InstitutionOfficialIDType**<br>`fldqOcfINXHULostg` | `singleLineText` | Type: singleLineText |  |
+| **InstitutionName**<br>`fldsdxjp4rrenwCds` | `singleLineText` | Type: singleLineText |  |
+| **City**<br>`fldNAcdVfUMydDGhM` | `singleLineText` | Type: singleLineText |  |
+| **Commune**<br>`fldu8YetulLPrQ8O3` | `singleLineText` | Type: singleLineText |  |
+| **Region**<br>`fldM1SuIiEY81eeTn` | `singleLineText` | Type: singleLineText |  |
+| **AgreementStatus**<br>`fld9Pi2MZjHwbaO9K` | `singleLineText` | Type: singleLineText |  |
+| **AgreementStartDate**<br>`fldsLGL3eT4wEihkX` | `date` | Date |  |
+| **AgreementEndDate**<br>`fldLOmvf0ycMZy9L5` | `date` | Date |  |
+| **EIAAccessLevel**<br>`fldsMEpDG02EijRys` | `singleLineText` | Type: singleLineText |  |
+
+---
+
+## 📋 20. InstitutionCohorts
+
+*Table ID: `tblLZB34VcPdzlvtQ`*
+*Fields: 9*
+
+| Field | Type | Description | Options |
+|-------|------|-------------|---------|
+| **CohortID**<br>`fldJoFw3z5wGq3ejU` | `singleLineText` | Type: singleLineText |  |
+| **InstitutionID**<br>`flddDYtwJdBfE1Dey` | `singleLineText` | Type: singleLineText |  |
+| **Country**<br>`fldPTRZaYaoYYvwpu` | `singleLineText` | Type: singleLineText |  |
+| **AcademicYear**<br>`fldvQYqYzXrlN4HAs` | `singleLineText` | Type: singleLineText |  |
+| **LevelCanonical**<br>`fldWo1wZT0Ol7LyLs` | `number` | Numeric field |  |
+| **CourseSection**<br>`fldMtnta1GF08c44k` | `singleLineText` | Type: singleLineText |  |
+| **CourseCanonical**<br>`fld8o2drZ9Cma1cUM` | `singleLineText` | Type: singleLineText |  |
+| **CourseLocalLabel**<br>`fldnqaADg45i904fu` | `singleLineText` | Type: singleLineText |  |
+| **EIAAccessLevel**<br>`fldrTSgE6B8EK3RnT` | `singleLineText` | Type: singleLineText |  |
+
+---
+
+## 📋 21. InstitutionStudentValidation
+
+*Table ID: `tbl8Ye6EgsTglQFJb`*
+*Fields: 8*
+
+| Field | Type | Description | Options |
+|-------|------|-------------|---------|
+| **ValidationID**<br>`fldPuoBuhJqbFa0vG` | `singleLineText` | Type: singleLineText |  |
+| **InstitutionID**<br>`fldV2yFaPgmFP4kYY` | `singleLineText` | Type: singleLineText |  |
+| **CohortID**<br>`fldhTDhtKPJmUWgap` | `singleLineText` | Type: singleLineText |  |
+| **StudentNationalIDHash**<br>`fldT1mVLG7rxUPVM8` | `singleLineText` | Type: singleLineText |  |
+| **StudentNationalIDLast4**<br>`fldlFnuYXRaiOBDWT` | `singleLineText` | Type: singleLineText |  |
+| **Status**<br>`fldRGfpCubGkCMdEm` | `singleLineText` | Type: singleLineText |  |
+| **ValidationMethod**<br>`fldXmELT505I5OA41` | `singleLineText` | Type: singleLineText |  |
+| **LastValidatedAt**<br>`fldJYAmql6gnZoqff` | `dateTime` | Date and time |  |
+
+---
+
+## 📋 22. Journeys
+
+*Table ID: `tbl446CakE2I9mAv5`*
+*Fields: 24*
+
+| Field | Type | Description | Options |
+|-------|------|-------------|---------|
+| **JourneyID**<br>`fldUxhE1f0YCw0xQC` | `singleLineText` | Type: singleLineText |  |
+| **RootAnonID**<br>`fldU5uaNt6g26CGnB` | `singleLineText` | Type: singleLineText |  |
+| **RootPersonID**<br>`fldgdHxmuMEyb8KCl` | `singleLineText` | Type: singleLineText |  |
+| **FirstTouchpointID**<br>`fldpqCQjU7OErP36x` | `singleLineText` | Type: singleLineText |  |
+| **FirstSeenAt**<br>`fldI8hsvidseMC1uN` | `dateTime` | Date and time |  |
+| **LastSeenAt**<br>`fldax0m7wVPb0wnWx` | `dateTime` | Date and time |  |
+| **CurrentStage**<br>`fldLIng1uFdzlfBR6` | `singleLineText` | Type: singleLineText |  |
+| **AcquisitionPath**<br>`fldVJlVb8wZvA5vyQ` | `multilineText` | Multi-line text |  |
+| **FirstTouchChannel**<br>`fldgZMdcfapwksgUT` | `singleLineText` | Type: singleLineText |  |
+| **FirstTouchCampaign**<br>`fldNFxVBT8otx4gez` | `singleLineText` | Type: singleLineText |  |
+| **LastTouchChannel**<br>`fldLKGSxLcdf8q6Z6` | `singleLineText` | Type: singleLineText |  |
+| **LastTouchCampaign**<br>`fldNiY66NaZBbdm1K` | `singleLineText` | Type: singleLineText |  |
+| **RootChainChannel**<br>`fldaHAD63IZJGU7CP` | `singleLineText` | Type: singleLineText |  |
+| **RootShareLinkID**<br>`fld5eeHsMZv5fxdj2` | `singleLineText` | Type: singleLineText |  |
+| **ShareDepthMax**<br>`fldELdDPn5EOs1L9u` | `number` | Numeric field |  |
+| **HasMother**<br>`flduLRdzhaNVIu5Ix` | `checkbox` | True/False checkbox |  |
+| **HasStudent**<br>`flduKA7hOZmlzcJUD` | `checkbox` | True/False checkbox |  |
+| **HasInstitution**<br>`fldtZbqZKhvaCO98T` | `checkbox` | True/False checkbox |  |
+| **HasEIA**<br>`fldbjEWBqy7d76YAS` | `checkbox` | True/False checkbox |  |
+| **HasKoruFreemium**<br>`fldIkoTFq3bYgHVLN` | `checkbox` | True/False checkbox |  |
+| **HasKoruActivation**<br>`fldBEYpVA3Gcl71hR` | `checkbox` | True/False checkbox |  |
+| **HasPremium**<br>`fldKCwIhBluP0OpbZ` | `checkbox` | True/False checkbox |  |
+| **PremiumStartedAt**<br>`fld9dz2wZmqRBpMik` | `dateTime` | Date and time |  |
+| **CurrentLTV**<br>`fldpuDmRmvWfKr6VJ` | `number` | Numeric field |  |
+
+---
+
+## 📋 23. KORU_Doors
+
+*Table ID: `tblBzBO7U0loXWHfB`*
+*Fields: 8*
+
+| Field | Type | Description | Options |
+|-------|------|-------------|---------|
+| **DoorID**<br>`fldIFUWfVadEdbByi` | `singleLineText` | Type: singleLineText |  |
+| **DoorKey**<br>`fldg4D9mggyB2HZat` | `singleLineText` | Type: singleLineText |  |
+| **DoorName**<br>`fldGs5R8avu975UUx` | `singleLineText` | Type: singleLineText |  |
+| **DoorCategory**<br>`fldeg64i2jPNk0Bfi` | `singleLineText` | Type: singleLineText |  |
+| **IsFreemiumAvailable**<br>`fld8ocjRszgoMEng2` | `checkbox` | True/False checkbox |  |
+| **IsPremiumOnly**<br>`fld9GvNhdv6eRPsbe` | `checkbox` | True/False checkbox |  |
+| **Status**<br>`fldj9N6dL6lTaJTjI` | `singleLineText` | Type: singleLineText |  |
+| **StrategicRole**<br>`fldf8tPhQWXLBZiPc` | `multilineText` | Multi-line text |  |
+
+---
+
+## 📋 24. KORU_DoorUsage
+
+*Table ID: `tblHp5f3aD3rLFGl6`*
+*Fields: 14*
+
+| Field | Type | Description | Options |
+|-------|------|-------------|---------|
+| **DoorUsageID**<br>`fld5dTij09eVMSWjR` | `singleLineText` | Type: singleLineText |  |
+| **StudentID**<br>`fld6jCZ9ZkHrmVJUQ` | `singleLineText` | Type: singleLineText |  |
+| **FamilyID**<br>`fld0GOazT7dYfcdbt` | `singleLineText` | Type: singleLineText |  |
+| **SessionID**<br>`flds5nlBfXGVtQxld` | `singleLineText` | Type: singleLineText |  |
+| **DoorKey**<br>`fldMbxEICFhTlBBDL` | `singleLineText` | Type: singleLineText |  |
+| **StartedAt**<br>`fld68YVQtANseuQBs` | `dateTime` | Date and time |  |
+| **CompletedAt**<br>`fldSUIUyNervHmDqs` | `dateTime` | Date and time |  |
+| **DurationSeconds**<br>`fldR3ioCRIBuiU0Mp` | `number` | Numeric field |  |
+| **MessageCount**<br>`fldfG20HumGF0cNL1` | `number` | Numeric field |  |
+| **LearningWin**<br>`fldPDjAYVTvn7Drtk` | `checkbox` | True/False checkbox |  |
+| **GapDetected**<br>`fldweyxyxfOO0M8rM` | `checkbox` | True/False checkbox |  |
+| **GapWorked**<br>`fld4zxYwnrjCQvTZb` | `checkbox` | True/False checkbox |  |
+| **UpgradeClicked**<br>`fldUiHkeQiBPkJuxB` | `checkbox` | True/False checkbox |  |
+| **PlanAtUsage**<br>`fldXH4ha510DrbhCg` | `singleLineText` | Type: singleLineText |  |
+
+---
+
+## 📋 25. Logros
 
 *Table ID: `tblIezwTdqN8x1T8H`*
 *Fields: 6*
@@ -549,7 +803,7 @@
 
 ---
 
-## 📋 16. Mensajes
+## 📋 26. Mensajes
 
 *Table ID: `tblk3NUMOZhQX42AJ`*
 *Fields: 14*
@@ -573,7 +827,7 @@
 
 ---
 
-## 📋 17. MetricasDiarias
+## 📋 27. MetricasDiarias
 
 *Table ID: `tblgF1aCbdkC8PWU7`*
 *Fields: 16*
@@ -599,7 +853,7 @@
 
 ---
 
-## 📋 18. MetricasNEE
+## 📋 28. MetricasNEE
 
 *Table ID: `tblZ8HxhJrrePHPNE`*
 *Fields: 10*
@@ -619,7 +873,7 @@
 
 ---
 
-## 📋 19. Pagadores
+## 📋 29. Pagadores
 
 *Table ID: `tblkl6i81e7fyKRKI`*
 *Fields: 18*
@@ -647,7 +901,7 @@
 
 ---
 
-## 📋 20. Pagos
+## 📋 30. Pagos
 
 *Table ID: `tbllGZKmZYWmRTZk1`*
 *Fields: 17*
@@ -674,7 +928,7 @@
 
 ---
 
-## 📋 21. PlanesEstudio
+## 📋 31. PlanesEstudio
 
 *Table ID: `tblQbkeIjxnW6GZnI`*
 *Fields: 11*
@@ -695,7 +949,7 @@
 
 ---
 
-## 📋 22. PostulacionesConvenios
+## 📋 32. PostulacionesConvenios
 
 *Table ID: `tblU7CHwVifHvTYDF`*
 *Fields: 16*
@@ -721,7 +975,50 @@
 
 ---
 
-## 📋 23. Recordatorios
+## 📋 33. PremiumRetention
+
+*Table ID: `tbl0t8LOyXP5FIqk8`*
+*Fields: 33*
+
+| Field | Type | Description | Options |
+|-------|------|-------------|---------|
+| **PremiumRetentionID**<br>`fldg25kXosp0twoWd` | `singleLineText` | Type: singleLineText |  |
+| **StudentID**<br>`fldnz2hdfHD4LaqBi` | `singleLineText` | Type: singleLineText |  |
+| **FamilyID**<br>`fld92w5YGYSGEl8iQ` | `singleLineText` | Type: singleLineText |  |
+| **PagadorID**<br>`fldrG0D4V75ITNdkP` | `singleLineText` | Type: singleLineText |  |
+| **PremiumStartDate**<br>`fldZ5qo2ETDtJE5js` | `dateTime` | Date and time |  |
+| **CurrentPremiumStatus**<br>`fldJLdCGE4L7nBKlg` | `singleLineText` | Type: singleLineText |  |
+| **CurrentRetentionStage**<br>`fldMgc6Qfg6yGYMVk` | `singleLineText` | Type: singleLineText |  |
+| **PremiumStartedBeforeActivation**<br>`fld4pFaOkANNuCXXF` | `checkbox` | True/False checkbox |  |
+| **PremiumActivationAfterPaymentDays**<br>`fldSJ5L89ukodF6AZ` | `number` | Numeric field |  |
+| **DaysAsPremium**<br>`fld6fIjm8jYADO9Yb` | `number` | Numeric field |  |
+| **PaymentsSucceeded**<br>`fldEuCo0AykTvdAuZ` | `number` | Numeric field |  |
+| **PaymentsFailed**<br>`fldmkjYZ0Wcgq1cDc` | `number` | Numeric field |  |
+| **RenewalsSucceeded**<br>`fldrUy31DoPCv6y5V` | `number` | Numeric field |  |
+| **RenewalsFailed**<br>`fldtxwdPcb1AONCwj` | `number` | Numeric field |  |
+| **LastPaymentDate**<br>`fldLvDeg0TJnnuZ0n` | `dateTime` | Date and time |  |
+| **NextPaymentDate**<br>`fldEuoZjHpKuwrdbJ` | `dateTime` | Date and time |  |
+| **ChurnDate**<br>`fldBfRwARiNqIcsFi` | `dateTime` | Date and time |  |
+| **PremiumDaysToChurn**<br>`fldw8p7li7bpd2bmy` | `number` | Numeric field |  |
+| **PremiumSessionsTotal**<br>`fld5GreFcji5ybgWD` | `number` | Numeric field |  |
+| **PremiumActiveDaysTotal**<br>`fld68IAxOF6xDGlHj` | `number` | Numeric field |  |
+| **PremiumSessionsPerWeekLifetime**<br>`fldYYTUA7f0tnNPn2` | `number` | Numeric field |  |
+| **PremiumSessionsPerWeekLast30d**<br>`fldszOB2YDBCnyjPZ` | `number` | Numeric field |  |
+| **PremiumSessionsPerWeekLast60d**<br>`fldUFSMCwvZGh3Wus` | `number` | Numeric field |  |
+| **PremiumLast30dSessions**<br>`fldmXy7s64oJfacBH` | `number` | Numeric field |  |
+| **PremiumLast60dSessions**<br>`flddmLzrqcnGcrBcL` | `number` | Numeric field |  |
+| **PremiumLast90dSessions**<br>`fldlUkNVxIag3tcfJ` | `number` | Numeric field |  |
+| **PremiumLearningWinsTotal**<br>`fld5pUEIPkNh9JgXw` | `number` | Numeric field |  |
+| **PremiumLearningWinsLast30d**<br>`fldoDDFm70voTmY8L` | `number` | Numeric field |  |
+| **PremiumDoorsUsedTotal**<br>`fldalUKtyrctVuzCe` | `number` | Numeric field |  |
+| **PremiumMotherTouchpointsTotal**<br>`fldvR4RKzPvskskKG` | `number` | Numeric field |  |
+| **ChurnRiskScore**<br>`fldvxdI3A1QSx48It` | `number` | Numeric field |  |
+| **LTVAccrued**<br>`fldxnPXOy62d1G0HL` | `number` | Numeric field |  |
+| **ExpectedLTV**<br>`fldFAuoYhjTjFnkHu` | `number` | Numeric field |  |
+
+---
+
+## 📋 34. Recordatorios
 
 *Table ID: `tbll95VSiGdzEPEsZ`*
 *Fields: 7*
@@ -738,7 +1035,7 @@
 
 ---
 
-## 📋 24. RecursosDidacticos
+## 📋 35. RecursosDidacticos
 
 *Table ID: `tblhnDhyfno9kEmFd`*
 *Fields: 14*
@@ -762,7 +1059,51 @@
 
 ---
 
-## 📋 25. Seguimiento
+## 📋 36. ReferralEdges
+
+*Table ID: `tblYJ9diivi7eANvr`*
+*Fields: 15*
+
+| Field | Type | Description | Options |
+|-------|------|-------------|---------|
+| **ReferralEdgeID**<br>`fldQ3ZhcEiQHhKrxd` | `singleLineText` | Type: singleLineText |  |
+| **FromPersonID**<br>`fld1FQBZUG82063Fh` | `singleLineText` | Type: singleLineText |  |
+| **FromAnonID**<br>`fldQcQLk3EIiMCYVF` | `singleLineText` | Type: singleLineText |  |
+| **ToPersonID**<br>`fldIzEndEBXuPkOwu` | `singleLineText` | Type: singleLineText |  |
+| **ToAnonID**<br>`fldsbJODolh5Zq4ix` | `singleLineText` | Type: singleLineText |  |
+| **ShareLinkID**<br>`fldpRLfGEFVEzM8MN` | `singleLineText` | Type: singleLineText |  |
+| **ParentShareLinkID**<br>`fldE9A6w5cMYv3Z5b` | `singleLineText` | Type: singleLineText |  |
+| **RootShareLinkID**<br>`fldQOkCsvpQLa8lPH` | `singleLineText` | Type: singleLineText |  |
+| **Depth**<br>`fld2B9Et8wtP2PHJt` | `number` | Numeric field |  |
+| **RelationshipDeclared**<br>`fld8R55iH9w7U8wDw` | `singleLineText` | Type: singleLineText |  |
+| **Confidence**<br>`fldcNcDfNAQ6quyGx` | `singleLineText` | Type: singleLineText |  |
+| **FirstSeenAt**<br>`fldxHqiqmks9sE8Ct` | `dateTime` | Date and time |  |
+| **ConvertedToLead**<br>`fldwBchAO0W70y8MS` | `checkbox` | True/False checkbox |  |
+| **ConvertedToFreemium**<br>`fldxHB7Hy5qMYQ7BW` | `checkbox` | True/False checkbox |  |
+| **ConvertedToPremium**<br>`fldRqOzimq1WyNAP5` | `checkbox` | True/False checkbox |  |
+
+---
+
+## 📋 37. Segments
+
+*Table ID: `tblFhJSTxNvYarU9c`*
+*Fields: 9*
+
+| Field | Type | Description | Options |
+|-------|------|-------------|---------|
+| **SegmentID**<br>`fldoITOEWGBt50gHn` | `singleLineText` | Type: singleLineText |  |
+| **SegmentKey**<br>`fldk8gpLrdyUHH2AD` | `singleLineText` | Type: singleLineText |  |
+| **SegmentName**<br>`fld0GqCLXZ61e5pjk` | `singleLineText` | Type: singleLineText |  |
+| **Description**<br>`fldKGIBasf9qs6ZTb` | `multilineText` | Multi-line text |  |
+| **CriteriaJSON**<br>`fldKDXOTYra3WkBkT` | `multilineText` | Multi-line text |  |
+| **LastCalculatedAt**<br>`fldUvu6qr0Jw0rHMr` | `dateTime` | Date and time |  |
+| **UsersCount**<br>`fldqgkizbuFKhMou6` | `number` | Numeric field |  |
+| **RecommendedAction**<br>`fld93cI8kP2DRPhNi` | `multilineText` | Multi-line text |  |
+| **Destination**<br>`fldavrYOkBlcaqzG6` | `singleLineText` | Type: singleLineText |  |
+
+---
+
+## 📋 38. Seguimiento
 
 *Table ID: `tblq2wnV8lPEHKb8p`*
 *Fields: 21*
@@ -794,7 +1135,7 @@
 
 ---
 
-## 📋 26. SenalesDeInteres
+## 📋 39. SenalesDeInteres
 
 *Table ID: `tblrD0bpHujQVuLUU`*
 *Fields: 9*
@@ -813,7 +1154,7 @@
 
 ---
 
-## 📋 27. SesionesEstudio
+## 📋 40. SesionesEstudio
 
 *Table ID: `tbliVHFlDjE2UlO5c`*
 *Fields: 16*
@@ -839,7 +1180,38 @@
 
 ---
 
-## 📋 28. Suscripciones
+## 📋 41. ShareLinks
+
+*Table ID: `tblf4PF6o9rkIgIef`*
+*Fields: 21*
+
+| Field | Type | Description | Options |
+|-------|------|-------------|---------|
+| **ShareLinkID**<br>`fldeigRQhL3dvWvn6` | `singleLineText` | Type: singleLineText |  |
+| **ShareCode**<br>`fldKcWbKsSO4E3dE8` | `singleLineText` | Type: singleLineText |  |
+| **ProductContext**<br>`fld0OZDFlOz59F5Xh` | `singleLineText` | Type: singleLineText |  |
+| **CreatedByPersonID**<br>`fldgH3j0XOcbYhxQV` | `singleLineText` | Type: singleLineText |  |
+| **CreatedByAnonID**<br>`fldE4rvHm4fz6C137` | `singleLineText` | Type: singleLineText |  |
+| **CreatedByRole**<br>`fldlWQGMIuMYsQJ5t` | `singleLineText` | Type: singleLineText |  |
+| **CreatedFromEventID**<br>`fldySQs9oqiIvhwS0` | `singleLineText` | Type: singleLineText |  |
+| **RootTouchpointID**<br>`fldGAY3hpgy0bMdmO` | `singleLineText` | Type: singleLineText |  |
+| **RootCampaignID**<br>`fldZ4OIMe4DLeB41h` | `singleLineText` | Type: singleLineText |  |
+| **ParentShareLinkID**<br>`fldqGluIpAQlAj762` | `singleLineText` | Type: singleLineText |  |
+| **RootShareLinkID**<br>`fld0G5ARpyIXOWFZJ` | `singleLineText` | Type: singleLineText |  |
+| **ShareDepth**<br>`fldkF8q6G6zZFzXwm` | `number` | Numeric field |  |
+| **ShareChannel**<br>`flddAwHUg1TOCaWVs` | `singleLineText` | Type: singleLineText |  |
+| **ShareIntent**<br>`fldegsSnlTu5PiUg6` | `singleLineText` | Type: singleLineText |  |
+| **CreatedAt**<br>`fld8clLKg02neDjds` | `dateTime` | Date and time |  |
+| **Clicks**<br>`fldJhsxFEKjHAeMXs` | `number` | Numeric field |  |
+| **UniqueClicks**<br>`fldpxqfgpYQXUz2NN` | `number` | Numeric field |  |
+| **ConversionsToLead**<br>`fldInwinMUgNusEl8` | `number` | Numeric field |  |
+| **ConversionsToEIA**<br>`fldehiYyLNUOvyA3t` | `number` | Numeric field |  |
+| **ConversionsToFreemium**<br>`flduc1i8jVXxJP2MD` | `number` | Numeric field |  |
+| **ConversionsToPremium**<br>`fldjpw1OngSo19geG` | `number` | Numeric field |  |
+
+---
+
+## 📋 42. Suscripciones
 
 *Table ID: `tblowJOhwqRvVsWWc`*
 *Fields: 35*
@@ -884,260 +1256,7 @@
 
 ---
 
-## 📋 29. Testimonios
-
-*Table ID: `tblMamG4VXbtJZNSd`*
-*Fields: 22*
-
-| Field | Type | Description | Options |
-|-------|------|-------------|---------|
-| **ID_Testimonio**<br>`fldLPPjGgYFjrTUBB` | `autoNumber` | Type: autoNumber |  |
-| **Estudiante**<br>`fld4AG3mcFaWpwuts` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
-| **NombreMostrar**<br>`fldG9KdLMeKUE3gF9` | `singleLineText` | Type: singleLineText |  |
-| **Edad**<br>`fld6dRJYRVhag0UWP` | `number` | Numeric field |  |
-| **Texto**<br>`fldLoMVwRWEBpfpY8` | `multilineText` | Multi-line text |  |
-| **ImagenURL**<br>`fldqfk4WI6CSYy0sO` | `url` | URL link |  |
-| **Pais**<br>`fldtzOuum3vrMDcdX` | `singleSelect` | Single choice dropdown | `Argentina`, `Bolivia`, `Chile`, `Colombia`, `Ecuador` *(+7 more)* |
-| **TiposNEE**<br>`fld00qa4CY0zNONTg` | `multipleSelects` | Multiple choice dropdown | `TDA`, `TDAH`, `TEA`, `Dislexia`, `Discalculia` *(+1 more)* |
-| **ConversacionesAlEnviar**<br>`fldR1HqiuecBOT2kQ` | `number` | Numeric field |  |
-| **FechaEnvio**<br>`fld8RXhYQO1GCgUHH` | `createdTime` | Auto-generated creation time |  |
-| **Estado**<br>`fldSG4KwgwtQqO6ER` | `singleSelect` | Single choice dropdown | `Pendiente`, `Aprobado`, `Rechazado`, `Postergado` |
-| **FechaRevision**<br>`fldJMArz5vIs2qjWK` | `dateTime` | Date and time |  |
-| **NotasInternas**<br>`fld8tNgQeYXHpjJOk` | `multilineText` | Multi-line text |  |
-| **MostrarEnLanding**<br>`fldAC5GZyNVxn7tKk` | `checkbox` | True/False checkbox |  |
-| **MostrarAvisos**<br>`fldN79TbLpbkGuFWT` | `checkbox` | True/False checkbox |  |
-| **Consentimiento**<br>`fldCEipr2tKeJqMej` | `checkbox` | True/False checkbox |  |
-| **FechaConsentimiento**<br>`fldEp626LDM4xCmd0` | `dateTime` | Date and time |  |
-| **Pregunta1**<br>`fldEtPCm0j7w1AvpI` | `singleSelect` | Single choice dropdown | `Sí`, `No` |
-| **Pregunta2**<br>`fldziGIfAiNiR6xfe` | `singleSelect` | Single choice dropdown | `Me ha servido mucho`, `Me ha servido algo`, `Me ha servido poco`, `No me ha servido` |
-| **Pregunta3**<br>`fldPktTOTnXMWqiWE` | `singleSelect` | Single choice dropdown | `Mucho`, `Bastante`, `Algo`, `Nada` |
-| **Pregunta4**<br>`fldmqLoWXkNJR89WW` | `singleSelect` | Single choice dropdown | `Aprender algo puntual`, `Preparar una evaluación`, `Aprender a estudiar` |
-| **Pregunta5**<br>`fld8OpJJBBWb1H8K3` | `singleSelect` | Single choice dropdown | `Mucho, me asombra`, `Bastante`, `Lo percibo débilmente`, `No lo he notado` |
-
----
-
-## 📋 30. VERSION_PROD
-
-*Table ID: `tblStqh1QgUM2ZZGE`*
-*Fields: 15*
-
-| Field | Type | Description | Options |
-|-------|------|-------------|---------|
-| **FechaPublicacion**<br>`fld4Vu39O4zNgLJqZ` | `dateTime` | Date and time |  |
-| **Ambiente**<br>`fldj1wNtXh76HZvZR` | `singleSelect` | Single choice dropdown | `PROD`, `DEV` |
-| **Descripción nueva versión**<br>`fldp4TVI2mIZYXWc4` | `multilineText` | Multi-line text |  |
-| **Cambios BD**<br>`fldBSosvZGrV1Gt5J` | `singleLineText` | Type: singleLineText |  |
-| **Descripción DB**<br>`fldLEbXdOc6yk9TI3` | `multipleAttachments` | Type: multipleAttachments |  |
-| **Cambios Automatizaciones**<br>`fldNcmh2Qu8qVpwuh` | `singleLineText` | Type: singleLineText |  |
-| **Archivos**<br>`fldWTvrKvV4UnvXZq` | `multipleAttachments` | Type: multipleAttachments |  |
-| **landing.html**<br>`fldczEKFzscMX6JpS` | `multilineText` | Multi-line text |  |
-| **index.html**<br>`fld7ECFpJRGQj4zJ8` | `multilineText` | Multi-line text |  |
-| **chat.js**<br>`fldSdYMAXYd2d7Bob` | `multilineText` | Multi-line text |  |
-| **config.js**<br>`fldrzHp2TJKe1Mrwn` | `multilineText` | Multi-line text |  |
-| **Prompt-chat**<br>`fld1JoX5ky69KH0st` | `multilineText` | Multi-line text |  |
-| **Worker**<br>`fldztpSTpYD3DvSlO` | `multilineText` | Multi-line text |  |
-| **WorkerDeployment**<br>`fldYNzqOOvd62mNv8` | `singleLineText` | Type: singleLineText |  |
-| **Version_Fillout_Onboarding**<br>`fldm1rmf4KOECMsfG` | `singleLineText` | Type: singleLineText |  |
-
----
-
-## 📋 31. Events
-
-*Table ID: `tblmuAev9phNXJoF3`*
-*Fields: 30*
-
-| Field | Type | Description | Options |
-|-------|------|-------------|---------|
-| **EventID**<br>`fldCVq8xSTRRmoEQv` | `singleLineText` | Type: singleLineText |  |
-| **EventName**<br>`fld9yv9rI0O4Grq2e` | `singleLineText` | Type: singleLineText |  |
-| **EventTime**<br>`fldkMSmHlvmui1AmE` | `dateTime` | Date and time |  |
-| **ReceivedAt**<br>`fldRXTv1xDwHITv1H` | `dateTime` | Date and time |  |
-| **Environment**<br>`fldDSkV083gEfNcO7` | `singleLineText` | Type: singleLineText |  |
-| **ProductContext**<br>`fldevF2WYo7HmgEkp` | `singleLineText` | Type: singleLineText |  |
-| **AnonID**<br>`fldwmci6Q06oYpqiN` | `singleLineText` | Type: singleLineText |  |
-| **PersonID**<br>`fldca048w6rsTTT2D` | `singleLineText` | Type: singleLineText |  |
-| **StudentID**<br>`fldQ8pP4Eh2OI12BJ` | `singleLineText` | Type: singleLineText |  |
-| **FamilyID**<br>`fldsiTMjoTJFqhUTb` | `singleLineText` | Type: singleLineText |  |
-| **PagadorID**<br>`fldmxbzNyDVZWdQ6S` | `singleLineText` | Type: singleLineText |  |
-| **JourneyID**<br>`fldujKwvrNn3VRTDT` | `singleLineText` | Type: singleLineText |  |
-| **SessionID**<br>`fldNoKzA5RubL3aZV` | `singleLineText` | Type: singleLineText |  |
-| **TouchpointID**<br>`fldSUTqNxxRZcrIHN` | `singleLineText` | Type: singleLineText |  |
-| **ShareLinkID**<br>`fldLJkLfdxJg8Q6aC` | `singleLineText` | Type: singleLineText |  |
-| **RootShareLinkID**<br>`flduwWNd1LYuUrCba` | `singleLineText` | Type: singleLineText |  |
-| **InstitutionID**<br>`fldjYsQEWpDDmcAzK` | `singleLineText` | Type: singleLineText |  |
-| **CohortID**<br>`fld2RwM0K9YTrSs8b` | `singleLineText` | Type: singleLineText |  |
-| **UTMSource**<br>`fldRsCXw6TztJvaqP` | `singleLineText` | Type: singleLineText |  |
-| **UTMMedium**<br>`fldtSNAGBuang0Btl` | `singleLineText` | Type: singleLineText |  |
-| **UTMCampaign**<br>`fldKcxLkd8QWAaElG` | `singleLineText` | Type: singleLineText |  |
-| **UTMContent**<br>`fldGCI92HuAjm3AmJ` | `singleLineText` | Type: singleLineText |  |
-| **UTMTerm**<br>`flddVbMWhfp6TPVbu` | `singleLineText` | Type: singleLineText |  |
-| **Fbclid**<br>`fld3ll6X3vrxybuDw` | `singleLineText` | Type: singleLineText |  |
-| **Referrer**<br>`fld2ezShryGaUhEN0` | `multilineText` | Multi-line text |  |
-| **PageURL**<br>`fld79g0piBOr8rspb` | `multilineText` | Multi-line text |  |
-| **AppVersion**<br>`fldwU25KP4rPsMJPk` | `singleLineText` | Type: singleLineText |  |
-| **WorkerVersion**<br>`fldt4kJjVemHvNDEN` | `singleLineText` | Type: singleLineText |  |
-| **PropertiesJSON**<br>`fldlwf0TYmNsl65pG` | `multilineText` | Multi-line text |  |
-| **IdempotencyKey**<br>`fldbFD0GKJVurYhfI` | `singleLineText` | Type: singleLineText |  |
-
----
-
-## 📋 32. Journeys
-
-*Table ID: `tbl446CakE2I9mAv5`*
-*Fields: 24*
-
-| Field | Type | Description | Options |
-|-------|------|-------------|---------|
-| **JourneyID**<br>`fldUxhE1f0YCw0xQC` | `singleLineText` | Type: singleLineText |  |
-| **RootAnonID**<br>`fldU5uaNt6g26CGnB` | `singleLineText` | Type: singleLineText |  |
-| **RootPersonID**<br>`fldgdHxmuMEyb8KCl` | `singleLineText` | Type: singleLineText |  |
-| **FirstTouchpointID**<br>`fldpqCQjU7OErP36x` | `singleLineText` | Type: singleLineText |  |
-| **FirstSeenAt**<br>`fldI8hsvidseMC1uN` | `dateTime` | Date and time |  |
-| **LastSeenAt**<br>`fldax0m7wVPb0wnWx` | `dateTime` | Date and time |  |
-| **CurrentStage**<br>`fldLIng1uFdzlfBR6` | `singleLineText` | Type: singleLineText |  |
-| **AcquisitionPath**<br>`fldVJlVb8wZvA5vyQ` | `multilineText` | Multi-line text |  |
-| **FirstTouchChannel**<br>`fldgZMdcfapwksgUT` | `singleLineText` | Type: singleLineText |  |
-| **FirstTouchCampaign**<br>`fldNFxVBT8otx4gez` | `singleLineText` | Type: singleLineText |  |
-| **LastTouchChannel**<br>`fldLKGSxLcdf8q6Z6` | `singleLineText` | Type: singleLineText |  |
-| **LastTouchCampaign**<br>`fldNiY66NaZBbdm1K` | `singleLineText` | Type: singleLineText |  |
-| **RootChainChannel**<br>`fldaHAD63IZJGU7CP` | `singleLineText` | Type: singleLineText |  |
-| **RootShareLinkID**<br>`fld5eeHsMZv5fxdj2` | `singleLineText` | Type: singleLineText |  |
-| **ShareDepthMax**<br>`fldELdDPn5EOs1L9u` | `number` | Numeric field |  |
-| **HasMother**<br>`flduLRdzhaNVIu5Ix` | `checkbox` | True/False checkbox |  |
-| **HasStudent**<br>`flduKA7hOZmlzcJUD` | `checkbox` | True/False checkbox |  |
-| **HasInstitution**<br>`fldtZbqZKhvaCO98T` | `checkbox` | True/False checkbox |  |
-| **HasEIA**<br>`fldbjEWBqy7d76YAS` | `checkbox` | True/False checkbox |  |
-| **HasKoruFreemium**<br>`fldIkoTFq3bYgHVLN` | `checkbox` | True/False checkbox |  |
-| **HasKoruActivation**<br>`fldBEYpVA3Gcl71hR` | `checkbox` | True/False checkbox |  |
-| **HasPremium**<br>`fldKCwIhBluP0OpbZ` | `checkbox` | True/False checkbox |  |
-| **PremiumStartedAt**<br>`fld9dz2wZmqRBpMik` | `dateTime` | Date and time |  |
-| **CurrentLTV**<br>`fldpuDmRmvWfKr6VJ` | `number` | Numeric field |  |
-
----
-
-## 📋 33. IdentityMap
-
-*Table ID: `tblRIoIJVSqDU32wX`*
-*Fields: 14*
-
-| Field | Type | Description | Options |
-|-------|------|-------------|---------|
-| **IdentityID**<br>`fld5lOnCRP7yVfBdR` | `singleLineText` | Type: singleLineText |  |
-| **AnonID**<br>`fldz02zeHVEB9pLlT` | `singleLineText` | Type: singleLineText |  |
-| **DeviceID**<br>`fldiKD2pTtysZhDxy` | `singleLineText` | Type: singleLineText |  |
-| **Email**<br>`fldPXzTcsmtregGS4` | `singleLineText` | Type: singleLineText |  |
-| **EmailHash**<br>`fldJQjygjiO2emt6I` | `singleLineText` | Type: singleLineText |  |
-| **PersonID**<br>`fldDZOqzpLZlDeFE5` | `singleLineText` | Type: singleLineText |  |
-| **LeadID**<br>`fldGh6ZNrSxhAMLjN` | `singleLineText` | Type: singleLineText |  |
-| **StudentID**<br>`fldHdKhJWT3T2gcqx` | `singleLineText` | Type: singleLineText |  |
-| **PagadorID**<br>`fldhQ4r1evA9gZAma` | `singleLineText` | Type: singleLineText |  |
-| **FamilyID**<br>`fldfC5SG498WTk0Sl` | `singleLineText` | Type: singleLineText |  |
-| **FirstSeenAt**<br>`fldUD5Pa063sLMoRA` | `dateTime` | Date and time |  |
-| **LastSeenAt**<br>`fldBoh8UJdDT6AeRE` | `dateTime` | Date and time |  |
-| **Confidence**<br>`fldT9dCV4VoKDKcBB` | `singleLineText` | Type: singleLineText |  |
-| **Source**<br>`fldkrN8ZapK9QcY7s` | `singleLineText` | Type: singleLineText |  |
-
----
-
-## 📋 34. ShareLinks
-
-*Table ID: `tblf4PF6o9rkIgIef`*
-*Fields: 21*
-
-| Field | Type | Description | Options |
-|-------|------|-------------|---------|
-| **ShareLinkID**<br>`fldeigRQhL3dvWvn6` | `singleLineText` | Type: singleLineText |  |
-| **ShareCode**<br>`fldKcWbKsSO4E3dE8` | `singleLineText` | Type: singleLineText |  |
-| **ProductContext**<br>`fld0OZDFlOz59F5Xh` | `singleLineText` | Type: singleLineText |  |
-| **CreatedByPersonID**<br>`fldgH3j0XOcbYhxQV` | `singleLineText` | Type: singleLineText |  |
-| **CreatedByAnonID**<br>`fldE4rvHm4fz6C137` | `singleLineText` | Type: singleLineText |  |
-| **CreatedByRole**<br>`fldlWQGMIuMYsQJ5t` | `singleLineText` | Type: singleLineText |  |
-| **CreatedFromEventID**<br>`fldySQs9oqiIvhwS0` | `singleLineText` | Type: singleLineText |  |
-| **RootTouchpointID**<br>`fldGAY3hpgy0bMdmO` | `singleLineText` | Type: singleLineText |  |
-| **RootCampaignID**<br>`fldZ4OIMe4DLeB41h` | `singleLineText` | Type: singleLineText |  |
-| **ParentShareLinkID**<br>`fldqGluIpAQlAj762` | `singleLineText` | Type: singleLineText |  |
-| **RootShareLinkID**<br>`fld0G5ARpyIXOWFZJ` | `singleLineText` | Type: singleLineText |  |
-| **ShareDepth**<br>`fldkF8q6G6zZFzXwm` | `number` | Numeric field |  |
-| **ShareChannel**<br>`flddAwHUg1TOCaWVs` | `singleLineText` | Type: singleLineText |  |
-| **ShareIntent**<br>`fldegsSnlTu5PiUg6` | `singleLineText` | Type: singleLineText |  |
-| **CreatedAt**<br>`fld8clLKg02neDjds` | `dateTime` | Date and time |  |
-| **Clicks**<br>`fldJhsxFEKjHAeMXs` | `number` | Numeric field |  |
-| **UniqueClicks**<br>`fldpxqfgpYQXUz2NN` | `number` | Numeric field |  |
-| **ConversionsToLead**<br>`fldInwinMUgNusEl8` | `number` | Numeric field |  |
-| **ConversionsToEIA**<br>`fldehiYyLNUOvyA3t` | `number` | Numeric field |  |
-| **ConversionsToFreemium**<br>`flduc1i8jVXxJP2MD` | `number` | Numeric field |  |
-| **ConversionsToPremium**<br>`fldjpw1OngSo19geG` | `number` | Numeric field |  |
-
----
-
-## 📋 35. ReferralEdges
-
-*Table ID: `tblYJ9diivi7eANvr`*
-*Fields: 15*
-
-| Field | Type | Description | Options |
-|-------|------|-------------|---------|
-| **ReferralEdgeID**<br>`fldQ3ZhcEiQHhKrxd` | `singleLineText` | Type: singleLineText |  |
-| **FromPersonID**<br>`fld1FQBZUG82063Fh` | `singleLineText` | Type: singleLineText |  |
-| **FromAnonID**<br>`fldQcQLk3EIiMCYVF` | `singleLineText` | Type: singleLineText |  |
-| **ToPersonID**<br>`fldIzEndEBXuPkOwu` | `singleLineText` | Type: singleLineText |  |
-| **ToAnonID**<br>`fldsbJODolh5Zq4ix` | `singleLineText` | Type: singleLineText |  |
-| **ShareLinkID**<br>`fldpRLfGEFVEzM8MN` | `singleLineText` | Type: singleLineText |  |
-| **ParentShareLinkID**<br>`fldE9A6w5cMYv3Z5b` | `singleLineText` | Type: singleLineText |  |
-| **RootShareLinkID**<br>`fldQOkCsvpQLa8lPH` | `singleLineText` | Type: singleLineText |  |
-| **Depth**<br>`fld2B9Et8wtP2PHJt` | `number` | Numeric field |  |
-| **RelationshipDeclared**<br>`fld8R55iH9w7U8wDw` | `singleLineText` | Type: singleLineText |  |
-| **Confidence**<br>`fldcNcDfNAQ6quyGx` | `singleLineText` | Type: singleLineText |  |
-| **FirstSeenAt**<br>`fldxHqiqmks9sE8Ct` | `dateTime` | Date and time |  |
-| **ConvertedToLead**<br>`fldwBchAO0W70y8MS` | `checkbox` | True/False checkbox |  |
-| **ConvertedToFreemium**<br>`fldxHB7Hy5qMYQ7BW` | `checkbox` | True/False checkbox |  |
-| **ConvertedToPremium**<br>`fldRqOzimq1WyNAP5` | `checkbox` | True/False checkbox |  |
-
----
-
-## 📋 36. KORU_Doors
-
-*Table ID: `tblBzBO7U0loXWHfB`*
-*Fields: 8*
-
-| Field | Type | Description | Options |
-|-------|------|-------------|---------|
-| **DoorID**<br>`fldIFUWfVadEdbByi` | `singleLineText` | Type: singleLineText |  |
-| **DoorKey**<br>`fldg4D9mggyB2HZat` | `singleLineText` | Type: singleLineText |  |
-| **DoorName**<br>`fldGs5R8avu975UUx` | `singleLineText` | Type: singleLineText |  |
-| **DoorCategory**<br>`fldeg64i2jPNk0Bfi` | `singleLineText` | Type: singleLineText |  |
-| **IsFreemiumAvailable**<br>`fld8ocjRszgoMEng2` | `checkbox` | True/False checkbox |  |
-| **IsPremiumOnly**<br>`fld9GvNhdv6eRPsbe` | `checkbox` | True/False checkbox |  |
-| **Status**<br>`fldj9N6dL6lTaJTjI` | `singleLineText` | Type: singleLineText |  |
-| **StrategicRole**<br>`fldf8tPhQWXLBZiPc` | `multilineText` | Multi-line text |  |
-
----
-
-## 📋 37. KORU_DoorUsage
-
-*Table ID: `tblHp5f3aD3rLFGl6`*
-*Fields: 14*
-
-| Field | Type | Description | Options |
-|-------|------|-------------|---------|
-| **DoorUsageID**<br>`fld5dTij09eVMSWjR` | `singleLineText` | Type: singleLineText |  |
-| **StudentID**<br>`fld6jCZ9ZkHrmVJUQ` | `singleLineText` | Type: singleLineText |  |
-| **FamilyID**<br>`fld0GOazT7dYfcdbt` | `singleLineText` | Type: singleLineText |  |
-| **SessionID**<br>`flds5nlBfXGVtQxld` | `singleLineText` | Type: singleLineText |  |
-| **DoorKey**<br>`fldMbxEICFhTlBBDL` | `singleLineText` | Type: singleLineText |  |
-| **StartedAt**<br>`fld68YVQtANseuQBs` | `dateTime` | Date and time |  |
-| **CompletedAt**<br>`fldSUIUyNervHmDqs` | `dateTime` | Date and time |  |
-| **DurationSeconds**<br>`fldR3ioCRIBuiU0Mp` | `number` | Numeric field |  |
-| **MessageCount**<br>`fldfG20HumGF0cNL1` | `number` | Numeric field |  |
-| **LearningWin**<br>`fldPDjAYVTvn7Drtk` | `checkbox` | True/False checkbox |  |
-| **GapDetected**<br>`fldweyxyxfOO0M8rM` | `checkbox` | True/False checkbox |  |
-| **GapWorked**<br>`fld4zxYwnrjCQvTZb` | `checkbox` | True/False checkbox |  |
-| **UpgradeClicked**<br>`fldUiHkeQiBPkJuxB` | `checkbox` | True/False checkbox |  |
-| **PlanAtUsage**<br>`fldXH4ha510DrbhCg` | `singleLineText` | Type: singleLineText |  |
-
----
-
-## 📋 38. UserLifecycleWindows
+## 📋 43. UserLifecycleWindows
 
 *Table ID: `tbl1cYmlsEI1rABvF`*
 *Fields: 36*
@@ -1183,179 +1302,60 @@
 
 ---
 
-## 📋 39. PremiumRetention
+## 📋 44. Testimonios
 
-*Table ID: `tbl0t8LOyXP5FIqk8`*
-*Fields: 33*
-
-| Field | Type | Description | Options |
-|-------|------|-------------|---------|
-| **PremiumRetentionID**<br>`fldg25kXosp0twoWd` | `singleLineText` | Type: singleLineText |  |
-| **StudentID**<br>`fldnz2hdfHD4LaqBi` | `singleLineText` | Type: singleLineText |  |
-| **FamilyID**<br>`fld92w5YGYSGEl8iQ` | `singleLineText` | Type: singleLineText |  |
-| **PagadorID**<br>`fldrG0D4V75ITNdkP` | `singleLineText` | Type: singleLineText |  |
-| **PremiumStartDate**<br>`fldZ5qo2ETDtJE5js` | `dateTime` | Date and time |  |
-| **CurrentPremiumStatus**<br>`fldJLdCGE4L7nBKlg` | `singleLineText` | Type: singleLineText |  |
-| **CurrentRetentionStage**<br>`fldMgc6Qfg6yGYMVk` | `singleLineText` | Type: singleLineText |  |
-| **PremiumStartedBeforeActivation**<br>`fld4pFaOkANNuCXXF` | `checkbox` | True/False checkbox |  |
-| **PremiumActivationAfterPaymentDays**<br>`fldSJ5L89ukodF6AZ` | `number` | Numeric field |  |
-| **DaysAsPremium**<br>`fld6fIjm8jYADO9Yb` | `number` | Numeric field |  |
-| **PaymentsSucceeded**<br>`fldEuCo0AykTvdAuZ` | `number` | Numeric field |  |
-| **PaymentsFailed**<br>`fldmkjYZ0Wcgq1cDc` | `number` | Numeric field |  |
-| **RenewalsSucceeded**<br>`fldrUy31DoPCv6y5V` | `number` | Numeric field |  |
-| **RenewalsFailed**<br>`fldtxwdPcb1AONCwj` | `number` | Numeric field |  |
-| **LastPaymentDate**<br>`fldLvDeg0TJnnuZ0n` | `dateTime` | Date and time |  |
-| **NextPaymentDate**<br>`fldEuoZjHpKuwrdbJ` | `dateTime` | Date and time |  |
-| **ChurnDate**<br>`fldBfRwARiNqIcsFi` | `dateTime` | Date and time |  |
-| **PremiumDaysToChurn**<br>`fldw8p7li7bpd2bmy` | `number` | Numeric field |  |
-| **PremiumSessionsTotal**<br>`fld5GreFcji5ybgWD` | `number` | Numeric field |  |
-| **PremiumActiveDaysTotal**<br>`fld68IAxOF6xDGlHj` | `number` | Numeric field |  |
-| **PremiumSessionsPerWeekLifetime**<br>`fldYYTUA7f0tnNPn2` | `number` | Numeric field |  |
-| **PremiumSessionsPerWeekLast30d**<br>`fldszOB2YDBCnyjPZ` | `number` | Numeric field |  |
-| **PremiumSessionsPerWeekLast60d**<br>`fldUFSMCwvZGh3Wus` | `number` | Numeric field |  |
-| **PremiumLast30dSessions**<br>`fldmXy7s64oJfacBH` | `number` | Numeric field |  |
-| **PremiumLast60dSessions**<br>`flddmLzrqcnGcrBcL` | `number` | Numeric field |  |
-| **PremiumLast90dSessions**<br>`fldlUkNVxIag3tcfJ` | `number` | Numeric field |  |
-| **PremiumLearningWinsTotal**<br>`fld5pUEIPkNh9JgXw` | `number` | Numeric field |  |
-| **PremiumLearningWinsLast30d**<br>`fldoDDFm70voTmY8L` | `number` | Numeric field |  |
-| **PremiumDoorsUsedTotal**<br>`fldalUKtyrctVuzCe` | `number` | Numeric field |  |
-| **PremiumMotherTouchpointsTotal**<br>`fldvR4RKzPvskskKG` | `number` | Numeric field |  |
-| **ChurnRiskScore**<br>`fldvxdI3A1QSx48It` | `number` | Numeric field |  |
-| **LTVAccrued**<br>`fldxnPXOy62d1G0HL` | `number` | Numeric field |  |
-| **ExpectedLTV**<br>`fldFAuoYhjTjFnkHu` | `number` | Numeric field |  |
-
----
-
-## 📋 40. Interventions
-
-*Table ID: `tbldwEc4pjgfCAIVf`*
-*Fields: 20*
+*Table ID: `tblMamG4VXbtJZNSd`*
+*Fields: 22*
 
 | Field | Type | Description | Options |
 |-------|------|-------------|---------|
-| **InterventionID**<br>`fldb9a5MNyOu91bJV` | `singleLineText` | Type: singleLineText |  |
-| **PersonID**<br>`fldCOPPvf1l0CLlFk` | `singleLineText` | Type: singleLineText |  |
-| **StudentID**<br>`fldafYjC56IIu6AA5` | `singleLineText` | Type: singleLineText |  |
-| **FamilyID**<br>`fldhYwkTpDEmRH5ZM` | `singleLineText` | Type: singleLineText |  |
-| **InterventionType**<br>`fldYoMpklMuvTVRkS` | `singleLineText` | Type: singleLineText |  |
-| **TriggerReason**<br>`fldUAI9SMFAG1bVzX` | `multilineText` | Multi-line text |  |
-| **TriggerEventID**<br>`fldd9OsbmLWPRgnbu` | `singleLineText` | Type: singleLineText |  |
-| **LifecycleStageAtTrigger**<br>`fldTowfywssvAdSOE` | `singleLineText` | Type: singleLineText |  |
-| **CreditsGranted**<br>`fldKlvBdtdq5ibCzE` | `number` | Numeric field |  |
-| **CreditsType**<br>`fldqQBDoG2MrWZ0iC` | `singleLineText` | Type: singleLineText |  |
-| **MessageSent**<br>`fldc27ttxgjW1QdT6` | `multilineText` | Multi-line text |  |
-| **Channel**<br>`fldepKUp3xA5xxxEg` | `singleLineText` | Type: singleLineText |  |
-| **CreatedAt**<br>`fldyeXuWQepXsAag2` | `dateTime` | Date and time |  |
-| **DeliveredAt**<br>`fldLrtaMbGecUBxDN` | `dateTime` | Date and time |  |
-| **OpenedAt**<br>`fldkywMc94VO1IquH` | `dateTime` | Date and time |  |
-| **ClickedAt**<br>`fldViX6iUIGw27zlP` | `dateTime` | Date and time |  |
-| **RedeemedAt**<br>`fldFCYaK1w9YAUulU` | `dateTime` | Date and time |  |
-| **OutcomeWindowDays**<br>`fldKk3TPOwNnrSdBS` | `number` | Numeric field |  |
-| **OutcomeEvent**<br>`fldE5sDObyIt7YlHh` | `singleLineText` | Type: singleLineText |  |
-| **OutcomeSuccess**<br>`fldWZ8GHHrF2Tid2E` | `checkbox` | True/False checkbox |  |
+| **ID_Testimonio**<br>`fldLPPjGgYFjrTUBB` | `autoNumber` | Type: autoNumber |  |
+| **Estudiante**<br>`fld4AG3mcFaWpwuts` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
+| **NombreMostrar**<br>`fldG9KdLMeKUE3gF9` | `singleLineText` | Type: singleLineText |  |
+| **Edad**<br>`fld6dRJYRVhag0UWP` | `number` | Numeric field |  |
+| **Texto**<br>`fldLoMVwRWEBpfpY8` | `multilineText` | Multi-line text |  |
+| **ImagenURL**<br>`fldqfk4WI6CSYy0sO` | `url` | URL link |  |
+| **Pais**<br>`fldtzOuum3vrMDcdX` | `singleSelect` | Single choice dropdown | `Argentina`, `Bolivia`, `Chile`, `Colombia`, `Ecuador` *(+7 more)* |
+| **TiposNEE**<br>`fld00qa4CY0zNONTg` | `multipleSelects` | Multiple choice dropdown | `TDA`, `TDAH`, `TEA`, `Dislexia`, `Discalculia` *(+1 more)* |
+| **ConversacionesAlEnviar**<br>`fldR1HqiuecBOT2kQ` | `number` | Numeric field |  |
+| **FechaEnvio**<br>`fld8RXhYQO1GCgUHH` | `createdTime` | Auto-generated creation time |  |
+| **Estado**<br>`fldSG4KwgwtQqO6ER` | `singleSelect` | Single choice dropdown | `Pendiente`, `Aprobado`, `Rechazado`, `Postergado` |
+| **FechaRevision**<br>`fldJMArz5vIs2qjWK` | `dateTime` | Date and time |  |
+| **NotasInternas**<br>`fld8tNgQeYXHpjJOk` | `multilineText` | Multi-line text |  |
+| **MostrarEnLanding**<br>`fldAC5GZyNVxn7tKk` | `checkbox` | True/False checkbox |  |
+| **MostrarAvisos**<br>`fldN79TbLpbkGuFWT` | `checkbox` | True/False checkbox |  |
+| **Consentimiento**<br>`fldCEipr2tKeJqMej` | `checkbox` | True/False checkbox |  |
+| **FechaConsentimiento**<br>`fldEp626LDM4xCmd0` | `dateTime` | Date and time |  |
+| **Pregunta1**<br>`fldEtPCm0j7w1AvpI` | `singleSelect` | Single choice dropdown | `Sí`, `No` |
+| **Pregunta2**<br>`fldziGIfAiNiR6xfe` | `singleSelect` | Single choice dropdown | `Me ha servido mucho`, `Me ha servido algo`, `Me ha servido poco`, `No me ha servido` |
+| **Pregunta3**<br>`fldPktTOTnXMWqiWE` | `singleSelect` | Single choice dropdown | `Mucho`, `Bastante`, `Algo`, `Nada` |
+| **Pregunta4**<br>`fldmqLoWXkNJR89WW` | `singleSelect` | Single choice dropdown | `Aprender algo puntual`, `Preparar una evaluación`, `Aprender a estudiar` |
+| **Pregunta5**<br>`fld8OpJJBBWb1H8K3` | `singleSelect` | Single choice dropdown | `Mucho, me asombra`, `Bastante`, `Lo percibo débilmente`, `No lo he notado` |
 
 ---
 
-## 📋 41. Institutions
+## 📋 45. VERSION_PROD
 
-*Table ID: `tbl65wIkkQhADQARg`*
-*Fields: 12*
-
-| Field | Type | Description | Options |
-|-------|------|-------------|---------|
-| **InstitutionID**<br>`fldZKrX7kcd0kNyjW` | `singleLineText` | Type: singleLineText |  |
-| **Country**<br>`fldGoseduDCZyaZip` | `singleLineText` | Type: singleLineText |  |
-| **InstitutionOfficialID**<br>`fldvsn9MW6zdlupiT` | `singleLineText` | Type: singleLineText |  |
-| **InstitutionOfficialIDType**<br>`fldqOcfINXHULostg` | `singleLineText` | Type: singleLineText |  |
-| **InstitutionName**<br>`fldsdxjp4rrenwCds` | `singleLineText` | Type: singleLineText |  |
-| **City**<br>`fldNAcdVfUMydDGhM` | `singleLineText` | Type: singleLineText |  |
-| **Commune**<br>`fldu8YetulLPrQ8O3` | `singleLineText` | Type: singleLineText |  |
-| **Region**<br>`fldM1SuIiEY81eeTn` | `singleLineText` | Type: singleLineText |  |
-| **AgreementStatus**<br>`fld9Pi2MZjHwbaO9K` | `singleLineText` | Type: singleLineText |  |
-| **AgreementStartDate**<br>`fldsLGL3eT4wEihkX` | `date` | Date |  |
-| **AgreementEndDate**<br>`fldLOmvf0ycMZy9L5` | `date` | Date |  |
-| **EIAAccessLevel**<br>`fldsMEpDG02EijRys` | `singleLineText` | Type: singleLineText |  |
-
----
-
-## 📋 42. InstitutionCohorts
-
-*Table ID: `tblLZB34VcPdzlvtQ`*
-*Fields: 9*
-
-| Field | Type | Description | Options |
-|-------|------|-------------|---------|
-| **CohortID**<br>`fldJoFw3z5wGq3ejU` | `singleLineText` | Type: singleLineText |  |
-| **InstitutionID**<br>`flddDYtwJdBfE1Dey` | `singleLineText` | Type: singleLineText |  |
-| **Country**<br>`fldPTRZaYaoYYvwpu` | `singleLineText` | Type: singleLineText |  |
-| **AcademicYear**<br>`fldvQYqYzXrlN4HAs` | `singleLineText` | Type: singleLineText |  |
-| **LevelCanonical**<br>`fldWo1wZT0Ol7LyLs` | `number` | Numeric field |  |
-| **CourseSection**<br>`fldMtnta1GF08c44k` | `singleLineText` | Type: singleLineText |  |
-| **CourseCanonical**<br>`fld8o2drZ9Cma1cUM` | `singleLineText` | Type: singleLineText |  |
-| **CourseLocalLabel**<br>`fldnqaADg45i904fu` | `singleLineText` | Type: singleLineText |  |
-| **EIAAccessLevel**<br>`fldrTSgE6B8EK3RnT` | `singleLineText` | Type: singleLineText |  |
-
----
-
-## 📋 43. InstitutionStudentValidation
-
-*Table ID: `tbl8Ye6EgsTglQFJb`*
-*Fields: 8*
-
-| Field | Type | Description | Options |
-|-------|------|-------------|---------|
-| **ValidationID**<br>`fldPuoBuhJqbFa0vG` | `singleLineText` | Type: singleLineText |  |
-| **InstitutionID**<br>`fldV2yFaPgmFP4kYY` | `singleLineText` | Type: singleLineText |  |
-| **CohortID**<br>`fldhTDhtKPJmUWgap` | `singleLineText` | Type: singleLineText |  |
-| **StudentNationalIDHash**<br>`fldT1mVLG7rxUPVM8` | `singleLineText` | Type: singleLineText |  |
-| **StudentNationalIDLast4**<br>`fldlFnuYXRaiOBDWT` | `singleLineText` | Type: singleLineText |  |
-| **Status**<br>`fldRGfpCubGkCMdEm` | `singleLineText` | Type: singleLineText |  |
-| **ValidationMethod**<br>`fldXmELT505I5OA41` | `singleLineText` | Type: singleLineText |  |
-| **LastValidatedAt**<br>`fldJYAmql6gnZoqff` | `dateTime` | Date and time |  |
-
----
-
-## 📋 44. Segments
-
-*Table ID: `tblFhJSTxNvYarU9c`*
-*Fields: 9*
-
-| Field | Type | Description | Options |
-|-------|------|-------------|---------|
-| **SegmentID**<br>`fldoITOEWGBt50gHn` | `singleLineText` | Type: singleLineText |  |
-| **SegmentKey**<br>`fldk8gpLrdyUHH2AD` | `singleLineText` | Type: singleLineText |  |
-| **SegmentName**<br>`fld0GqCLXZ61e5pjk` | `singleLineText` | Type: singleLineText |  |
-| **Description**<br>`fldKGIBasf9qs6ZTb` | `multilineText` | Multi-line text |  |
-| **CriteriaJSON**<br>`fldKDXOTYra3WkBkT` | `multilineText` | Multi-line text |  |
-| **LastCalculatedAt**<br>`fldUvu6qr0Jw0rHMr` | `dateTime` | Date and time |  |
-| **UsersCount**<br>`fldqgkizbuFKhMou6` | `number` | Numeric field |  |
-| **RecommendedAction**<br>`fld93cI8kP2DRPhNi` | `multilineText` | Multi-line text |  |
-| **Destination**<br>`fldavrYOkBlcaqzG6` | `singleLineText` | Type: singleLineText |  |
-
----
-
-## 📋 45. GrowthAnalysis
-
-*Table ID: `tbl6wrx1FNs9OzcT3`*
+*Table ID: `tblStqh1QgUM2ZZGE`*
 *Fields: 15*
 
 | Field | Type | Description | Options |
 |-------|------|-------------|---------|
-| **AnalysisID**<br>`fldhY0DM1LBgdrqGr` | `singleLineText` | Type: singleLineText |  |
-| **AnalysisType**<br>`fld5Q2RmBPwdfym58` | `singleLineText` | Type: singleLineText |  |
-| **PeriodStart**<br>`fld8c5mhhd9n0FgGM` | `dateTime` | Date and time |  |
-| **PeriodEnd**<br>`fldlkCPSVPWul1Hjq` | `dateTime` | Date and time |  |
-| **DataSnapshotID**<br>`fldsqO8XV6gfSiy2o` | `singleLineText` | Type: singleLineText |  |
-| **ExecutiveSummary**<br>`fldcpXJx0QaJBGpX8` | `multilineText` | Multi-line text |  |
-| **Findings**<br>`fldlURvfVsd16MsFA` | `multilineText` | Multi-line text |  |
-| **Anomalies**<br>`fldPYxd155OpXMNX3` | `multilineText` | Multi-line text |  |
-| **SegmentsToAct**<br>`fldDMDItMb6WeHuBb` | `multilineText` | Multi-line text |  |
-| **Hypotheses**<br>`fldqqeVdFMdP4SHus` | `multilineText` | Multi-line text |  |
-| **RecommendedActions**<br>`fldKpv93ZUSSAepKD` | `multilineText` | Multi-line text |  |
-| **Priority**<br>`fldDc0bmtRVwyNEGi` | `singleLineText` | Type: singleLineText |  |
-| **HumanDecision**<br>`fldDCN3s3DBX820Bo` | `multilineText` | Multi-line text |  |
-| **ActionStatus**<br>`fldmsKrjaLKaT2PCO` | `singleLineText` | Type: singleLineText |  |
-| **CreatedAt**<br>`fldIvXXmSaDFHrHCU` | `dateTime` | Date and time |  |
+| **FechaPublicacion**<br>`fld4Vu39O4zNgLJqZ` | `dateTime` | Date and time |  |
+| **Ambiente**<br>`fldj1wNtXh76HZvZR` | `singleSelect` | Single choice dropdown | `PROD`, `DEV` |
+| **Descripción nueva versión**<br>`fldp4TVI2mIZYXWc4` | `multilineText` | Multi-line text |  |
+| **Cambios BD**<br>`fldBSosvZGrV1Gt5J` | `singleLineText` | Type: singleLineText |  |
+| **Descripción DB**<br>`fldLEbXdOc6yk9TI3` | `multipleAttachments` | Type: multipleAttachments |  |
+| **Cambios Automatizaciones**<br>`fldNcmh2Qu8qVpwuh` | `singleLineText` | Type: singleLineText |  |
+| **Archivos**<br>`fldWTvrKvV4UnvXZq` | `multipleAttachments` | Type: multipleAttachments |  |
+| **landing.html**<br>`fldczEKFzscMX6JpS` | `multilineText` | Multi-line text |  |
+| **index.html**<br>`fld7ECFpJRGQj4zJ8` | `multilineText` | Multi-line text |  |
+| **chat.js**<br>`fldSdYMAXYd2d7Bob` | `multilineText` | Multi-line text |  |
+| **config.js**<br>`fldrzHp2TJKe1Mrwn` | `multilineText` | Multi-line text |  |
+| **Prompt-chat**<br>`fld1JoX5ky69KH0st` | `multilineText` | Multi-line text |  |
+| **Worker**<br>`fldztpSTpYD3DvSlO` | `multilineText` | Multi-line text |  |
+| **WorkerDeployment**<br>`fldYNzqOOvd62mNv8` | `singleLineText` | Type: singleLineText |  |
+| **Version_Fillout_Onboarding**<br>`fldm1rmf4KOECMsfG` | `singleLineText` | Type: singleLineText |  |
 
 ---
 
@@ -1364,7 +1364,7 @@
 ### 📋 Source Information
 - **Base**: Default (`default`)
 - **Base ID**: `app9c8iiAYRGxxhtH`
-- **Generated**: 2026-06-04 21:55:03
+- **Generated**: 2026-06-05 11:33:22
 
 ### 🛠️ Field Type Legend
 - **singleSelect**: Dropdown with single choice
@@ -1382,7 +1382,7 @@
 ### ⚡ Automation
 This document is auto-generated by GitHub Actions.
 **Update schedule**: Daily at 8:00 AM UTC
-**Last sync**: 2026-06-04 21:55:03
+**Last sync**: 2026-06-05 11:33:22
 
 ---
-*Documentation for Default base - Generated 2026-06-04 21:55:03*
+*Documentation for Default base - Generated 2026-06-05 11:33:22*
