@@ -1,13 +1,13 @@
 # 🗂️ Airtable Database Structure - Default
 
-> **Last update**: 2026-06-15 14:29:58
+> **Last update**: 2026-06-16 12:59:54
 > **Base**: default (Default)
 > **Auto-generated** - Do not edit manually
 
 ## 📊 Summary
 
 - **Tables**: 46
-- **Total fields**: 895
+- **Total fields**: 896
 - **Base ID**: `app9c8iiAYRGxxhtH`
 
 - **singleSelect fields**: 92
@@ -185,17 +185,20 @@
 ## 📋 7. EIA_Intentos
 
 *Table ID: `tbl80yft40YOSa6nD`*
-*Fields: 33*
+*Fields: 34*
 
 | Field | Type | Description | Options |
 |-------|------|-------------|---------|
 | **IntentoKey**<br>`fldRNMDz3Ve9ptgLh` | `autoNumber` | Type: autoNumber |  |
+| **CreatedAt**<br>`fld5S4oCFpDgpj8RA` | `createdTime` | Auto-generated creation time |  |
+| **SessionUUID**<br>`fldBWfpLDCP0sjBfE` | `singleLineText` | Type: singleLineText |  |
 | **ID_IntentoEIA**<br>`fldxYsWVxNKCsfEul` | `singleLineText` | Type: singleLineText |  |
 | **NumeroIntento**<br>`fldn3Ox3BVDEJq0TK` | `number` | Numeric field |  |
 | **EsValido**<br>`fldiyDblcdTOQ3bYU` | `checkbox` | True/False checkbox |  |
 | **MotivoInvalido**<br>`fldsJx3xHBjHyfeUJ` | `singleLineText` | Type: singleLineText |  |
 | **PromptUsuario**<br>`fld30LrmULvVYGpjW` | `multilineText` | Multi-line text |  |
 | **PromptHash**<br>`fldAsWWVz18htEQbJ` | `singleLineText` | Type: singleLineText |  |
+| **CriterioUsuario**<br>`fld2Dm47E39HqBk9K` | `multilineText` | Multi-line text |  |
 | **RespuestaIA**<br>`fldr9oR5uuAWHfGlz` | `multilineText` | Multi-line text |  |
 | **RespuestaFueLimitada**<br>`fldbWrdxezWgbDzM2` | `checkbox` | True/False checkbox |  |
 | **CriticaEIA**<br>`fld9BP0qLoqUC2v9R` | `multilineText` | Multi-line text |  |
@@ -215,13 +218,11 @@
 | **TokensInputCoach**<br>`fldLp0IVx50WwLE9P` | `number` | Numeric field |  |
 | **TokensOutputCoach**<br>`fldQOTScBHKqhHbcR` | `number` | Numeric field |  |
 | **CostoEstimado**<br>`fldhLdDVK9MuXPujF` | `number` | Numeric field |  |
-| **CreatedAt**<br>`fld5S4oCFpDgpj8RA` | `dateTime` | Date and time |  |
 | **Sesion**<br>`fldxij5neojr9BNtn` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
 | **EIA_Eventos**<br>`fldf2Erq0Z20GqWOo` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
 | **ModeloClassifier**<br>`fldgdFXqv78IS1K26` | `singleLineText` | Type: singleLineText |  |
 | **TokensInputClassifier**<br>`fld73x82FvBfYZCM3` | `number` | Numeric field |  |
 | **TokensOutputClassifier**<br>`fld7zLts8jgpbwoXF` | `number` | Numeric field |  |
-| **SessionUUID**<br>`fldBWfpLDCP0sjBfE` | `singleLineText` | Type: singleLineText |  |
 
 ---
 
@@ -233,6 +234,7 @@
 | Field | Type | Description | Options |
 |-------|------|-------------|---------|
 | **ID_SesionEIA**<br>`fldsuU7YWbcieVaOu` | `autoNumber` | Type: autoNumber |  |
+| **FechaInicio**<br>`fld8DwdtdCLlnmOGd` | `createdTime` | Auto-generated creation time |  |
 | **RecordID**<br>`fldoxflUeBkbuikeg` | `formula` | Calculated field | Formula: `RECORD_ID()` |
 | **SessionUUID**<br>`fldmOdV7PYZXjR0lz` | `singleLineText` | Type: singleLineText |  |
 | **AnonID**<br>`fldrb7k6OFUVOp1y1` | `singleLineText` | Type: singleLineText |  |
@@ -273,7 +275,6 @@
 | **TipoCierre**<br>`fldqtWfhEYnjNDktP` | `singleSelect` | Single choice dropdown | `completada`, `abandono_datos`, `abandono_prompt`, `abandono_critica`, `limite` *(+2 more)* |
 | **ClickWhatsApp**<br>`fldkhHuB4vIaNIYq6` | `checkbox` | True/False checkbox |  |
 | **ClickKoruFreemium**<br>`fldD24xUSQIE7FM27` | `checkbox` | True/False checkbox |  |
-| **FechaInicio**<br>`fld8DwdtdCLlnmOGd` | `createdTime` | Auto-generated creation time |  |
 | **FechaTermino**<br>`fldTv4P9UlRKFFHwV` | `dateTime` | Date and time |  |
 | **DuracionSegundos**<br>`fldNLSqDHHpKJU7My` | `number` | Numeric field |  |
 | **CostoTotalEstimado**<br>`fldhaCu51ym2DmZWO` | `number` | Numeric field |  |
@@ -454,9 +455,11 @@
 |-------|------|-------------|---------|
 | **EventID**<br>`fldCVq8xSTRRmoEQv` | `singleLineText` | Type: singleLineText |  |
 | **EventName**<br>`fld9yv9rI0O4Grq2e` | `singleLineText` | Type: singleLineText |  |
+| **SessionID**<br>`fldNoKzA5RubL3aZV` | `singleLineText` | Type: singleLineText |  |
 | **EventTime**<br>`fldkMSmHlvmui1AmE` | `dateTime` | Date and time |  |
-| **ReceivedAt**<br>`fldRXTv1xDwHITv1H` | `dateTime` | Date and time |  |
+| **IdempotencyKey**<br>`fldbFD0GKJVurYhfI` | `singleLineText` | Type: singleLineText |  |
 | **PropertiesJSON**<br>`fldlwf0TYmNsl65pG` | `multilineText` | Multi-line text |  |
+| **ReceivedAt**<br>`fldRXTv1xDwHITv1H` | `dateTime` | Date and time |  |
 | **Environment**<br>`fldDSkV083gEfNcO7` | `singleLineText` | Type: singleLineText |  |
 | **ProductContext**<br>`fldevF2WYo7HmgEkp` | `singleLineText` | Type: singleLineText |  |
 | **AnonID**<br>`fldwmci6Q06oYpqiN` | `singleLineText` | Type: singleLineText |  |
@@ -465,7 +468,6 @@
 | **FamilyID**<br>`fldsiTMjoTJFqhUTb` | `singleLineText` | Type: singleLineText |  |
 | **PagadorID**<br>`fldmxbzNyDVZWdQ6S` | `singleLineText` | Type: singleLineText |  |
 | **JourneyID**<br>`fldujKwvrNn3VRTDT` | `singleLineText` | Type: singleLineText |  |
-| **SessionID**<br>`fldNoKzA5RubL3aZV` | `singleLineText` | Type: singleLineText |  |
 | **TouchpointID**<br>`fldSUTqNxxRZcrIHN` | `singleLineText` | Type: singleLineText |  |
 | **ShareLinkID**<br>`fldLJkLfdxJg8Q6aC` | `singleLineText` | Type: singleLineText |  |
 | **RootShareLinkID**<br>`flduwWNd1LYuUrCba` | `singleLineText` | Type: singleLineText |  |
@@ -481,7 +483,6 @@
 | **PageURL**<br>`fld79g0piBOr8rspb` | `multilineText` | Multi-line text |  |
 | **AppVersion**<br>`fldwU25KP4rPsMJPk` | `singleLineText` | Type: singleLineText |  |
 | **WorkerVersion**<br>`fldt4kJjVemHvNDEN` | `singleLineText` | Type: singleLineText |  |
-| **IdempotencyKey**<br>`fldbFD0GKJVurYhfI` | `singleLineText` | Type: singleLineText |  |
 | **CountryDetected**<br>`fldwxAUEZTWKilh0Q` | `singleLineText` | Type: singleLineText |  |
 | **CountrySelected**<br>`fld1f0RoL8vrAszqT` | `singleLineText` | Type: singleLineText |  |
 | **CountryForAnalysis**<br>`fldFqoxayymyvIVnd` | `singleLineText` | Type: singleLineText |  |
@@ -1388,7 +1389,7 @@
 ### 📋 Source Information
 - **Base**: Default (`default`)
 - **Base ID**: `app9c8iiAYRGxxhtH`
-- **Generated**: 2026-06-15 14:29:58
+- **Generated**: 2026-06-16 12:59:54
 
 ### 🛠️ Field Type Legend
 - **singleSelect**: Dropdown with single choice
@@ -1406,7 +1407,7 @@
 ### ⚡ Automation
 This document is auto-generated by GitHub Actions.
 **Update schedule**: Daily at 8:00 AM UTC
-**Last sync**: 2026-06-15 14:29:58
+**Last sync**: 2026-06-16 12:59:54
 
 ---
-*Documentation for Default base - Generated 2026-06-15 14:29:58*
+*Documentation for Default base - Generated 2026-06-16 12:59:54*
