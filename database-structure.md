@@ -1,18 +1,18 @@
 # 🗂️ Airtable Database Structure - Default
 
-> **Last update**: 2026-06-28 10:31:28
+> **Last update**: 2026-06-29 12:39:37
 > **Base**: default (Default)
 > **Auto-generated** - Do not edit manually
 
 ## 📊 Summary
 
 - **Tables**: 45
-- **Total fields**: 943
+- **Total fields**: 1004
 - **Base ID**: `app9c8iiAYRGxxhtH`
 
 - **singleSelect fields**: 91
 - **multipleSelects fields**: 8
-- **number fields**: 133
+- **number fields**: 134
 - **date fields**: 19
 - **formula fields**: 20
 
@@ -578,11 +578,11 @@
 ## 📋 15. IdentityMap
 
 *Table ID: `tblRIoIJVSqDU32wX`*
-*Fields: 14*
+*Fields: 35*
 
 | Field | Type | Description | Options |
 |-------|------|-------------|---------|
-| **IdentityID**<br>`fld5lOnCRP7yVfBdR` | `singleLineText` | Type: singleLineText |  |
+| **IdentityKey**<br>`fld5lOnCRP7yVfBdR` | `singleLineText` | Type: singleLineText |  |
 | **AnonID**<br>`fldz02zeHVEB9pLlT` | `singleLineText` | Type: singleLineText |  |
 | **DeviceID**<br>`fldiKD2pTtysZhDxy` | `singleLineText` | Type: singleLineText |  |
 | **Email**<br>`fldPXzTcsmtregGS4` | `singleLineText` | Type: singleLineText |  |
@@ -596,6 +596,27 @@
 | **LastSeenAt**<br>`fldBoh8UJdDT6AeRE` | `dateTime` | Date and time |  |
 | **Confidence**<br>`fldT9dCV4VoKDKcBB` | `singleLineText` | Type: singleLineText |  |
 | **Source**<br>`fldkrN8ZapK9QcY7s` | `singleLineText` | Type: singleLineText |  |
+| **IdentificationLevel**<br>`fldzQg0NVgegGdQOn` | `singleLineText` | Type: singleLineText |  |
+| **IsIdentified**<br>`fldadg8FAjg34L2di` | `checkbox` | True/False checkbox |  |
+| **Environment**<br>`fld1oK2EmJHFOEoIn` | `singleLineText` | Type: singleLineText |  |
+| **FirstJourneyID**<br>`fldC7N0ED7qcilG9j` | `singleLineText` | Type: singleLineText |  |
+| **LastJourneyID**<br>`fld5lznshOKzwvKBG` | `singleLineText` | Type: singleLineText |  |
+| **RootJourneyID**<br>`flduFwGr6BpPdEcLm` | `singleLineText` | Type: singleLineText |  |
+| **FirstEventID**<br>`fldJQPFxQtSPYdmtE` | `singleLineText` | Type: singleLineText |  |
+| **FirstEventName**<br>`fldDrhH2rYISXau76` | `singleLineText` | Type: singleLineText |  |
+| **FirstEventTime**<br>`flddMw9eYNmx1zxGV` | `dateTime` | Date and time |  |
+| **FirstEventRecordID**<br>`fldIlrK8gCjL438gp` | `singleLineText` | Type: singleLineText |  |
+| **LastEventID**<br>`fldJFupj9ri9pPoCR` | `singleLineText` | Type: singleLineText |  |
+| **LastEventName**<br>`fldSzIYfJ3yFxCo85` | `singleLineText` | Type: singleLineText |  |
+| **LastEventTime**<br>`fldKOJfCaun6npacB` | `dateTime` | Date and time |  |
+| **LastEventRecordID**<br>`fldyQ6JBd1hchCvqB` | `singleLineText` | Type: singleLineText |  |
+| **FirstProductContext**<br>`fldi2yWySfzH3jsmz` | `singleLineText` | Type: singleLineText |  |
+| **LastProductContext**<br>`fldVP6OGJorTafo8R` | `singleLineText` | Type: singleLineText |  |
+| **CreatedAt**<br>`fldlTRJn5fskK4c49` | `dateTime` | Date and time |  |
+| **UpdatedAt**<br>`fldS5ZZN6ZiwPBwGw` | `dateTime` | Date and time |  |
+| **EventCount**<br>`fldbY3MPVEg6W5aHl` | `number` | Numeric field |  |
+| **LastPageURL**<br>`fldc37TjTloGH5o2X` | `multilineText` | Multi-line text |  |
+| **LastPropertiesJSON**<br>`fld64Hal6Rw5oqRUX` | `multilineText` | Multi-line text |  |
 
 ---
 
@@ -691,7 +712,7 @@
 ## 📋 20. Journeys
 
 *Table ID: `tbl446CakE2I9mAv5`*
-*Fields: 61*
+*Fields: 101*
 
 | Field | Type | Description | Options |
 |-------|------|-------------|---------|
@@ -756,6 +777,46 @@
 | **ReferralID**<br>`fldnaldhTSDudfe9n` | `singleLineText` | Type: singleLineText |  |
 | **FirstPropertiesJSON**<br>`fldBWcVuptBBAmXLe` | `multilineText` | Multi-line text |  |
 | **LastPropertiesJSON**<br>`fldwaO2e0mn20WU8a` | `multilineText` | Multi-line text |  |
+| **HasQualifiedVisit**<br>`fldrvRvqpTlBM3mVv` | `checkbox` | True/False checkbox |  |
+| **QualifiedVisitAt**<br>`fldCMv9rlMASVIVxl` | `dateTime` | Date and time |  |
+| **HasCTAClicked**<br>`fldn2bD7WLVHFDxSR` | `checkbox` | True/False checkbox |  |
+| **FirstCTAClickedAt**<br>`fld5KKgf73cIP23P3` | `dateTime` | Date and time |  |
+| **HasEIAStarted**<br>`fldvJ3FTLpFdzAZjm` | `checkbox` | True/False checkbox |  |
+| **EIAStartedAt**<br>`fldjJ9NF0HxcRN3Og` | `dateTime` | Date and time |  |
+| **HasEIACompleted**<br>`fldEqr7YHzgzvZJbg` | `checkbox` | True/False checkbox |  |
+| **EIACompletedAt**<br>`fld0dRMaAqRydCFLN` | `dateTime` | Date and time |  |
+| **HasSignupStarted**<br>`fld4Sx1wfsiYqkjid` | `checkbox` | True/False checkbox |  |
+| **SignupStartedAt**<br>`fldHcg7SmrKwNE4nU` | `dateTime` | Date and time |  |
+| **FreemiumRegisteredAt**<br>`fldmUFNZovXew2kqi` | `dateTime` | Date and time |  |
+| **HasFreemiumRegistered**<br>`fldjjvDsjf1yWQvnp` | `checkbox` | True/False checkbox |  |
+| **HasFirstSessionStarted**<br>`fldwFkHCIfU9Jc0Nd` | `checkbox` | True/False checkbox |  |
+| **FirstSessionStartedAt**<br>`fld0O2onEoB13KXMW` | `dateTime` | Date and time |  |
+| **HasFirstSessionCompleted**<br>`fldLxQat5mTa3iEaO` | `checkbox` | True/False checkbox |  |
+| **FirstSessionCompletedAt**<br>`fldwptYmvVZCfGrn4` | `dateTime` | Date and time |  |
+| **HasSecondSessionCompleted**<br>`fldIeuOwLTAL1lyMI` | `checkbox` | True/False checkbox |  |
+| **SecondSessionCompletedAt**<br>`fldOody15UXc8maZ0` | `dateTime` | Date and time |  |
+| **HasActivationAchieved**<br>`fld5gXueW2IqofHwo` | `checkbox` | True/False checkbox |  |
+| **ActivationAchievedAt**<br>`fld9fbfFPRa8vocZy` | `dateTime` | Date and time |  |
+| **HasPremiumCheckoutStarted**<br>`fld7mB853sar2owo7` | `checkbox` | True/False checkbox |  |
+| **PremiumCheckoutStartedAt**<br>`fld3Dy9xhXCTW61IS` | `dateTime` | Date and time |  |
+| **HasPremiumPaymentCompleted**<br>`fld3iGNY1SSI28R0d` | `checkbox` | True/False checkbox |  |
+| **PremiumPaymentCompletedAt**<br>`fld41ixxgz17RX5SM` | `dateTime` | Date and time |  |
+| **HasPremiumStarted**<br>`fld4las0kp6FxNYTe` | `checkbox` | True/False checkbox |  |
+| **FirstTouchCapturedAt**<br>`fldjdyToulVJyEOsk` | `dateTime` | Date and time |  |
+| **LastTouchCapturedAt**<br>`fld3dU6k1m8enxY56` | `dateTime` | Date and time |  |
+| **LastUTMSource**<br>`fldXKUdJCTrjPoOrS` | `singleLineText` | Type: singleLineText |  |
+| **LastUTMMedium**<br>`fldtuSEtitpwEtJWo` | `singleLineText` | Type: singleLineText |  |
+| **LastUTMCampaign**<br>`fldQyHeE0zrsCPbNJ` | `singleLineText` | Type: singleLineText |  |
+| **LastUTMContent**<br>`fldgiybcfUZTLD91h` | `singleLineText` | Type: singleLineText |  |
+| **LastUTMTerm**<br>`fldGzqWIAMfS4jV43` | `singleLineText` | Type: singleLineText |  |
+| **LastFbclid**<br>`flddpPi6U0a1OAa55` | `singleLineText` | Type: singleLineText |  |
+| **LastGclid**<br>`fldk4vdZlb3hAsvXg` | `singleLineText` | Type: singleLineText |  |
+| **LastReferrer**<br>`fldNKRA544Ji89cxg` | `multilineText` | Multi-line text |  |
+| **LastTouchEventID**<br>`fldhxHjZBBuW0BXlV` | `singleLineText` | Type: singleLineText |  |
+| **LastTouchEventName**<br>`fldRxz3h7qcADlPMh` | `singleLineText` | Type: singleLineText |  |
+| **DateTime**<br>`fldkwXuNh3Ylj2e07` | `dateTime` | Date and time |  |
+| **SingleLineText**<br>`fldkDvbKwMaSeUrLX` | `singleLineText` | Type: singleLineText |  |
+| **LastTouchPageURL**<br>`fldljNOB7DNSkg4uH` | `multilineText` | Multi-line text |  |
 
 ---
 
@@ -1430,7 +1491,7 @@
 ### 📋 Source Information
 - **Base**: Default (`default`)
 - **Base ID**: `app9c8iiAYRGxxhtH`
-- **Generated**: 2026-06-28 10:31:28
+- **Generated**: 2026-06-29 12:39:37
 
 ### 🛠️ Field Type Legend
 - **singleSelect**: Dropdown with single choice
@@ -1448,7 +1509,7 @@
 ### ⚡ Automation
 This document is auto-generated by GitHub Actions.
 **Update schedule**: Daily at 8:00 AM UTC
-**Last sync**: 2026-06-28 10:31:28
+**Last sync**: 2026-06-29 12:39:37
 
 ---
-*Documentation for Default base - Generated 2026-06-28 10:31:28*
+*Documentation for Default base - Generated 2026-06-29 12:39:37*
