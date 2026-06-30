@@ -1,18 +1,18 @@
 # 🗂️ Airtable Database Structure - Production
 
-> **Last update**: 2026-06-30 13:45:25
+> **Last update**: 2026-06-30 17:51:21
 > **Base**: prod (Production)
 > **Auto-generated** - Do not edit manually
 
 ## 📊 Summary
 
 - **Tables**: 45
-- **Total fields**: 884
+- **Total fields**: 991
 - **Base ID**: `appr2x4VzE0OySqOu`
 
 - **singleSelect fields**: 91
 - **multipleSelects fields**: 8
-- **number fields**: 133
+- **number fields**: 135
 - **date fields**: 19
 - **formula fields**: 13
 
@@ -800,7 +800,7 @@
 ## 📋 27. EIA_Intentos
 
 *Table ID: `tbl6VgMSkKJBaNEqF`*
-*Fields: 33*
+*Fields: 34*
 
 | Field | Type | Description | Options |
 |-------|------|-------------|---------|
@@ -837,6 +837,7 @@
 | **SessionUUID**<br>`fldb0FPeIlKqtPMHv` | `singleLineText` | Type: singleLineText |  |
 | **Sesion**<br>`fld7qRfoXZJcCV5Uf` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
 | **EIA_Eventos**<br>`flduuXfEbVkgeabtV` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
+| **ID_IntentoEIA**<br>`fldpEeJlzHa7vaNjf` | `singleLineText` | Type: singleLineText |  |
 
 ---
 
@@ -925,7 +926,7 @@
 ## 📋 30. SenalesDeInteres
 
 *Table ID: `tblPykEYkqBz98oXJ`*
-*Fields: 8*
+*Fields: 9*
 
 | Field | Type | Description | Options |
 |-------|------|-------------|---------|
@@ -937,13 +938,14 @@
 | **FechaProcesada**<br>`fldfRAt8MG7rigWG1` | `dateTime` | Date and time |  |
 | **Estudiantes**<br>`fldWWHDb6didV3TpF` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
 | **FechaSenal**<br>`fldhDwE7CO6Zys7IC` | `createdTime` | Auto-generated creation time |  |
+| **TipoSenal**<br>`fld1HHTyfvKFZxqlN` | `singleLineText` | Type: singleLineText |  |
 
 ---
 
 ## 📋 31. Events
 
 *Table ID: `tblZrRQ7pvDXFMNpl`*
-*Fields: 33*
+*Fields: 39*
 
 | Field | Type | Description | Options |
 |-------|------|-------------|---------|
@@ -980,13 +982,19 @@
 | **CountryDetected**<br>`fldTeAfaCt9nAkMjZ` | `singleLineText` | Type: singleLineText |  |
 | **CountrySelected**<br>`fldTLmhsrW1xQ5nF5` | `singleLineText` | Type: singleLineText |  |
 | **CountryForAnalysis**<br>`fldSWzlIJqLbnwD5k` | `singleLineText` | Type: singleLineText |  |
+| **RootJourneyID**<br>`fld32a19ljLCcpTJg` | `singleLineText` | Type: singleLineText |  |
+| **ParentJourneyID**<br>`fldWJAoubgysEFs0Y` | `singleLineText` | Type: singleLineText |  |
+| **ReferralID**<br>`fldRy1e9WjMqz2LsS` | `singleLineText` | Type: singleLineText |  |
+| **Gclid**<br>`fld4kACIDNfM40cDr` | `singleLineText` | Type: singleLineText |  |
+| **EventSource**<br>`fldGLPRPvqR4HMKj9` | `singleLineText` | Type: singleLineText |  |
+| **SchemaVersion**<br>`fldTmTmxEBxCcEliw` | `singleLineText` | Type: singleLineText |  |
 
 ---
 
 ## 📋 32. Journeys
 
 *Table ID: `tbldtnGZk2RHFYoFI`*
-*Fields: 24*
+*Fields: 101*
 
 | Field | Type | Description | Options |
 |-------|------|-------------|---------|
@@ -1014,6 +1022,83 @@
 | **HasPremium**<br>`fldYLDp4E3GbfFI8i` | `checkbox` | True/False checkbox |  |
 | **PremiumStartedAt**<br>`fldOnDlryfMLMaGVm` | `dateTime` | Date and time |  |
 | **CurrentLTV**<br>`fld7ktDXx1K83sOO0` | `number` | Numeric field |  |
+| **RootJourneyID**<br>`fldIMNOUSi5Vg3TMs` | `singleLineText` | Type: singleLineText |  |
+| **LastEventName**<br>`fld2qWXWugAZJbwqT` | `singleLineText` | Type: singleLineText |  |
+| **FirstEventName**<br>`fldz6AKV6rrwL2LMO` | `singleLineText` | Type: singleLineText |  |
+| **FirstEventID**<br>`fldIRN58897cTo9jf` | `singleLineText` | Type: singleLineText |  |
+| **FirstEventTime**<br>`fldt6hcVyFpG2v0c5` | `dateTime` | Date and time |  |
+| **FirstEventRecordID**<br>`fldf01ofB83DstRXn` | `singleLineText` | Type: singleLineText |  |
+| **ParentJourneyID**<br>`fld5nhikC4PS913NQ` | `singleLineText` | Type: singleLineText |  |
+| **Environment**<br>`fldg0nWNTwqbes0rv` | `singleLineText` | Type: singleLineText |  |
+| **ProductContext**<br>`fldBywfbHZLhotAq3` | `singleLineText` | Type: singleLineText |  |
+| **Status**<br>`fldjKZjWkEwXMCsOV` | `singleLineText` | Type: singleLineText |  |
+| **CreatedAt**<br>`fldcj2Du0islkOhMl` | `dateTime` | Date and time |  |
+| **UpdatedAt**<br>`fldfncaa0k2MSYS3h` | `dateTime` | Date and time |  |
+| **LastEventID**<br>`fldusoCXGBerB4xq4` | `singleLineText` | Type: singleLineText |  |
+| **LastEventTime**<br>`fldFa9LPvNALoBxqX` | `dateTime` | Date and time |  |
+| **LastEventRecordID**<br>`fldWEmOQnjyfQPBLD` | `singleLineText` | Type: singleLineText |  |
+| **EventCount**<br>`fldMGoAdBTnju4Dnv` | `number` | Numeric field |  |
+| **AnonID**<br>`fldSguJSqBuxolIaB` | `singleLineText` | Type: singleLineText |  |
+| **PersonID**<br>`fldbgT52UicxRSFXQ` | `singleLineText` | Type: singleLineText |  |
+| **StudentID**<br>`fldVR6XzmtDbPnou1` | `singleLineText` | Type: singleLineText |  |
+| **PagadorID**<br>`fldY03l52vfqqBfFd` | `singleLineText` | Type: singleLineText |  |
+| **CountryDetected**<br>`fldyGGSOK2vhc6bad` | `singleLineText` | Type: singleLineText |  |
+| **CountrySelected**<br>`fldha9KrK32wG9gTi` | `singleLineText` | Type: singleLineText |  |
+| **CountryForAnalysis**<br>`fldgxLuyADqoVPsZl` | `singleLineText` | Type: singleLineText |  |
+| **UTMSource**<br>`fldSRO5FY61gRAY7l` | `singleLineText` | Type: singleLineText |  |
+| **UTMMedium**<br>`fldOdoDzdioT5EPtV` | `singleLineText` | Type: singleLineText |  |
+| **UTMCampaign**<br>`fldPHdV2lCybd4vKJ` | `singleLineText` | Type: singleLineText |  |
+| **UTMContent**<br>`fldDx4Nbdrbb0wpB3` | `singleLineText` | Type: singleLineText |  |
+| **UTMTerm**<br>`fldkrVwlN5xdM7eqn` | `singleLineText` | Type: singleLineText |  |
+| **Fbclid**<br>`fldvO7YW4c77FW9A4` | `singleLineText` | Type: singleLineText |  |
+| **Gclid**<br>`fld099uNURBbkCoyg` | `singleLineText` | Type: singleLineText |  |
+| **Referrer**<br>`fldK9NtQ1hhDeH9xV` | `singleLineText` | Type: singleLineText |  |
+| **LandingPageURL**<br>`fldnUp9UjlV6tRY3c` | `singleLineText` | Type: singleLineText |  |
+| **LastPageURL**<br>`fld5DhdKiAYcOlvpG` | `singleLineText` | Type: singleLineText |  |
+| **ShareLinkID**<br>`fldGUcHiPvfS6Yfxq` | `singleLineText` | Type: singleLineText |  |
+| **ReferralID**<br>`fldvfW3iw9F2PIQKA` | `singleLineText` | Type: singleLineText |  |
+| **FirstPropertiesJSON**<br>`fldxjw9BOCaTv1BQi` | `multilineText` | Multi-line text |  |
+| **LastPropertiesJSON**<br>`fld3L1TV2wpg6DHFO` | `multilineText` | Multi-line text |  |
+| **HasQualifiedVisit**<br>`fldytIph9kcBTPmfM` | `checkbox` | True/False checkbox |  |
+| **QualifiedVisitAt**<br>`fldH6CN5RZ8kjYYjD` | `dateTime` | Date and time |  |
+| **HasCTAClicked**<br>`fldPeedWcykNBfa7f` | `checkbox` | True/False checkbox |  |
+| **FirstCTAClickedAt**<br>`fldj5SM2DsiVXvjtk` | `dateTime` | Date and time |  |
+| **HasEIAStarted**<br>`fldhduVOJgEeiFOnj` | `checkbox` | True/False checkbox |  |
+| **EIAStartedAt**<br>`fld4vCBNOIZU1mzgG` | `dateTime` | Date and time |  |
+| **HasEIACompleted**<br>`fldXpEyH8EltgIPDY` | `checkbox` | True/False checkbox |  |
+| **EIACompletedAt**<br>`fldkztxf09DOBuViC` | `dateTime` | Date and time |  |
+| **HasSignupStarted**<br>`fldFnHPTm70KlZPo4` | `checkbox` | True/False checkbox |  |
+| **SignupStartedAt**<br>`fldD5ivI2c13t84K5` | `dateTime` | Date and time |  |
+| **FreemiumRegisteredAt**<br>`fldCoqjLAvgXE47Vy` | `dateTime` | Date and time |  |
+| **HasFreemiumRegistered**<br>`fldpnYEkfZls52005` | `checkbox` | True/False checkbox |  |
+| **HasFirstSessionStarted**<br>`fld86jVNzPp7QsGes` | `checkbox` | True/False checkbox |  |
+| **FirstSessionStartedAt**<br>`fldgvTqf2v6CsZRxA` | `dateTime` | Date and time |  |
+| **HasFirstSessionCompleted**<br>`fldVdtedXlzkWj8jX` | `checkbox` | True/False checkbox |  |
+| **FirstSessionCompletedAt**<br>`fldvtSuTOlRFxadwt` | `dateTime` | Date and time |  |
+| **HasSecondSessionCompleted**<br>`fldie6eaWCGDdVpc0` | `checkbox` | True/False checkbox |  |
+| **SecondSessionCompletedAt**<br>`fldppp23zlNQ7dF9k` | `dateTime` | Date and time |  |
+| **HasActivationAchieved**<br>`fldodvwNCGgm1uQhh` | `checkbox` | True/False checkbox |  |
+| **ActivationAchievedAt**<br>`fldIHMFevCVQRxG08` | `dateTime` | Date and time |  |
+| **HasPremiumCheckoutStarted**<br>`fldlS2mVt1NlJgwBj` | `checkbox` | True/False checkbox |  |
+| **PremiumCheckoutStartedAt**<br>`fldP4101gfNdHqxth` | `dateTime` | Date and time |  |
+| **HasPremiumPaymentCompleted**<br>`fld2rDATiLc5NXdCq` | `checkbox` | True/False checkbox |  |
+| **PremiumPaymentCompletedAt**<br>`fldxXL9Cad2ksfEns` | `dateTime` | Date and time |  |
+| **HasPremiumStarted**<br>`fldrlnbUdOpLXIdRC` | `checkbox` | True/False checkbox |  |
+| **FirstTouchCapturedAt**<br>`fldn4OMowCJwmXldH` | `dateTime` | Date and time |  |
+| **LastTouchCapturedAt**<br>`fldPZYfpSu0JfcgHe` | `dateTime` | Date and time |  |
+| **LastUTMSource**<br>`fld8a6HkrBdYHddRC` | `singleLineText` | Type: singleLineText |  |
+| **LastUTMMedium**<br>`fldYo4G8XCcb4jmex` | `singleLineText` | Type: singleLineText |  |
+| **LastUTMCampaign**<br>`fldpjIjkBVJUxCo6G` | `singleLineText` | Type: singleLineText |  |
+| **LastUTMContent**<br>`fldmS3pXGXCOpv4JH` | `singleLineText` | Type: singleLineText |  |
+| **LastUTMTerm**<br>`fldH4iTSBK7LBqBgW` | `singleLineText` | Type: singleLineText |  |
+| **LastFbclid**<br>`fldmjed2brrbODYWJ` | `singleLineText` | Type: singleLineText |  |
+| **LastGclid**<br>`fldps7j39BSZ0cGg9` | `singleLineText` | Type: singleLineText |  |
+| **LastReferrer**<br>`fldPqZ8JnsHNCCmY6` | `multilineText` | Multi-line text |  |
+| **LastTouchEventID**<br>`fldfnR7WuB6COc02Y` | `singleLineText` | Type: singleLineText |  |
+| **LastTouchEventName**<br>`fldK9qXQM9ReXLUnf` | `singleLineText` | Type: singleLineText |  |
+| **DateTime**<br>`fldgj5v613zzCvoEf` | `dateTime` | Date and time |  |
+| **SingleLineText**<br>`fldv3wNU1qJiBqkyV` | `singleLineText` | Type: singleLineText |  |
+| **LastTouchPageURL**<br>`fldxxGXdkcOggPtWb` | `multilineText` | Multi-line text |  |
 
 ---
 
@@ -1039,7 +1124,7 @@
 ## 📋 34. IdentityMap
 
 *Table ID: `tblhI6JhkpHEH6GN4`*
-*Fields: 14*
+*Fields: 36*
 
 | Field | Type | Description | Options |
 |-------|------|-------------|---------|
@@ -1057,6 +1142,28 @@
 | **LastSeenAt**<br>`fldAiwCtLbgIjla5p` | `dateTime` | Date and time |  |
 | **Confidence**<br>`fldUkW0alEvinMYhB` | `singleLineText` | Type: singleLineText |  |
 | **Source**<br>`fldGk2IRKOduxeop7` | `singleLineText` | Type: singleLineText |  |
+| **IdentityKey**<br>`fldTJuLBnr0iaElbP` | `singleLineText` | Type: singleLineText |  |
+| **IdentificationLevel**<br>`fld3XThNK4880mysR` | `singleLineText` | Type: singleLineText |  |
+| **IsIdentified**<br>`fldhedK1sfLbVfnzD` | `checkbox` | True/False checkbox |  |
+| **Environment**<br>`fldSp9KchQWij2rda` | `singleLineText` | Type: singleLineText |  |
+| **FirstJourneyID**<br>`fldrjRw2GoVmpJ0hV` | `singleLineText` | Type: singleLineText |  |
+| **LastJourneyID**<br>`fldBjYds9vjBvxW9j` | `singleLineText` | Type: singleLineText |  |
+| **RootJourneyID**<br>`fldwMF1lmkARMV6p5` | `singleLineText` | Type: singleLineText |  |
+| **FirstEventID**<br>`fldEcYdvCkQkq7bQ4` | `singleLineText` | Type: singleLineText |  |
+| **FirstEventName**<br>`fldRx1cO8wIXOpS9w` | `singleLineText` | Type: singleLineText |  |
+| **FirstEventTime**<br>`fldoGIPj8woVzMuWp` | `dateTime` | Date and time |  |
+| **FirstEventRecordID**<br>`fldkArQkh0H3xVU86` | `singleLineText` | Type: singleLineText |  |
+| **LastEventID**<br>`fldE35VPhW4oXeNVR` | `singleLineText` | Type: singleLineText |  |
+| **LastEventName**<br>`fldSbM3ZOnbnY9sge` | `singleLineText` | Type: singleLineText |  |
+| **LastEventTime**<br>`fldrFuWuLZGF4dIGP` | `dateTime` | Date and time |  |
+| **LastEventRecordID**<br>`fldXf3TXtRbVrfPKF` | `singleLineText` | Type: singleLineText |  |
+| **FirstProductContext**<br>`fldZDMupd9taUXbYV` | `singleLineText` | Type: singleLineText |  |
+| **LastProductContext**<br>`fld6bjg0BnI0Uk913` | `singleLineText` | Type: singleLineText |  |
+| **CreatedAt**<br>`fldBmNDvgXyGwcJEL` | `dateTime` | Date and time |  |
+| **UpdatedAt**<br>`fld9Uysm228hh9KAP` | `dateTime` | Date and time |  |
+| **EventCount**<br>`fldWIiGxV2pFyydfv` | `number` | Numeric field |  |
+| **LastPageURL**<br>`fldqAR5jiKyZSJHfJ` | `multilineText` | Multi-line text |  |
+| **LastPropertiesJSON**<br>`fldMAjtfrPMhG3aXW` | `multilineText` | Multi-line text |  |
 
 ---
 
@@ -1366,7 +1473,7 @@
 ### 📋 Source Information
 - **Base**: Production (`prod`)
 - **Base ID**: `appr2x4VzE0OySqOu`
-- **Generated**: 2026-06-30 13:45:25
+- **Generated**: 2026-06-30 17:51:21
 
 ### 🛠️ Field Type Legend
 - **singleSelect**: Dropdown with single choice
@@ -1384,7 +1491,7 @@
 ### ⚡ Automation
 This document is auto-generated by GitHub Actions.
 **Update schedule**: Daily at 8:00 AM UTC
-**Last sync**: 2026-06-30 13:45:25
+**Last sync**: 2026-06-30 17:51:21
 
 ---
-*Documentation for Production base - Generated 2026-06-30 13:45:25*
+*Documentation for Production base - Generated 2026-06-30 17:51:21*
