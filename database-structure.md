@@ -1,6 +1,6 @@
 # 🗂️ Airtable Database Structure - Default
 
-> **Last update**: 2026-06-29 12:39:37
+> **Last update**: 2026-06-30 11:15:00
 > **Base**: default (Default)
 > **Auto-generated** - Do not edit manually
 
@@ -492,6 +492,7 @@
 |-------|------|-------------|---------|
 | **EventID**<br>`fldCVq8xSTRRmoEQv` | `singleLineText` | Type: singleLineText |  |
 | **EventName**<br>`fld9yv9rI0O4Grq2e` | `singleLineText` | Type: singleLineText |  |
+| **JourneyID**<br>`fldujKwvrNn3VRTDT` | `singleLineText` | Type: singleLineText |  |
 | **EventTime**<br>`fldkMSmHlvmui1AmE` | `dateTime` | Date and time |  |
 | **ReceivedAt**<br>`fldRXTv1xDwHITv1H` | `dateTime` | Date and time |  |
 | **IdempotencyKey**<br>`fldbFD0GKJVurYhfI` | `singleLineText` | Type: singleLineText |  |
@@ -508,7 +509,6 @@
 | **StudentID**<br>`fldQ8pP4Eh2OI12BJ` | `singleLineText` | Type: singleLineText |  |
 | **FamilyID**<br>`fldsiTMjoTJFqhUTb` | `singleLineText` | Type: singleLineText |  |
 | **PagadorID**<br>`fldmxbzNyDVZWdQ6S` | `singleLineText` | Type: singleLineText |  |
-| **JourneyID**<br>`fldujKwvrNn3VRTDT` | `singleLineText` | Type: singleLineText |  |
 | **SessionID**<br>`fldNoKzA5RubL3aZV` | `singleLineText` | Type: singleLineText |  |
 | **TouchpointID**<br>`fldSUTqNxxRZcrIHN` | `singleLineText` | Type: singleLineText |  |
 | **ShareLinkID**<br>`fldLJkLfdxJg8Q6aC` | `singleLineText` | Type: singleLineText |  |
@@ -717,12 +717,18 @@
 | Field | Type | Description | Options |
 |-------|------|-------------|---------|
 | **JourneyID**<br>`fldUxhE1f0YCw0xQC` | `singleLineText` | Type: singleLineText |  |
+| **RootJourneyID**<br>`fldAqPhM866XvfhfF` | `singleLineText` | Type: singleLineText |  |
+| **CurrentStage**<br>`fldLIng1uFdzlfBR6` | `singleLineText` | Type: singleLineText |  |
+| **LastEventName**<br>`fldjHaeZt2enD0TQ5` | `singleLineText` | Type: singleLineText |  |
+| **FirstEventName**<br>`fldjJuHtzix0I2h8f` | `singleLineText` | Type: singleLineText |  |
+| **FirstEventID**<br>`fldCBEUkSzVXBTqii` | `singleLineText` | Type: singleLineText |  |
+| **FirstEventTime**<br>`flduncpcG6L6Xs41z` | `dateTime` | Date and time |  |
+| **FirstEventRecordID**<br>`fldrwnjEGCnA0b1kP` | `singleLineText` | Type: singleLineText |  |
 | **RootAnonID**<br>`fldU5uaNt6g26CGnB` | `singleLineText` | Type: singleLineText |  |
 | **RootPersonID**<br>`fldgdHxmuMEyb8KCl` | `singleLineText` | Type: singleLineText |  |
 | **FirstTouchpointID**<br>`fldpqCQjU7OErP36x` | `singleLineText` | Type: singleLineText |  |
 | **FirstSeenAt**<br>`fldI8hsvidseMC1uN` | `dateTime` | Date and time |  |
 | **LastSeenAt**<br>`fldax0m7wVPb0wnWx` | `dateTime` | Date and time |  |
-| **CurrentStage**<br>`fldLIng1uFdzlfBR6` | `singleLineText` | Type: singleLineText |  |
 | **AcquisitionPath**<br>`fldVJlVb8wZvA5vyQ` | `multilineText` | Multi-line text |  |
 | **FirstTouchChannel**<br>`fldgZMdcfapwksgUT` | `singleLineText` | Type: singleLineText |  |
 | **FirstTouchCampaign**<br>`fldNFxVBT8otx4gez` | `singleLineText` | Type: singleLineText |  |
@@ -740,19 +746,13 @@
 | **HasPremium**<br>`fldKCwIhBluP0OpbZ` | `checkbox` | True/False checkbox |  |
 | **PremiumStartedAt**<br>`fld9dz2wZmqRBpMik` | `dateTime` | Date and time |  |
 | **CurrentLTV**<br>`fldpuDmRmvWfKr6VJ` | `number` | Numeric field |  |
-| **RootJourneyID**<br>`fldAqPhM866XvfhfF` | `singleLineText` | Type: singleLineText |  |
 | **ParentJourneyID**<br>`fldT48LJ2G7iiS0tG` | `singleLineText` | Type: singleLineText |  |
 | **Environment**<br>`fld1hLuMg78vx01Hv` | `singleLineText` | Type: singleLineText |  |
 | **ProductContext**<br>`fld0i5lfM2fnQeEy3` | `singleLineText` | Type: singleLineText |  |
 | **Status**<br>`fldsZGWhjNsAiifMD` | `singleLineText` | Type: singleLineText |  |
 | **CreatedAt**<br>`fld13U9XmITkHX1oX` | `dateTime` | Date and time |  |
 | **UpdatedAt**<br>`fld52ttKA1xt0Z0N6` | `dateTime` | Date and time |  |
-| **FirstEventID**<br>`fldCBEUkSzVXBTqii` | `singleLineText` | Type: singleLineText |  |
-| **FirstEventName**<br>`fldjJuHtzix0I2h8f` | `singleLineText` | Type: singleLineText |  |
-| **FirstEventTime**<br>`flduncpcG6L6Xs41z` | `dateTime` | Date and time |  |
-| **FirstEventRecordID**<br>`fldrwnjEGCnA0b1kP` | `singleLineText` | Type: singleLineText |  |
 | **LastEventID**<br>`fldXPdOQXMWLoZkTy` | `singleLineText` | Type: singleLineText |  |
-| **LastEventName**<br>`fldjHaeZt2enD0TQ5` | `singleLineText` | Type: singleLineText |  |
 | **LastEventTime**<br>`fldUV94XObnxmjmAP` | `dateTime` | Date and time |  |
 | **LastEventRecordID**<br>`fldqEHblvF74HsiSf` | `singleLineText` | Type: singleLineText |  |
 | **EventCount**<br>`fldcBjVdAixsoRDBI` | `number` | Numeric field |  |
@@ -1491,7 +1491,7 @@
 ### 📋 Source Information
 - **Base**: Default (`default`)
 - **Base ID**: `app9c8iiAYRGxxhtH`
-- **Generated**: 2026-06-29 12:39:37
+- **Generated**: 2026-06-30 11:15:00
 
 ### 🛠️ Field Type Legend
 - **singleSelect**: Dropdown with single choice
@@ -1509,7 +1509,7 @@
 ### ⚡ Automation
 This document is auto-generated by GitHub Actions.
 **Update schedule**: Daily at 8:00 AM UTC
-**Last sync**: 2026-06-29 12:39:37
+**Last sync**: 2026-06-30 11:15:00
 
 ---
-*Documentation for Default base - Generated 2026-06-29 12:39:37*
+*Documentation for Default base - Generated 2026-06-30 11:15:00*
