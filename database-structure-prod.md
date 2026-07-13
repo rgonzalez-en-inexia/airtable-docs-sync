@@ -1,19 +1,19 @@
 # 🗂️ Airtable Database Structure - Production
 
-> **Last update**: 2026-06-30 19:33:00
+> **Last update**: 2026-07-13 13:40:59
 > **Base**: prod (Production)
 > **Auto-generated** - Do not edit manually
 
 ## 📊 Summary
 
-- **Tables**: 45
-- **Total fields**: 1012
+- **Tables**: 53
+- **Total fields**: 1440
 - **Base ID**: `appr2x4VzE0OySqOu`
 
 - **singleSelect fields**: 91
 - **multipleSelects fields**: 8
-- **number fields**: 135
-- **date fields**: 19
+- **number fields**: 268
+- **date fields**: 28
 - **formula fields**: 22
 
 ---
@@ -177,6 +177,7 @@
 |-------|------|-------------|---------|
 | **EventoKey**<br>`fldKA2Lqi52KQdkmP` | `autoNumber` | Type: autoNumber |  |
 | **Evento**<br>`fldHyeMplqphYYZIX` | `singleLineText` | Type: singleLineText |  |
+| **Timestamp**<br>`fldXxEumwqJJ7FjBE` | `createdTime` | Auto-generated creation time |  |
 | **SessionUUID**<br>`fldpLn8dz0GFxvJGY` | `singleLineText` | Type: singleLineText |  |
 | **MetadataJSON**<br>`fldT8tri1UDi2B9ap` | `multilineText` | Multi-line text |  |
 | **UTMSource**<br>`fldmARHiktOTLWdGt` | `singleLineText` | Type: singleLineText |  |
@@ -194,7 +195,6 @@
 | **Environment**<br>`fldkWcyMOGXp3luDS` | `singleLineText` | Type: singleLineText |  |
 | **Sesion**<br>`fldXLgTCJt4detOUK` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
 | **Intento**<br>`fldgFg6Hh3QToAVfB` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
-| **Timestamp**<br>`fldXxEumwqJJ7FjBE` | `createdTime` | Auto-generated creation time |  |
 
 ---
 
@@ -312,6 +312,7 @@
 | Field | Type | Description | Options |
 |-------|------|-------------|---------|
 | **ShareID**<br>`fldd28BJlUNe8PJrh` | `singleLineText` | Type: singleLineText |  |
+| **CreatedAt**<br>`fldK6j0DPgZiChhIt` | `createdTime` | Auto-generated creation time |  |
 | **ID_ShareEIA**<br>`fldrq5FOO3PHCa7VR` | `singleLineText` | Type: singleLineText |  |
 | **TipoShare**<br>`fldzA078kB0a1flIR` | `singleLineText` | Type: singleLineText |  |
 | **URLGenerada**<br>`fldl1eWnID0EvxUvV` | `url` | URL link |  |
@@ -321,7 +322,6 @@
 | **SesionesAtribuidas**<br>`fldVfTxn7CrEnGATE` | `number` | Numeric field |  |
 | **UltimoClick**<br>`fldSMJUZjVk4RWsvr` | `dateTime` | Date and time |  |
 | **SesionOrigen**<br>`fldYVycpYDMqAD7E4` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
-| **CreatedAt**<br>`fldK6j0DPgZiChhIt` | `createdTime` | Auto-generated creation time |  |
 
 ---
 
@@ -351,11 +351,12 @@
 ## 📋 11. Estudiantes
 
 *Table ID: `tblR5gbkydy59GOOC`*
-*Fields: 124*
+*Fields: 125*
 
 | Field | Type | Description | Options |
 |-------|------|-------------|---------|
 | **ID_Estudiante**<br>`fldp7qIUatWYG2zw2` | `autoNumber` | Type: autoNumber |  |
+| **createdTime**<br>`fldEltn2PBE8QGSVM` | `createdTime` | Auto-generated creation time |  |
 | **Email**<br>`fldaPohMI9tlgDW4t` | `email` | Email address |  |
 | **SacarDeDashboard**<br>`fldtLsUh1RVBhX3Kj` | `checkbox` | True/False checkbox |  |
 | **UltimaActividad**<br>`fld00gaBZOkktKJYO` | `dateTime` | Date and time |  |
@@ -556,7 +557,539 @@
 
 ---
 
-## 📋 14. GrowthAnalysis
+## 📋 14. GI_Ads
+
+*Table ID: `tblm9wZRQmsYFwla7`*
+*Fields: 34*
+
+| Field | Type | Description | Options |
+|-------|------|-------------|---------|
+| **AdKey**<br>`fldLNEzA0oYcnq5qx` | `singleLineText` | Type: singleLineText |  |
+| **MetaAdID**<br>`fldzMg1rP9DGdmDlL` | `singleLineText` | Type: singleLineText |  |
+| **MetaAdSetID**<br>`fldQB81t1VWYjA9Vg` | `singleLineText` | Type: singleLineText |  |
+| **MetaCampaignID**<br>`fldlgmPa2HBuzetBa` | `singleLineText` | Type: singleLineText |  |
+| **AdNameCurrent**<br>`fldyzu9nY5y9EEapn` | `singleLineText` | Type: singleLineText |  |
+| **AdNameInitial**<br>`fldNxs0AW9ES7oNG9` | `singleLineText` | Type: singleLineText |  |
+| **AdNameNormalized**<br>`fld7K0J2mynNkPFyg` | `singleLineText` | Type: singleLineText |  |
+| **NameChanged**<br>`fldZfYL819XLgcviD` | `checkbox` | True/False checkbox |  |
+| **MetaCreativeID**<br>`fldrzP5t7Abs8Lnp5` | `singleLineText` | Type: singleLineText |  |
+| **CreativeConceptKey**<br>`fldjS8Pa1xA5OoQJc` | `singleLineText` | Type: singleLineText |  |
+| **CreativeConceptName**<br>`fldOadIycGh5LahUF` | `singleLineText` | Type: singleLineText |  |
+| **CreativeFormat**<br>`flddsHTZylSjt7HZ2` | `singleLineText` | Type: singleLineText |  |
+| **CreativeAngle**<br>`fld2zmiwsrp5E1Lnz` | `singleLineText` | Type: singleLineText |  |
+| **CreativeVersion**<br>`fldIU02tOVvGjwNtm` | `singleLineText` | Type: singleLineText |  |
+| **CTAType**<br>`fldg2UijFcvQeRjoP` | `singleLineText` | Type: singleLineText |  |
+| **DestinationURL**<br>`fldxypvi99fQNIyWI` | `url` | URL link |  |
+| **UTMSourceExpected**<br>`fldn8xF60JtvqDLFz` | `singleLineText` | Type: singleLineText |  |
+| **UTMMediumExpected**<br>`fldvcP9qq0TZH0JRB` | `singleLineText` | Type: singleLineText |  |
+| **UTMCampaignExpected**<br>`fldfBdN6GjeejI60f` | `singleLineText` | Type: singleLineText |  |
+| **UTMTermExpected**<br>`fldj6wcToNhStCk6L` | `singleLineText` | Type: singleLineText |  |
+| **UTMContentExpected**<br>`fld5AUxdWkQ4PpgaS` | `singleLineText` | Type: singleLineText |  |
+| **Status**<br>`fldvGV6A5NFzECjgw` | `singleLineText` | Type: singleLineText |  |
+| **EffectiveStatus**<br>`fldXwFx0gajEpLJpJ` | `singleLineText` | Type: singleLineText |  |
+| **FirstActiveAt**<br>`fldCaZ0UVFqrfuxZB` | `dateTime` | Date and time |  |
+| **LastActiveAt**<br>`fldCC6PHiEWyiG2sV` | `dateTime` | Date and time |  |
+| **CreatedTimeMeta**<br>`fldWNObblzPf8hBeX` | `dateTime` | Date and time |  |
+| **ConfigHashCurrent**<br>`fld4dFc4kh2euFCX6` | `singleLineText` | Type: singleLineText |  |
+| **ConfigChanged**<br>`fldZ9fVg0aFip5Z3A` | `checkbox` | True/False checkbox |  |
+| **LastSyncedAt**<br>`fldCPmSFmN8OqeuFm` | `dateTime` | Date and time |  |
+| **Notes**<br>`fldvVEDWGOANuFR1k` | `multilineText` | Multi-line text |  |
+| **SchemaVersion**<br>`fldNOkyHuPUGVippK` | `singleLineText` | Type: singleLineText |  |
+| **GI_MetaAdsDaily**<br>`flddM7vDpaRVOmdcD` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
+| **GI_FunnelDaily**<br>`fld9JryIfAtky9FCt` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
+| **GI_MarketingPerformanceDaily**<br>`fldyLSjSweeU3WefT` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
+
+---
+
+## 📋 15. GI_AdSets
+
+*Table ID: `tblGFOFFyOfPwo0zu`*
+*Fields: 64*
+
+| Field | Type | Description | Options |
+|-------|------|-------------|---------|
+| **AdSetKey**<br>`fldc1CMsH0K4ilFT2` | `singleLineText` | Type: singleLineText |  |
+| **MetaAdSetID**<br>`fld3CAfY3rlg4XrJU` | `singleLineText` | Type: singleLineText |  |
+| **MetaCampaignID**<br>`fld2Tqg8Fk61qLP9D` | `singleLineText` | Type: singleLineText |  |
+| **AdSetNameCurrent**<br>`fldn8jj5tXjznXJCa` | `singleLineText` | Type: singleLineText |  |
+| **AdSetNameInitial**<br>`fldstT3GtrKNOhU56` | `singleLineText` | Type: singleLineText |  |
+| **AdSetNameNormalized**<br>`fldHldnhjYdI0V09a` | `singleLineText` | Type: singleLineText |  |
+| **NameChanged**<br>`fldPHZq8spythCf6s` | `checkbox` | True/False checkbox |  |
+| **Status**<br>`fldZnFbiW0mDxjInN` | `singleLineText` | Type: singleLineText |  |
+| **EffectiveStatus**<br>`fldFJflz5oQ7RCTbJ` | `singleLineText` | Type: singleLineText |  |
+| **CreatedTimeMeta**<br>`fldqnEq0iEXS0YBX6` | `dateTime` | Date and time |  |
+| **StartTimeMeta**<br>`fldqfxz03beYdXN5q` | `dateTime` | Date and time |  |
+| **EndTimeMeta**<br>`fldRGmTIAE2hl1WVu` | `dateTime` | Date and time |  |
+| **LastSyncedAt**<br>`fldkaUULOdfepUWVT` | `dateTime` | Date and time |  |
+| **TargetRole**<br>`fld1oF44o1utaKlOc` | `singleLineText` | Type: singleLineText |  |
+| **AgeMin**<br>`flduNTYBzYJbUaAAd` | `number` | Numeric field |  |
+| **AgeMax**<br>`fldRPiw1EcTZnil09` | `number` | Numeric field |  |
+| **SocioeconomicSegment**<br>`fldfNTPYUoLzBaSTg` | `singleLineText` | Type: singleLineText |  |
+| **SegmentDefinition**<br>`fld1tQUH1uZXlunKc` | `multilineText` | Multi-line text |  |
+| **TargetCountryPrimary**<br>`fldWhH3eC6kUUvs1R` | `singleLineText` | Type: singleLineText |  |
+| **TargetCountryCodesJSON**<br>`fld61caoeR9ynlGzE` | `multilineText` | Multi-line text |  |
+| **GeoKey**<br>`fldOLVTRWhrYEfazI` | `singleLineText` | Type: singleLineText |  |
+| **GeoLabel**<br>`fld749N5p8cSeAA4n` | `singleLineText` | Type: singleLineText |  |
+| **GeoScopeType**<br>`fldsVcvzrE8qRjhYt` | `singleLineText` | Type: singleLineText |  |
+| **GeoTargetsJSON**<br>`fldsYQaXcAOeNr8TN` | `multilineText` | Multi-line text |  |
+| **GeoExclusionsJSON**<br>`fldEa8AMj93htlFFs` | `multilineText` | Multi-line text |  |
+| **TargetingJSON**<br>`fld5l0rysnQuYsNJe` | `multilineText` | Multi-line text |  |
+| **LanguagesJSON**<br>`fldIMKBLhocGLYUaq` | `multilineText` | Multi-line text |  |
+| **PlacementsMode**<br>`fldbtTdnnYowrlfv8` | `singleLineText` | Type: singleLineText |  |
+| **PlacementsJSON**<br>`fldyM83NGjiY6NDH9` | `multilineText` | Multi-line text |  |
+| **OptimizationGoal**<br>`fldgi7ytNIxAXjhAf` | `singleLineText` | Type: singleLineText |  |
+| **OptimizationEventMeta**<br>`fldDC5uuv9c1nYGZV` | `singleLineText` | Type: singleLineText |  |
+| **OptimizationEventGIEquivalent**<br>`fldqZHP8a5juwowum` | `singleLineText` | Type: singleLineText |  |
+| **BillingEvent**<br>`fldMyrXPdr3lzV8FJ` | `singleLineText` | Type: singleLineText |  |
+| **BidStrategy**<br>`fldhe6Ai1ZhQHv0x3` | `singleLineText` | Type: singleLineText |  |
+| **AttributionSetting**<br>`fldkTxbvBCQBx1Dap` | `singleLineText` | Type: singleLineText |  |
+| **PromotedObjectJSON**<br>`fldgyIjGyvOcEQvDb` | `multilineText` | Multi-line text |  |
+| **BudgetSource**<br>`fldzaTkVYd9AWUXak` | `singleLineText` | Type: singleLineText |  |
+| **BudgetType**<br>`fldp3Hv3Ki9iZnnYx` | `singleLineText` | Type: singleLineText |  |
+| **CurrentBudgetAccountCurrency**<br>`fld6pyx1c2ZO52Nsv` | `number` | Numeric field |  |
+| **AccountCurrencyCode**<br>`fld0I4onTVIMBlxUC` | `singleLineText` | Type: singleLineText |  |
+| **LearningStatus**<br>`fldK16pGQ8R4jFShN` | `singleLineText` | Type: singleLineText |  |
+| **AudiencePotentialLowerCurrent**<br>`fldDNrW0kqB80L2cp` | `number` | Numeric field |  |
+| **AudiencePotentialUpperCurrent**<br>`fldrgLnPScjVpOits` | `number` | Numeric field |  |
+| **AudiencePotentialMidpointCurrent**<br>`fldKqhY5D7A0dOqtC` | `number` | Numeric field |  |
+| **AudienceEstimateCapturedAt**<br>`fldcMvTYz6efm6Ehv` | `dateTime` | Date and time |  |
+| **AudienceEstimateStatus**<br>`fldw9fwanUJPAhaqM` | `singleLineText` | Type: singleLineText |  |
+| **AudienceEstimateConfigHash**<br>`fld3LEaGcM3KNFu49` | `singleLineText` | Type: singleLineText |  |
+| **AudienceEstimateError**<br>`fld5GyFb5r2wJgLgQ` | `multilineText` | Multi-line text |  |
+| **ConfigHashCurrent**<br>`fldsqTNzltJmY1gcD` | `singleLineText` | Type: singleLineText |  |
+| **ConfigHashPrevious**<br>`fld3VqYsnoXbC0jcZ` | `singleLineText` | Type: singleLineText |  |
+| **ConfigChanged**<br>`fldRd9E36oC5FmXuc` | `checkbox` | True/False checkbox |  |
+| **LastConfigChangeAt**<br>`fldYZDcVgmuNhVRi3` | `dateTime` | Date and time |  |
+| **LastConfigChangeType**<br>`fld7NzDpwYwyN5eb7` | `singleLineText` | Type: singleLineText |  |
+| **AnalysisContinuityBroken**<br>`fld7skh3V8WDdbifN` | `checkbox` | True/False checkbox |  |
+| **ContinuityBreakReason**<br>`fldh5vJx5xIwjFgsI` | `multilineText` | Multi-line text |  |
+| **Notes**<br>`fldWOZwm25rHeK4OD` | `multilineText` | Multi-line text |  |
+| **SchemaVersion**<br>`fldpHGIiclaQCwZho` | `singleLineText` | Type: singleLineText |  |
+| **Campaign**<br>`fldC15eCqsIPHHkgs` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
+| **Geography**<br>`fldrF3Yf2q5lMQxkR` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
+| **GI_AdSetConfigSnapshots**<br>`fld1Iu9YexSO6PUzi` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
+| **GI_MetaAdsDaily**<br>`fldtnBvoUg87IKk9M` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
+| **GI_MetaAudienceSnapshots**<br>`fld1zV5rf1KD6hine` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
+| **GI_FunnelDaily**<br>`fldwbxFPPUcoaohUr` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
+| **GI_MarketingPerformanceDaily**<br>`fld6upAa7szZJkIr1` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
+
+---
+
+## 📋 16. GI_Campaigns
+
+*Table ID: `tbllsjg8Ps1H4ggrB`*
+*Fields: 39*
+
+| Field | Type | Description | Options |
+|-------|------|-------------|---------|
+| **CampaignKey**<br>`fldKXVxNNMQW28h7F` | `singleLineText` | Type: singleLineText |  |
+| **MetaAccountID**<br>`fld6lxVQvY4bQoV5n` | `singleLineText` | Type: singleLineText |  |
+| **MetaCampaignID**<br>`fldm4GUGVCmCOqfMX` | `singleLineText` | Type: singleLineText |  |
+| **CampaignNameCurrent**<br>`fldtiiuDaONDxBgt6` | `singleLineText` | Type: singleLineText |  |
+| **CampaignNameInitial**<br>`fldUO298FUjouD49k` | `singleLineText` | Type: singleLineText |  |
+| **CampaignNameNormalized**<br>`fldCb4MqOEYsPStGl` | `singleLineText` | Type: singleLineText |  |
+| **NameChanged**<br>`fldeE7Ef8i6WEBarX` | `checkbox` | True/False checkbox |  |
+| **Status**<br>`fldvzExJaXFYG5QoA` | `singleLineText` | Type: singleLineText |  |
+| **EffectiveStatus**<br>`fldaEuMCDKzXyDkQa` | `singleLineText` | Type: singleLineText |  |
+| **MetaObjective**<br>`fldSMi3rpdBMEUpSR` | `singleLineText` | Type: singleLineText |  |
+| **BuyingType**<br>`fldq7cuG13CEmjomU` | `singleLineText` | Type: singleLineText |  |
+| **CreatedTimeMeta**<br>`fld6dRjxres7sHlI4` | `dateTime` | Date and time |  |
+| **StartDate**<br>`fldYK0FeZeSxfxGWC` | `date` | Date |  |
+| **EndDate**<br>`fldMXFJEwHL3sfcIJ` | `date` | Date |  |
+| **LastSyncedAt**<br>`fldntHFl0QxKdzXUF` | `dateTime` | Date and time |  |
+| **CountryStrategy**<br>`flde15ibihbRcukwo` | `singleLineText` | Type: singleLineText |  |
+| **FunnelStage**<br>`fldvTHBL9Rai6ejiu` | `singleLineText` | Type: singleLineText |  |
+| **StrategicObjective**<br>`fldTVPIwu9zKhFdyu` | `multilineText` | Multi-line text |  |
+| **PrimaryGIMetric**<br>`fldma7X53FKgi5sR4` | `singleLineText` | Type: singleLineText |  |
+| **SecondaryGIMetrics**<br>`fldWP849pKbdLcWbX` | `multilineText` | Multi-line text |  |
+| **Hypothesis**<br>`fldaa2aPTWsUHhYq0` | `multilineText` | Multi-line text |  |
+| **ScaleCriteria**<br>`fldSg8Dcf2N8BqANt` | `multilineText` | Multi-line text |  |
+| **PauseCriteria**<br>`fldWJzRXzj6V6A4qu` | `multilineText` | Multi-line text |  |
+| **DecisionStatus**<br>`fldxgpQ1gaCZAd2t0` | `singleLineText` | Type: singleLineText |  |
+| **DecisionRationale**<br>`fldoETIHnhO2rVFqX` | `multilineText` | Multi-line text |  |
+| **Owner**<br>`fldn6Rpplgu7rIh4i` | `singleLineText` | Type: singleLineText |  |
+| **Notes**<br>`fldWzOznGAqslGAXy` | `multilineText` | Multi-line text |  |
+| **BudgetLevel**<br>`fld5xBanHCTu9Uwzi` | `singleLineText` | Type: singleLineText |  |
+| **BudgetType**<br>`fldHyHOD02HFySCA0` | `singleLineText` | Type: singleLineText |  |
+| **CurrentBudgetAccountCurrency**<br>`fldfRE9FDYbq3zP98` | `number` | Numeric field |  |
+| **AccountCurrencyCode**<br>`fld0yxRoLwZCEGE1t` | `singleLineText` | Type: singleLineText |  |
+| **SpendCapAccountCurrency**<br>`fldyHYYZ0aGpwNpPY` | `number` | Numeric field |  |
+| **SchemaVersion**<br>`fldeU26pmGQV2zwpm` | `singleLineText` | Type: singleLineText |  |
+| **GI_AdSets**<br>`fld56a8EcehRsKZnR` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
+| **GI_AdSetConfigSnapshots**<br>`fld6OR54P2w0NVuTD` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
+| **GI_MetaAdsDaily**<br>`fldbcM6QAypgxPsB9` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
+| **GI_MetaAudienceSnapshots**<br>`fldQKwFPmRKwDqYVl` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
+| **GI_FunnelDaily**<br>`fld6LAkofiVWAO5DT` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
+| **GI_MarketingPerformanceDaily**<br>`fldYCSBjmEPGK8Tcg` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
+
+---
+
+## 📋 17. GI_FunnelDaily
+
+*Table ID: `tblJ9KrYI5GIhkCHh`*
+*Fields: 67*
+
+| Field | Type | Description | Options |
+|-------|------|-------------|---------|
+| **FunnelDailyKey**<br>`fldO0aRrpUe7WNUyc` | `singleLineText` | Type: singleLineText |  |
+| **Date**<br>`fldaE2lerC5TeqIWF` | `date` | Date |  |
+| **Environment**<br>`fldBTgzVhqrz3PnT9` | `singleLineText` | Type: singleLineText |  |
+| **UTMSource**<br>`fldVMYyBZ3kDAjjdA` | `singleLineText` | Type: singleLineText |  |
+| **UTMMedium**<br>`fldxc4YE6A0CZcQ4D` | `singleLineText` | Type: singleLineText |  |
+| **UTMCampaign**<br>`fldAQUZxscopQ19M1` | `singleLineText` | Type: singleLineText |  |
+| **UTMTerm**<br>`fldhZ4DMoTsMZgfTt` | `singleLineText` | Type: singleLineText |  |
+| **UTMContent**<br>`fldfXIy6fO6zVADQJ` | `singleLineText` | Type: singleLineText |  |
+| **MetaCampaignIDResolved**<br>`fldFpAmnE4GawrqfH` | `singleLineText` | Type: singleLineText |  |
+| **MetaAdSetIDResolved**<br>`fldqmg0HJMVMP2YWP` | `singleLineText` | Type: singleLineText |  |
+| **MetaAdIDResolved**<br>`fld5p7XqETtuQZiUG` | `singleLineText` | Type: singleLineText |  |
+| **TargetCountryCode**<br>`fldFx8klD85Co7LYR` | `singleLineText` | Type: singleLineText |  |
+| **GeoKey**<br>`fld1scCItJrOX2q8g` | `singleLineText` | Type: singleLineText |  |
+| **SocioeconomicSegment**<br>`fldHYv9oUeqBB73v9` | `singleLineText` | Type: singleLineText |  |
+| **TargetRole**<br>`fldixv299XAblQsm5` | `singleLineText` | Type: singleLineText |  |
+| **ProductPath**<br>`fldW2MPhsEATjOQNp` | `singleLineText` | Type: singleLineText |  |
+| **EventsTotal**<br>`fldFWWClpTHqIt8PP` | `number` | Numeric field |  |
+| **UniqueJourneys**<br>`fld9OtSj4TYFVzISb` | `number` | Numeric field |  |
+| **UniqueRootJourneys**<br>`fld6snQtwJRkg9SWS` | `number` | Numeric field |  |
+| **UniqueAnonymousUsers**<br>`fldCeD9slRdGknC9f` | `number` | Numeric field |  |
+| **UniqueStudents**<br>`fldc7I93HdokN964l` | `number` | Numeric field |  |
+| **EventsWithoutJourneyID**<br>`fldOBIRs7CvnSgxdZ` | `number` | Numeric field |  |
+| **EventsWithoutCompleteUTM**<br>`fldwoWoTWnTtgCSLa` | `number` | Numeric field |  |
+| **EventsWithoutResolvedAd**<br>`fldBUuO72ME2ORIU7` | `number` | Numeric field |  |
+| **AttributionCoveragePct**<br>`fldSfUEuOY6w6ZVW5` | `percent` | Percentage |  |
+| **CountryMismatchEvents**<br>`fldavriMg4RLn3jKI` | `number` | Numeric field |  |
+| **KoruLandingViewed**<br>`fldg3iJc50BhO5xtY` | `number` | Numeric field |  |
+| **KoruQualifiedVisit**<br>`fldpPDkOvSx2NB6JG` | `number` | Numeric field |  |
+| **KoruCtaClicked**<br>`fldYrL3BEZIbLA9zz` | `number` | Numeric field |  |
+| **KoruShareCreated**<br>`fldnjNfguGAtxL8yp` | `number` | Numeric field |  |
+| **KoruShareToChildCreated**<br>`fldOg8owVqiD75bZ5` | `number` | Numeric field |  |
+| **EiaLandingViewed**<br>`fldTBxN3A8XrytF8o` | `number` | Numeric field |  |
+| **EiaQualifiedVisit**<br>`fldN7A0WxqYhCccR0` | `number` | Numeric field |  |
+| **EiaModeSelected**<br>`fldSHMS3ix4TPBRUY` | `number` | Numeric field |  |
+| **EiaSessionStarted**<br>`fldIxmF74Sc7IQAYn` | `number` | Numeric field |  |
+| **EiaSessionCompleted**<br>`fldUosHboTloEA1jJ` | `number` | Numeric field |  |
+| **EiaTrainingSaved**<br>`fldsEPPlgVn3r74cd` | `number` | Numeric field |  |
+| **EiaKoruCtaClicked**<br>`fldM3x00mDu8pNArk` | `number` | Numeric field |  |
+| **EiaShareCreated**<br>`fldf7PCV9Adpol54u` | `number` | Numeric field |  |
+| **EiaShareToChildCreated**<br>`fldwD9zOUlwHXjxGL` | `number` | Numeric field |  |
+| **EiaDetectiveStarted**<br>`fld9A8wC9GNizE2sJ` | `number` | Numeric field |  |
+| **EiaDetectiveEvaluated**<br>`fldGYdvHALcP3toIh` | `number` | Numeric field |  |
+| **KoruSignupStarted**<br>`fldEWZEx4VRHFZYVK` | `number` | Numeric field |  |
+| **KoruFreemiumRegistered**<br>`fldblQQC50B6vZIN3` | `number` | Numeric field |  |
+| **KoruFirstSessionStarted**<br>`fldBdbm0a4SkxzzJS` | `number` | Numeric field |  |
+| **KoruFirstSessionCompleted**<br>`fldglKvZRMV8yGuPw` | `number` | Numeric field |  |
+| **KoruSecondSessionCompleted**<br>`fld8l1hvO7c1vFYcy` | `number` | Numeric field |  |
+| **KoruActivationAchieved**<br>`fld9bigN0KnWPjlwE` | `number` | Numeric field |  |
+| **PremiumOfferViewed**<br>`fldiB75PPflZ3BgT9` | `number` | Numeric field |  |
+| **PremiumCheckoutStarted**<br>`fldt7vv9lJFoTZATO` | `number` | Numeric field |  |
+| **PremiumPaymentCompleted**<br>`fldqvGS0c0YSoDykh` | `number` | Numeric field |  |
+| **PremiumStarted**<br>`fldPFjRFcmqFjJfe0` | `number` | Numeric field |  |
+| **PremiumRetained30d**<br>`fldogBVSIqJYBDE7G` | `number` | Numeric field |  |
+| **PremiumRetained90d**<br>`fldwz61iD9CGlZwzi` | `number` | Numeric field |  |
+| **ShareLinksOpened**<br>`fldAuDEYPF09Bk8T4` | `number` | Numeric field |  |
+| **ReferralSessionsStarted**<br>`fldvngYR26BN8D380` | `number` | Numeric field |  |
+| **ReferralFreemiumRegistered**<br>`fldYJt76V6Vgcj72S` | `number` | Numeric field |  |
+| **ReferralPremiumStarted**<br>`fld3DKy8UXn35vHkb` | `number` | Numeric field |  |
+| **CalculatedAt**<br>`fldkZgG7sQAtl7CmF` | `dateTime` | Date and time |  |
+| **AggregationVersion**<br>`fldcedA6PAnkLvwy3` | `singleLineText` | Type: singleLineText |  |
+| **CalculationRunID**<br>`fldS4eMqfkJ5B3dLw` | `singleLineText` | Type: singleLineText |  |
+| **CalculationStatus**<br>`fldIVgT5bTxndOVML` | `singleLineText` | Type: singleLineText |  |
+| **CalculationWarnings**<br>`fldoYMFVzkyUu4WTB` | `multilineText` | Multi-line text |  |
+| **SchemaVersion**<br>`fldYR7lajt7eFQohX` | `singleLineText` | Type: singleLineText |  |
+| **Campaign**<br>`fldvdCvU78EcNqJSa` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
+| **AdSet**<br>`fld4EaAr91XlbFbTU` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
+| **Ad**<br>`fldDOO2CeaxCJjAhY` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
+
+---
+
+## 📋 18. GI_AdSetConfigSnapshots
+
+*Table ID: `tbljLiNtIkEmfWyVu`*
+*Fields: 31*
+
+| Field | Type | Description | Options |
+|-------|------|-------------|---------|
+| **ConfigSnapshotKey**<br>`flduA1M40zzZYZXDF` | `singleLineText` | Type: singleLineText |  |
+| **SnapshotAt**<br>`fldDchBZXQWYFgPwI` | `dateTime` | Date and time |  |
+| **SnapshotDate**<br>`fldOrcz78U13UOZi3` | `date` | Date |  |
+| **MetaAdSetID**<br>`fldsbnQLwOZz4WVnr` | `singleLineText` | Type: singleLineText |  |
+| **MetaCampaignID**<br>`fldznBHqldjdOpV0z` | `singleLineText` | Type: singleLineText |  |
+| **ConfigHash**<br>`fldbj1PLidPs3ChPP` | `singleLineText` | Type: singleLineText |  |
+| **PreviousConfigHash**<br>`fldYtbtFf731ZaBtZ` | `singleLineText` | Type: singleLineText |  |
+| **IsChangeSnapshot**<br>`fldlw2T36lr03z2Sc` | `checkbox` | True/False checkbox |  |
+| **ChangeType**<br>`fldEK6o2CDTUX4qzZ` | `singleLineText` | Type: singleLineText |  |
+| **ChangeSummary**<br>`fldYSw0PLxGCvfhah` | `multilineText` | Multi-line text |  |
+| **TargetCountryPrimary**<br>`fldGLYsQhchRUNlmw` | `singleLineText` | Type: singleLineText |  |
+| **GeoKey**<br>`fld6mzPx46T64fFU2` | `singleLineText` | Type: singleLineText |  |
+| **GeoLabel**<br>`fldfhlRUD0s7N84LT` | `singleLineText` | Type: singleLineText |  |
+| **AgeMin**<br>`fldBaWqBPcIEId7Kv` | `number` | Numeric field |  |
+| **AgeMax**<br>`fldhP74P5WWCHeytn` | `number` | Numeric field |  |
+| **SocioeconomicSegment**<br>`fldrUASI3UW3zCwXF` | `singleLineText` | Type: singleLineText |  |
+| **OptimizationGoal**<br>`fldG7izL6nBKjtgH7` | `singleLineText` | Type: singleLineText |  |
+| **OptimizationEventMeta**<br>`fldhtZF7YkkvaffhT` | `singleLineText` | Type: singleLineText |  |
+| **BudgetSource**<br>`fldVF5rZ7n1NC30iG` | `singleLineText` | Type: singleLineText |  |
+| **BudgetType**<br>`fld9iUB5PmVUXlXwR` | `singleLineText` | Type: singleLineText |  |
+| **BudgetAccountCurrency**<br>`fldnK1Lm3yGAckdjS` | `number` | Numeric field |  |
+| **AccountCurrencyCode**<br>`fldG8mbfEcpxgFLAB` | `singleLineText` | Type: singleLineText |  |
+| **PlacementsMode**<br>`fldBI6OO8c5aVnOq2` | `singleLineText` | Type: singleLineText |  |
+| **TargetingJSON**<br>`flddmV4Bjf3EIPyLZ` | `multilineText` | Multi-line text |  |
+| **PromotedObjectJSON**<br>`fldPMeGXJZDJ0GmRX` | `multilineText` | Multi-line text |  |
+| **FullConfigJSON**<br>`fldFlNPRV35yK5Csf` | `multilineText` | Multi-line text |  |
+| **AnalysisContinuityBroken**<br>`fldlrQamEwzxC6BYd` | `checkbox` | True/False checkbox |  |
+| **ContinuityBreakReason**<br>`fldoIj00fayPuBYGc` | `multilineText` | Multi-line text |  |
+| **SchemaVersion**<br>`fldkGz937G7QQ6w5H` | `singleLineText` | Type: singleLineText |  |
+| **AdSet**<br>`fldKx8nQOBmoMc993` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
+| **Campaign**<br>`fldeVLXr6F0s3OL6i` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
+
+---
+
+## 📋 19. GI_Geographies
+
+*Table ID: `tbluvmzK1aodBRwwP`*
+*Fields: 22*
+
+| Field | Type | Description | Options |
+|-------|------|-------------|---------|
+| **GeoKey**<br>`fldyGTF3E3lJAceZ1` | `singleLineText` | Type: singleLineText |  |
+| **DisplayName**<br>`flda94VkRl2dtH8zj` | `singleLineText` | Type: singleLineText |  |
+| **CountryCode**<br>`fld2e9ODX8ZincLwC` | `singleLineText` | Type: singleLineText |  |
+| **CountryName**<br>`fldWJxH0vGiPyGrf3` | `singleLineText` | Type: singleLineText |  |
+| **GeoLevel**<br>`fldMVfbBb8qpu7wXZ` | `singleSelect` | Single choice dropdown | `COUNTRY`, `REGION`, `PROVINCE`, `CITY`, `COMMUNE_GROUP` *(+2 more)* |
+| **ParentGeoKey**<br>`fldSWIBY5Na6r9faK` | `singleLineText` | Type: singleLineText |  |
+| **ParentGeography**<br>`fld1lOMJLgZBAE9oV` | `singleLineText` | Type: singleLineText |  |
+| **RegionCode**<br>`fld304fJJPJ2oqBYm` | `singleLineText` | Type: singleLineText |  |
+| **RegionName**<br>`fldYvwvOjDOjO1fuJ` | `singleLineText` | Type: singleLineText |  |
+| **CityNames**<br>`fldxhsLfFXGeuUAOt` | `multilineText` | Multi-line text |  |
+| **CommuneNames**<br>`fld8KXYpTgQBkzmiY` | `multilineText` | Multi-line text |  |
+| **MetaLocationKeysJSON**<br>`fldXTuFUlNLbi6KS4` | `multilineText` | Multi-line text |  |
+| **GeoDefinitionJSON**<br>`fldhQx6ndpIOSZF8c` | `multilineText` | Multi-line text |  |
+| **CurrencyCode**<br>`fld7g6BWVJfsD5FHR` | `singleLineText` | Type: singleLineText |  |
+| **Timezone**<br>`fldXkR4TTgHxUpE58` | `singleLineText` | Type: singleLineText |  |
+| **MarketStatus**<br>`fld2aunTcb4Ky5weI` | `singleLineText` | Type: singleLineText |  |
+| **Active**<br>`fldnBPqEA7tut7tm3` | `checkbox` | True/False checkbox |  |
+| **Notes**<br>`fldABVLZf5fzz3pzc` | `multilineText` | Multi-line text |  |
+| **CreatedAt**<br>`fld7OJIz3zaXgVEoS` | `createdTime` | Auto-generated creation time |  |
+| **UpdatedAt**<br>`fldJXvHUNwBn73vn8` | `lastModifiedTime` | Auto-generated modification time |  |
+| **SchemaVersion**<br>`fld5KUBUmsuAzcksy` | `singleLineText` | Type: singleLineText |  |
+| **GI_AdSets**<br>`fldRDyQwpLS6M5GTE` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
+
+---
+
+## 📋 20. GI_MarketingPerformanceDaily
+
+*Table ID: `tbli1LYXYlLtdvdeD`*
+*Fields: 102*
+
+| Field | Type | Description | Options |
+|-------|------|-------------|---------|
+| **PerformanceDailyKey**<br>`fldQwsxtGAHGoa2BA` | `singleLineText` | Type: singleLineText |  |
+| **Date**<br>`fldKMt4qev2myhTDE` | `date` | Date |  |
+| **MetaCampaignID**<br>`fld73oHTUTblUoNzv` | `singleLineText` | Type: singleLineText |  |
+| **CampaignNameSnapshot**<br>`fldXtVRqopeDccD5m` | `singleLineText` | Type: singleLineText |  |
+| **MetaAdSetID**<br>`fldPVxSepSw4YEYG7` | `singleLineText` | Type: singleLineText |  |
+| **AdSetNameSnapshot**<br>`fldPG7l7brxNrOToy` | `singleLineText` | Type: singleLineText |  |
+| **MetaAdID**<br>`fldZ4uV2VTnpZpwpD` | `singleLineText` | Type: singleLineText |  |
+| **AdNameSnapshot**<br>`fldgfLDOI9t3g5b44` | `singleLineText` | Type: singleLineText |  |
+| **CountryCode**<br>`fldog43J6oxuTB5Yp` | `singleLineText` | Type: singleLineText |  |
+| **GeoKey**<br>`fldkj5FZuE2Hwv9NF` | `singleLineText` | Type: singleLineText |  |
+| **GeoLabel**<br>`fld3GbR7kGdZH6wN5` | `singleLineText` | Type: singleLineText |  |
+| **SocioeconomicSegment**<br>`fldRTbKkd76jcrRHc` | `singleLineText` | Type: singleLineText |  |
+| **TargetRole**<br>`fldSVIeoo2tNTHtKu` | `singleLineText` | Type: singleLineText |  |
+| **FunnelStage**<br>`fldPH1mERPgUfaVCf` | `singleLineText` | Type: singleLineText |  |
+| **OptimizationEventMeta**<br>`fld5fApxcEYWGFO5u` | `singleLineText` | Type: singleLineText |  |
+| **OptimizationEventGIEquivalent**<br>`fldAhav2S2iMtrgXy` | `singleLineText` | Type: singleLineText |  |
+| **JoinStatus**<br>`fldMXvocqBE4zWU6t` | `singleLineText` | Type: singleLineText |  |
+| **JoinMethod**<br>`fldanTcyjV8GYaKX3` | `singleLineText` | Type: singleLineText |  |
+| **JoinWarning**<br>`flducf4h1bWQIp8AH` | `multilineText` | Multi-line text |  |
+| **MetaDataPresent**<br>`fldjHNWxL6YscIwtz` | `checkbox` | True/False checkbox |  |
+| **GIDataPresent**<br>`fldco6KGkgzJvRsaY` | `checkbox` | True/False checkbox |  |
+| **AudienceSnapshotPresent**<br>`fldmAl1YD1EmLTj7N` | `checkbox` | True/False checkbox |  |
+| **SpendAccountCurrency**<br>`fldN6oIrKh0AXxp9z` | `number` | Numeric field |  |
+| **AccountCurrencyCode**<br>`fldRV0IOHabKyPkQj` | `singleLineText` | Type: singleLineText |  |
+| **Impressions**<br>`fldlIv3tn6v5SbHJ7` | `number` | Numeric field |  |
+| **MetaSpectatorsDaily**<br>`fld7EbLdSaDjknfvn` | `number` | Numeric field |  |
+| **FrequencyDaily**<br>`fld9XG58kgbI5PPMT` | `number` | Numeric field |  |
+| **ClicksAll**<br>`fldUDTVJIVVqvYu5J` | `number` | Numeric field |  |
+| **LinkClicks**<br>`fldp84FDcaZifELWD` | `number` | Numeric field |  |
+| **UniqueLinkClicks**<br>`fldZ2nBMyjm1jXhIe` | `number` | Numeric field |  |
+| **LandingPageViewsMeta**<br>`fld5oISHicOKUFNnM` | `number` | Numeric field |  |
+| **CPMAccountCurrency**<br>`fldG2Abweyvf2S27h` | `number` | Numeric field |  |
+| **CTRLinkPct**<br>`fldONXovzbxAsQn46` | `percent` | Percentage |  |
+| **CPCLinkAccountCurrency**<br>`fldOMxnitRM5DFP70` | `number` | Numeric field |  |
+| **CostPerLPVAccountCurrency**<br>`fldRCT4SrjCOnfFpr` | `number` | Numeric field |  |
+| **AudiencePotentialLower**<br>`fld2XS4hwn7TCjIw4` | `number` | Numeric field |  |
+| **AudiencePotentialUpper**<br>`fldsX4h97Efk6hIiW` | `number` | Numeric field |  |
+| **AudiencePotentialMidpoint**<br>`fldDQyiiHfCpGLBFO` | `number` | Numeric field |  |
+| **MetaSpectatorsWindow**<br>`fldCyL4d7xYvBlrBG` | `number` | Numeric field |  |
+| **ImpressionsWindow**<br>`fldlw26BwIeCDyIcG` | `number` | Numeric field |  |
+| **FrequencyWindow**<br>`fldO2dieM28AKP8Dh` | `number` | Numeric field |  |
+| **AudiencePenetrationMinPct**<br>`fldsXM7TpN7TfEtpW` | `percent` | Percentage |  |
+| **AudiencePenetrationMidPct**<br>`fldpQPV7NWC3Vcqbb` | `percent` | Percentage |  |
+| **AudiencePenetrationMaxPct**<br>`fldYITkhUOtKjWcl2` | `percent` | Percentage |  |
+| **AudienceRemainingMidpoint**<br>`fldLQTL2jdNltoU0m` | `number` | Numeric field |  |
+| **SpectatorGrowthPct**<br>`fldL0a1p1MUwmGLxh` | `percent` | Percentage |  |
+| **IncrementalSpendPerNewSpectator**<br>`fldJrZfiqY2BHyCJN` | `number` | Numeric field |  |
+| **SaturationRisk**<br>`fldpdxNRmBrDFYXLa` | `singleLineText` | Type: singleLineText |  |
+| **UniqueJourneys**<br>`fldXHza3TJpFWKNml` | `number` | Numeric field |  |
+| **UniqueAnonymousUsers**<br>`fldbMzoR7jm4y996H` | `number` | Numeric field |  |
+| **KoruLandingViewed**<br>`fldJl0pNE6gVmIvWS` | `number` | Numeric field |  |
+| **KoruQualifiedVisit**<br>`fldnbVl7INP76hG6q` | `number` | Numeric field |  |
+| **KoruShareToChildCreated**<br>`fldDvtG1rNpwRuAxV` | `number` | Numeric field |  |
+| **EiaLandingViewed**<br>`fldzFabcKI3IZ9o5A` | `number` | Numeric field |  |
+| **EiaQualifiedVisit**<br>`fldLZ8xJWuza9QXqy` | `number` | Numeric field |  |
+| **EiaShareToChildCreated**<br>`fldvMEg14VU2PeUAw` | `number` | Numeric field |  |
+| **EiaSessionStarted**<br>`fldunp3w4zETsYQ82` | `number` | Numeric field |  |
+| **EiaSessionCompleted**<br>`fldCPmJRiv4eL7cSu` | `number` | Numeric field |  |
+| **EiaKoruCtaClicked**<br>`fldXj5gsg3ufc0KKu` | `number` | Numeric field |  |
+| **KoruSignupStarted**<br>`fldlU4nkOH4JJs65D` | `number` | Numeric field |  |
+| **KoruFreemiumRegistered**<br>`fldK6PvN2MlFXTKuD` | `number` | Numeric field |  |
+| **KoruActivationAchieved**<br>`fldCADjF1MQAnyy9d` | `number` | Numeric field |  |
+| **PremiumStarted**<br>`fldb9q9PCZPC5Li1O` | `number` | Numeric field |  |
+| **PremiumRetained30d**<br>`fldG1OG3cTFADEFpS` | `number` | Numeric field |  |
+| **PremiumRetained90d**<br>`fldQgPYi3b9oOpv2Y` | `number` | Numeric field |  |
+| **ReferralFreemiumRegistered**<br>`fldWgyBiGEIuEPGkp` | `number` | Numeric field |  |
+| **ReferralPremiumStarted**<br>`fldQMLXJXS234HthM` | `number` | Numeric field |  |
+| **GILandingPer1000Impressions**<br>`fldi6jfECJDYYPILD` | `number` | Numeric field |  |
+| **GIQualifiedPer1000Impressions**<br>`fldThQMTwDAFU24dx` | `number` | Numeric field |  |
+| **EiaStartsPer1000Impressions**<br>`fldTXXOqfvPQFvYVR` | `number` | Numeric field |  |
+| **FreemiumPer1000Impressions**<br>`fldb2AihBwRE1v1kx` | `number` | Numeric field |  |
+| **ActivationsPer1000Impressions**<br>`fldnDmTutbX22g4Sf` | `number` | Numeric field |  |
+| **PremiumPer1000Impressions**<br>`fldmBvB1kHbUlsXLq` | `number` | Numeric field |  |
+| **MetaLPVPerLinkClickPct**<br>`fld1d1p06tDmrj7bH` | `percent` | Percentage |  |
+| **GILandingPerLinkClickPct**<br>`fldGRLZr2XaIDvgHx` | `percent` | Percentage |  |
+| **EiaStartRatePct**<br>`fldVVYKtebSudQwpH` | `percent` | Percentage |  |
+| **EiaCompletionRatePct**<br>`fldv8YCS07DWV2fBz` | `percent` | Percentage |  |
+| **EiaToKoruRatePct**<br>`fldHrCzIofIdP4BUh` | `percent` | Percentage |  |
+| **SignupCompletionRatePct**<br>`fld1CbZATgWkvRcuM` | `percent` | Percentage |  |
+| **FreemiumActivationRatePct**<br>`fld9fjjwnkfW1JILT` | `percent` | Percentage |  |
+| **PremiumFromFreemiumRatePct**<br>`fldXVK1TDlxDHfPtE` | `percent` | Percentage |  |
+| **CostPerGIQualifiedVisit**<br>`fldiT3LRyVHgZbv1E` | `number` | Numeric field |  |
+| **CostPerEiaSessionStarted**<br>`fldPZB3ge97TfLarb` | `number` | Numeric field |  |
+| **CostPerEiaSessionCompleted**<br>`fldEmrdnt5b8UvKVe` | `number` | Numeric field |  |
+| **CostPerShareToChild**<br>`fldIUVLL54kJGlbBU` | `number` | Numeric field |  |
+| **CostPerKoruFreemium**<br>`fldMZpPXZHyIkGG0U` | `number` | Numeric field |  |
+| **CostPerKoruActivation**<br>`fldS19OjiOgL6SZk2` | `number` | Numeric field |  |
+| **CostPerPremiumStarted**<br>`fldMs9KJAD6TmeUhH` | `number` | Numeric field |  |
+| **CostPerPremiumRetained90d**<br>`fldjStxuBbRXBQQRk` | `number` | Numeric field |  |
+| **ScalabilityStatus**<br>`fldRwDP5LRymqjNSU` | `singleLineText` | Type: singleLineText |  |
+| **SaturationAssessment**<br>`fld8Q8tZgk06IP3El` | `multilineText` | Multi-line text |  |
+| **EfficiencyAssessment**<br>`fldJfXrU3Fj4r1t8s` | `multilineText` | Multi-line text |  |
+| **DataConfidenceLevel**<br>`fldQXKOXqk1Tlxfbe` | `singleLineText` | Type: singleLineText |  |
+| **RecommendedAction**<br>`fld9PbavQ4ItZYPEu` | `singleLineText` | Type: singleLineText |  |
+| **RecommendationRationale**<br>`fldLD8JTjFsldhSF2` | `multilineText` | Multi-line text |  |
+| **CalculatedAt**<br>`fldPqpt47qqQDbubC` | `dateTime` | Date and time |  |
+| **CalculationVersion**<br>`fldvdCQkPBuWuO5Vu` | `singleLineText` | Type: singleLineText |  |
+| **CalculationRunID**<br>`fld7yzK0Ch14boPiD` | `singleLineText` | Type: singleLineText |  |
+| **SchemaVersion**<br>`fldrBjeuDG7oaLNVD` | `singleLineText` | Type: singleLineText |  |
+| **Campaign**<br>`fldx1qhhW6gPz9IDi` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
+| **AdSet**<br>`fldns1ZvQdRytdWuo` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
+| **Ad**<br>`fld1jkeE1mWZ6EfR3` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
+
+---
+
+## 📋 21. GI_MetaAdsDaily
+
+*Table ID: `tbl02ac5cwozcVG3z`*
+*Fields: 47*
+
+| Field | Type | Description | Options |
+|-------|------|-------------|---------|
+| **MetaDailyKey**<br>`fldupMrZmRKvPjZWH` | `singleLineText` | Type: singleLineText |  |
+| **Date**<br>`fldvUrUgDbj3Hp7uT` | `date` | Date |  |
+| **MetaAccountID**<br>`fldrA3VDwONNgI3pZ` | `singleLineText` | Type: singleLineText |  |
+| **MetaCampaignID**<br>`flddUpltwgtnrKbnA` | `singleLineText` | Type: singleLineText |  |
+| **CampaignNameSnapshot**<br>`fldjIZgUUTzneArYf` | `singleLineText` | Type: singleLineText |  |
+| **MetaAdSetID**<br>`fld6okY5xt5eQOr6V` | `singleLineText` | Type: singleLineText |  |
+| **AdSetNameSnapshot**<br>`fldIvnK17DazXGSUd` | `singleLineText` | Type: singleLineText |  |
+| **MetaAdID**<br>`fldrtIrtxaqGQeBCH` | `singleLineText` | Type: singleLineText |  |
+| **AdNameSnapshot**<br>`fldP9z2bWKCRweL9H` | `singleLineText` | Type: singleLineText |  |
+| **CountryCode**<br>`fldLQX62DVAdvJ7MV` | `singleLineText` | Type: singleLineText |  |
+| **GeoKey**<br>`fldiRJMBgrESWK49T` | `singleLineText` | Type: singleLineText |  |
+| **SocioeconomicSegment**<br>`fldfaWMddkOEmo07t` | `singleLineText` | Type: singleLineText |  |
+| **TargetRole**<br>`fldHLxz0fWgUAWmZX` | `singleLineText` | Type: singleLineText |  |
+| **SpendAccountCurrency**<br>`fldV4XtYPjJKeEIfP` | `number` | Numeric field |  |
+| **AccountCurrencyCode**<br>`fldHHY7a2YPDHFq6P` | `singleLineText` | Type: singleLineText |  |
+| **Impressions**<br>`fldO0hsEbn7atgche` | `number` | Numeric field |  |
+| **MetaSpectatorsDaily**<br>`fldlAZpbBNPwi4aT7` | `number` | Numeric field |  |
+| **FrequencyDaily**<br>`fldFfMRQYRyHOr4S9` | `number` | Numeric field |  |
+| **ClicksAll**<br>`fldS08rlCT1Jw55Ng` | `number` | Numeric field |  |
+| **LinkClicks**<br>`flddsuRCeJrPOjGt5` | `number` | Numeric field |  |
+| **UniqueLinkClicks**<br>`fldZjr24kk8gKf25Q` | `number` | Numeric field |  |
+| **LandingPageViewsMeta**<br>`fldTPoUXW05XgvMH0` | `number` | Numeric field |  |
+| **CPMAccountCurrency**<br>`fldBX0jjVUQQXpzEN` | `number` | Numeric field |  |
+| **CTRAllPct**<br>`fldqQod70gS4DRngG` | `percent` | Percentage |  |
+| **CTRLinkPct**<br>`fldQjzjwwLznktEUR` | `percent` | Percentage |  |
+| **CPCAllAccountCurrency**<br>`fldS3Xyj8ZfN46jRu` | `number` | Numeric field |  |
+| **CPCLinkAccountCurrency**<br>`fldZDZBHHMpb2nWzv` | `number` | Numeric field |  |
+| **CostPerLPVAccountCurrency**<br>`fldObP7WNJNmEx8jg` | `number` | Numeric field |  |
+| **Video3sViews**<br>`fldOZe9LHp1aAu065` | `number` | Numeric field |  |
+| **Video25PctViews**<br>`fldIxEbt53HQdLeD9` | `number` | Numeric field |  |
+| **Video50PctViews**<br>`fldHempz9K5u8eAP5` | `number` | Numeric field |  |
+| **Video75PctViews**<br>`fldBd6imp1Dgk0Mlj` | `number` | Numeric field |  |
+| **Video95PctViews**<br>`fldQyTh7yGxUMaBQa` | `number` | Numeric field |  |
+| **Video100PctViews**<br>`fldyLKmiq2fJJol8t` | `number` | Numeric field |  |
+| **ThruPlays**<br>`fldtjbVtcE6O4GW8A` | `number` | Numeric field |  |
+| **ImportedAt**<br>`fld0XhjMTYotwA2ee` | `dateTime` | Date and time |  |
+| **MetaApiVersion**<br>`fldeeoo9E7vfAXPRW` | `singleLineText` | Type: singleLineText |  |
+| **ImportRunID**<br>`fldeRI1H9T9ahodam` | `singleLineText` | Type: singleLineText |  |
+| **RawActionsJSON**<br>`fldv116Vv4NntV3Am` | `multilineText` | Multi-line text |  |
+| **RawCostPerActionJSON**<br>`fldxKXFUfoS3ZJq7m` | `multilineText` | Multi-line text |  |
+| **RawInsightJSON**<br>`fldewG6E7cOmRj8MR` | `multilineText` | Multi-line text |  |
+| **ImportStatus**<br>`fldQCFPqocnajE8VL` | `singleLineText` | Type: singleLineText |  |
+| **ImportError**<br>`fldKwooaqeUHwSctr` | `multilineText` | Multi-line text |  |
+| **SchemaVersion**<br>`fldZu7WqY1AGVxgi7` | `singleLineText` | Type: singleLineText |  |
+| **Campaign**<br>`fld1gxYRtyfviMONT` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
+| **AdSet**<br>`fldaoTV3WpGneWwGI` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
+| **Ad**<br>`fldhbZsvwrKXCg1kO` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
+
+---
+
+## 📋 22. GI_MetaAudienceSnapshots
+
+*Table ID: `tblC0GcmCE3egQTzU`*
+*Fields: 36*
+
+| Field | Type | Description | Options |
+|-------|------|-------------|---------|
+| **AudienceSnapshotKey**<br>`fldEFCbwMNrdBdLpQ` | `singleLineText` | Type: singleLineText |  |
+| **SnapshotDate**<br>`fldBEmqOVuCgpqKOk` | `date` | Date |  |
+| **SnapshotAt**<br>`fldIwUXTrgnVA1BCe` | `dateTime` | Date and time |  |
+| **WindowType**<br>`fldmFA0qnAoTJp1Kn` | `singleLineText` | Type: singleLineText |  |
+| **WindowStartDate**<br>`fldL7Z351M3W5EfND` | `date` | Date |  |
+| **WindowEndDate**<br>`fldzpHWoBmaQgE295` | `date` | Date |  |
+| **MetaCampaignID**<br>`fldyBIAFqebw9sdee` | `singleLineText` | Type: singleLineText |  |
+| **MetaAdSetID**<br>`fldKubDrDQtzIEUwn` | `singleLineText` | Type: singleLineText |  |
+| **CountryCode**<br>`fldxOLZ0d1b4SbZC4` | `singleLineText` | Type: singleLineText |  |
+| **GeoKey**<br>`fldmpnESqsmVDpPAT` | `singleLineText` | Type: singleLineText |  |
+| **ConfigHash**<br>`fldBMwFcLYbRNy6Kl` | `singleLineText` | Type: singleLineText |  |
+| **AudiencePotentialLower**<br>`fldaUaUgvE5y2AHrA` | `number` | Numeric field |  |
+| **AudiencePotentialUpper**<br>`fldU7dJSF56q85Sbh` | `number` | Numeric field |  |
+| **AudiencePotentialMidpoint**<br>`fldeUmKexhQuuFr3Q` | `number` | Numeric field |  |
+| **MetaSpectatorsWindow**<br>`fldIbJwd26jqEGBd6` | `number` | Numeric field |  |
+| **ImpressionsWindow**<br>`fldY2ASIlR5IaOduU` | `number` | Numeric field |  |
+| **FrequencyWindow**<br>`fldm7yqI05l0utSDw` | `number` | Numeric field |  |
+| **SpendWindowAccountCurrency**<br>`fldo410NpdrBK96OI` | `number` | Numeric field |  |
+| **AccountCurrencyCode**<br>`fldUt34LUO0uAlPMn` | `singleLineText` | Type: singleLineText |  |
+| **AudiencePenetrationMinPct**<br>`fldBlJ9TW3fecj2h4` | `percent` | Percentage |  |
+| **AudiencePenetrationMidPct**<br>`fldmc9M29PTe9bYQu` | `percent` | Percentage |  |
+| **AudiencePenetrationMaxPct**<br>`fldDJeCO02K08VOAI` | `percent` | Percentage |  |
+| **AudienceRemainingMidpoint**<br>`fldYC1M9C0glHK6Is` | `number` | Numeric field |  |
+| **NewSpectatorsVsPreviousWindow**<br>`fldpypSdM8GCjmQAF` | `number` | Numeric field |  |
+| **SpectatorGrowthPct**<br>`fldwgLQfFEaxxUL5Q` | `percent` | Percentage |  |
+| **IncrementalSpendPerNewSpectator**<br>`fldrXYVPMKuTMzixo` | `number` | Numeric field |  |
+| **SaturationRisk**<br>`fldvX1ZS2eAXIHCPx` | `singleLineText` | Type: singleLineText |  |
+| **AudienceEstimateStatus**<br>`fldpHRZltY8Nnhzq1` | `singleLineText` | Type: singleLineText |  |
+| **AudienceEstimateCapturedAt**<br>`fld3tHB0RPdiisJuq` | `dateTime` | Date and time |  |
+| **ImportedAt**<br>`fldPFiOTJgUWJnAEY` | `dateTime` | Date and time |  |
+| **RawAudienceEstimateJSON**<br>`fldfvTfzhAsNKUO9k` | `multilineText` | Multi-line text |  |
+| **RawInsightsWindowJSON**<br>`fldtmwTRVlmycqYpY` | `multilineText` | Multi-line text |  |
+| **ErrorDetail**<br>`fld1CNVfOuNtf8u27` | `multilineText` | Multi-line text |  |
+| **SchemaVersion**<br>`fld3npV1yzzElzwrh` | `singleLineText` | Type: singleLineText |  |
+| **Campaign**<br>`fld2syuVXZklaGR0A` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
+| **AdSet**<br>`fldBrQOPSHdGVixTQ` | `multipleRecordLinks` | Type: multipleRecordLinks |  |
+
+---
+
+## 📋 23. GrowthAnalysis
 
 *Table ID: `tblXmupIWtoGJugZh`*
 *Fields: 15*
@@ -581,7 +1114,7 @@
 
 ---
 
-## 📋 15. InstitutionStudentValidation
+## 📋 24. InstitutionStudentValidation
 
 *Table ID: `tbl0n5bQdK5QHLA5n`*
 *Fields: 8*
@@ -599,7 +1132,7 @@
 
 ---
 
-## 📋 16. Leads
+## 📋 25. Leads
 
 *Table ID: `tblUq5FfmdnAp1ozz`*
 *Fields: 21*
@@ -632,7 +1165,7 @@
 
 ---
 
-## 📋 17. Logros
+## 📋 26. Logros
 
 *Table ID: `tblIezwTdqN8x1T8H`*
 *Fields: 6*
@@ -648,7 +1181,7 @@
 
 ---
 
-## 📋 18. IdentityMap
+## 📋 27. IdentityMap
 
 *Table ID: `tblhI6JhkpHEH6GN4`*
 *Fields: 36*
@@ -694,7 +1227,7 @@
 
 ---
 
-## 📋 19. Institutions
+## 📋 28. Institutions
 
 *Table ID: `tblktrYx0Sglt9KRz`*
 *Fields: 12*
@@ -716,7 +1249,7 @@
 
 ---
 
-## 📋 20. InstitutionCohorts
+## 📋 29. InstitutionCohorts
 
 *Table ID: `tblS66znKQeq0Jm5M`*
 *Fields: 9*
@@ -735,7 +1268,7 @@
 
 ---
 
-## 📋 21. Interventions
+## 📋 30. Interventions
 
 *Table ID: `tblrnar4DJ2wzFEaA`*
 *Fields: 20*
@@ -765,7 +1298,7 @@
 
 ---
 
-## 📋 22. Journeys
+## 📋 31. Journeys
 
 *Table ID: `tbldtnGZk2RHFYoFI`*
 *Fields: 101*
@@ -876,7 +1409,7 @@
 
 ---
 
-## 📋 23. KORU_Doors
+## 📋 32. KORU_Doors
 
 *Table ID: `tblgRuPrxH1Pk2I5Z`*
 *Fields: 8*
@@ -894,7 +1427,7 @@
 
 ---
 
-## 📋 24. KORU_DoorUsage
+## 📋 33. KORU_DoorUsage
 
 *Table ID: `tblWgFOENkynO54Or`*
 *Fields: 14*
@@ -918,7 +1451,7 @@
 
 ---
 
-## 📋 25. Mensajes
+## 📋 34. Mensajes
 
 *Table ID: `tblk3NUMOZhQX42AJ`*
 *Fields: 14*
@@ -942,7 +1475,7 @@
 
 ---
 
-## 📋 26. MetricasDiarias
+## 📋 35. MetricasDiarias
 
 *Table ID: `tblgF1aCbdkC8PWU7`*
 *Fields: 17*
@@ -969,7 +1502,7 @@
 
 ---
 
-## 📋 27. MetricasNEE
+## 📋 36. MetricasNEE
 
 *Table ID: `tblZ8HxhJrrePHPNE`*
 *Fields: 10*
@@ -989,7 +1522,7 @@
 
 ---
 
-## 📋 28. Pagadores
+## 📋 37. Pagadores
 
 *Table ID: `tblkl6i81e7fyKRKI`*
 *Fields: 18*
@@ -1017,7 +1550,7 @@
 
 ---
 
-## 📋 29. Pagos
+## 📋 38. Pagos
 
 *Table ID: `tbllGZKmZYWmRTZk1`*
 *Fields: 19*
@@ -1046,7 +1579,7 @@
 
 ---
 
-## 📋 30. ParametrosGenerales
+## 📋 39. ParametrosGenerales
 
 *Table ID: `tblGybdcCD0zm1STD`*
 *Fields: 5*
@@ -1061,7 +1594,7 @@
 
 ---
 
-## 📋 31. PlanesEstudio
+## 📋 40. PlanesEstudio
 
 *Table ID: `tblQbkeIjxnW6GZnI`*
 *Fields: 11*
@@ -1082,7 +1615,7 @@
 
 ---
 
-## 📋 32. PostulacionesConvenios
+## 📋 41. PostulacionesConvenios
 
 *Table ID: `tblU7CHwVifHvTYDF`*
 *Fields: 16*
@@ -1108,7 +1641,7 @@
 
 ---
 
-## 📋 33. PremiumRetention
+## 📋 42. PremiumRetention
 
 *Table ID: `tblgXY6cEvMdzA9cK`*
 *Fields: 33*
@@ -1151,7 +1684,7 @@
 
 ---
 
-## 📋 34. Recordatorios
+## 📋 43. Recordatorios
 
 *Table ID: `tbll95VSiGdzEPEsZ`*
 *Fields: 7*
@@ -1168,7 +1701,7 @@
 
 ---
 
-## 📋 35. RecursosDidacticos
+## 📋 44. RecursosDidacticos
 
 *Table ID: `tblhnDhyfno9kEmFd`*
 *Fields: 14*
@@ -1192,7 +1725,7 @@
 
 ---
 
-## 📋 36. ReferralEdges
+## 📋 45. ReferralEdges
 
 *Table ID: `tbl8sMgQGao1wFsri`*
 *Fields: 15*
@@ -1217,7 +1750,7 @@
 
 ---
 
-## 📋 37. Segments
+## 📋 46. Segments
 
 *Table ID: `tbldNS4mwf2RzggKH`*
 *Fields: 9*
@@ -1236,7 +1769,7 @@
 
 ---
 
-## 📋 38. Seguimiento
+## 📋 47. Seguimiento
 
 *Table ID: `tblq2wnV8lPEHKb8p`*
 *Fields: 21*
@@ -1268,7 +1801,7 @@
 
 ---
 
-## 📋 39. SenalesDeInteres
+## 📋 48. SenalesDeInteres
 
 *Table ID: `tblPykEYkqBz98oXJ`*
 *Fields: 9*
@@ -1287,7 +1820,7 @@
 
 ---
 
-## 📋 40. SesionesEstudio
+## 📋 49. SesionesEstudio
 
 *Table ID: `tbliVHFlDjE2UlO5c`*
 *Fields: 16*
@@ -1313,7 +1846,7 @@
 
 ---
 
-## 📋 41. ShareLinks
+## 📋 50. ShareLinks
 
 *Table ID: `tbl3r2cxqEYYgKlcW`*
 *Fields: 21*
@@ -1344,7 +1877,7 @@
 
 ---
 
-## 📋 42. Suscripciones
+## 📋 51. Suscripciones
 
 *Table ID: `tblowJOhwqRvVsWWc`*
 *Fields: 37*
@@ -1391,7 +1924,7 @@
 
 ---
 
-## 📋 43. Testimonios
+## 📋 52. Testimonios
 
 *Table ID: `tblLkbXyveEP7z1mj`*
 *Fields: 22*
@@ -1423,7 +1956,7 @@
 
 ---
 
-## 📋 44. UserLifecycleWindows
+## 📋 53. UserLifecycleWindows
 
 *Table ID: `tblpM9Y8euDQZ3tMq`*
 *Fields: 36*
@@ -1469,37 +2002,12 @@
 
 ---
 
-## 📋 45. VERSION_PROD
-
-*Table ID: `tblStqh1QgUM2ZZGE`*
-*Fields: 15*
-
-| Field | Type | Description | Options |
-|-------|------|-------------|---------|
-| **FechaPublicacion**<br>`fld4Vu39O4zNgLJqZ` | `dateTime` | Date and time |  |
-| **Ambiente**<br>`fldj1wNtXh76HZvZR` | `singleSelect` | Single choice dropdown | `PROD`, `DEV` |
-| **Descripción nueva versión**<br>`fldp4TVI2mIZYXWc4` | `multilineText` | Multi-line text |  |
-| **Cambios BD**<br>`fldBSosvZGrV1Gt5J` | `singleLineText` | Type: singleLineText |  |
-| **Descripción DB**<br>`fldLEbXdOc6yk9TI3` | `multipleAttachments` | Type: multipleAttachments |  |
-| **Cambios Automatizaciones**<br>`fldNcmh2Qu8qVpwuh` | `singleLineText` | Type: singleLineText |  |
-| **Archivos**<br>`fldWTvrKvV4UnvXZq` | `multipleAttachments` | Type: multipleAttachments |  |
-| **landing.html**<br>`fldczEKFzscMX6JpS` | `multilineText` | Multi-line text |  |
-| **index.html**<br>`fld7ECFpJRGQj4zJ8` | `multilineText` | Multi-line text |  |
-| **chat.js**<br>`fldSdYMAXYd2d7Bob` | `multilineText` | Multi-line text |  |
-| **config.js**<br>`fldrzHp2TJKe1Mrwn` | `multilineText` | Multi-line text |  |
-| **Prompt-chat**<br>`fld1JoX5ky69KH0st` | `multilineText` | Multi-line text |  |
-| **Worker**<br>`fldztpSTpYD3DvSlO` | `multilineText` | Multi-line text |  |
-| **WorkerDeployment**<br>`fldYNzqOOvd62mNv8` | `singleLineText` | Type: singleLineText |  |
-| **Version_Fillout_Onboarding**<br>`fldm1rmf4KOECMsfG` | `singleLineText` | Type: singleLineText |  |
-
----
-
 ## 🔄 About This Documentation
 
 ### 📋 Source Information
 - **Base**: Production (`prod`)
 - **Base ID**: `appr2x4VzE0OySqOu`
-- **Generated**: 2026-06-30 19:33:00
+- **Generated**: 2026-07-13 13:40:59
 
 ### 🛠️ Field Type Legend
 - **singleSelect**: Dropdown with single choice
@@ -1517,7 +2025,7 @@
 ### ⚡ Automation
 This document is auto-generated by GitHub Actions.
 **Update schedule**: Daily at 8:00 AM UTC
-**Last sync**: 2026-06-30 19:33:00
+**Last sync**: 2026-07-13 13:40:59
 
 ---
-*Documentation for Production base - Generated 2026-06-30 19:33:00*
+*Documentation for Production base - Generated 2026-07-13 13:40:59*
